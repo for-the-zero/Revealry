@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Wanted Sans Std';
+    src: url(../assets/WantedSansStd-Regular.otf);
+}
+@font-face {
+    font-family: 'LXGW xxh+';
+    src: url(../assets/LXGWNeoXiHeiPlus.ttf);
+}
+body{
+    background-color: #121212;
+    font-family: 'Wanted Sans Std', 'LXGW xxh+';
+    color: #F3F3F3
+}
