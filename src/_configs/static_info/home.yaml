@@ -1,0 +1,11 @@
+zh-CN: 
+  translations:
+    - selector: '[data-tid="jkl"]'
+      target: content
+      text: 测试2
+
+en: 
+  translations:
+    - selector: '[data-tid="jkl"]'
+      target: content
+      text: Test2

@@ -43,6 +43,7 @@ export function init_cursor(){
     if(is_touch){return;};
     const cursor = document.createElement('div');
     cursor.classList.add('cursor');
+    cursor.style.display = 'none';
     document.body.appendChild(cursor);
     document.addEventListener('mousemove', (e: MouseEvent) => {
         cursor.style.left = e.clientX + 'px';

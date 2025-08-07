@@ -1,6 +1,8 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
+import yaml from '@modyfi/vite-plugin-yaml';
 
 export default defineConfig({
+  plugins: [yaml()],
   root: 'src',
   build: {
     outDir: '../dist'
@@ -8,4 +10,4 @@ export default defineConfig({
   "server": {
     host: "0.0.0.0"
   }
-})
+});
