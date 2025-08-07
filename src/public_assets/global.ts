@@ -1,5 +1,4 @@
-import { init_card_effect, init_cursor } from './components';
-init_card_effect();
+import { init_cursor } from './components';
 init_cursor();
 
 import { get_lang, init_i18n } from './i18n';

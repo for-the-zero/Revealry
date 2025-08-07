@@ -13,6 +13,7 @@
     "vite": "^7.0.6"
   },
   "dependencies": {
+    "@mdui/icons": "^1.0.3",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "jquery": "^3.7.1"
   }

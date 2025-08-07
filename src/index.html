@@ -1,21 +1,56 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="./assets/icon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Home | Revealry</title>
-    <link rel="stylesheet" href="/index.css" />
-  </head>
-  <body>
-    <div class="card def" data-tid="abc" id="ghi">test</div>
-    <div class="card" data-tid="jkl" content="test">test</div>
+        <title>Home | Revealry</title>
+        <link rel="stylesheet" href="./index.css" />
+    </head>
+    <body>
+        <div class="card welcome-card">
+            <div class="swtich-lang">
+                <span>SWITCH_LANGUAGE</span>
+                <mdui-icon-translate style="width: 20px;"></mdui-icon-translate>
+            </div>
+            <h1><!--WELCOME_TITLE--></h1>
+        </div>
+
+        <div class="index">
+            <a class="h-box" href="./intro/index.html">
+                <div class="card" style="width: 40%; margin-right: 5%; padding: 15px;">
+                    <mdui-icon-badge--outlined style="font-size: 72px;"></mdui-icon-badge--outlined>
+                    <h2><!--INTRO--></h2>
+                </div>
+                <div class="card" style="width: 40%; border: none; padding: 15px;">
+                    <p><!--INTRO_SUB--></p>
+                </div>
+            </a>
+            <a class="h-box" href="./links/index.html">
+                <div class="card" style="width: 40%; border: none; padding: 15px;">
+                    <p><!--LINKS_SUB--></p>
+                </div>
+                <div class="card" style="width: 40%; margin-left: 5%; padding: 15px;">
+                    <mdui-icon-connect-without-contact style="font-size: 72px;"></mdui-icon-connect-without-contact>
+                    <h2><!--LINKS--></h2>
+                </div>
+            </a>
+            <a class="h-box" href="./blog/index.html">
+                <div class="card" style="width: 40%; margin-right: 5%; padding: 15px;">
+                    <mdui-icon-feed--outlined style="font-size: 72px;"></mdui-icon-feed--outlined>
+                    <h2><!--BLOG--></h2>
+                </div>
+                <div class="card" style="width: 40%; border: none; padding: 15px;">
+                    <p><!--BLOG_SUB--></p>
+                </div>
+            </a>
+        </div>
+
+        <div class="divider"></div>
 
 
-
-
-    <script type="module" src="/public_assets/global.ts"></script>
-    <script type="module" src="/index.ts"></script>
-  </body>
+        <script type="module" src="./public_assets/global.ts"></script>
+        <script type="module" src="./index.ts"></script>
+    </body>
 </html>
