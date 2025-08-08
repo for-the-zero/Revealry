@@ -1,61 +1,75 @@
+# TODO:
+
 zh-CN: 
   translations:
 
     # Custom Part
-    - selector: '.welcome-card > h1'
+    - selector: '.welcome-card'
       target: inner-html
       text: 欢迎！
-    - selector: 'body > div.index > a:nth-child(1) > div:nth-child(2) > p'
+    - selector: '.welcome-subt'
+      target: inner-html
+      text: Revealry
+    - selector: '.index:nth-child(1) > div > p'
       target: inner-html
       text: 这里可以写一些东西
-    - selector: 'body > div.index > a:nth-child(2) > div:nth-child(1) > p'
+    - selector: '.index:nth-child(2) > div > p'
       target: inner-html
       text: 这里可以也写一些东西
-    - selector: 'body > div.index > a:nth-child(3) > div:nth-child(2) > p'
+    - selector: '.index:nth-child(3) > div > p'
       target: inner-html
       text: 这里到底可以写什么东西啊喂（
 
     # Fixed Part
-    - selector: '.swtich-lang > span'
-      target: inner-html
+    - selector: '.switch-lang'
+      target: content
       text: Switch to English
-    - selector: 'body > div.index > a:nth-child(1) > div:nth-child(1) > h2'
+    - selector: '.index:nth-child(1) > mdui-card > h2'
       target: inner-html
       text: 介绍
-    - selector: 'body > div.index > a:nth-child(2) > div:nth-child(2) > h2'
+    - selector: '.index:nth-child(2) > mdui-card > h2'
       target: inner-html
       text: 链接
-    - selector: 'body > div.index > a:nth-child(3) > div:nth-child(1) > h2'
+    - selector: '.index:nth-child(3) > mdui-card > h2'
       target: inner-html
       text: 博客
+    
+  _other:
+    title: 首页 | Revealry演示
 
 en: 
   translations:
 
     # Custom Part
-    - selector: '.welcome-card > h1'
+    - selector: '.welcome-card'
       target: inner-html
       text: Welcome!
-    - selector: 'body > div.index > a:nth-child(1) > div:nth-child(2) > p'
+    - selector: '.welcome-subt'
+      target: inner-html
+      text: Revealry
+    - selector: '.index:nth-child(1) > div > p'
       target: inner-html
       text: Here you can write something
-    - selector: 'body > div.index > a:nth-child(2) > div:nth-child(1) > p'
+    - selector: '.index:nth-child(2) > div > p'
       target: inner-html
       text: Here you can also write something
-    - selector: 'body > div.index > a:nth-child(3) > div:nth-child(2) > p'
+    - selector: '.index:nth-child(3) > div > p'
       target: inner-html
       text: So?
 
     # Fixed Part
-    - selector: '.swtich-lang > span'
-      target: inner-html
+    - selector: '.switch-lang'
+      target: content
       text: 切换至中文
-    - selector: 'body > div.index > a:nth-child(1) > div:nth-child(1) > h2'
+    - selector: '.index:nth-child(1) > mdui-card > h2'
       target: inner-html
       text: Introduction
-    - selector: 'body > div.index > a:nth-child(2) > div:nth-child(2) > h2'
+    - selector: '.index:nth-child(2) > mdui-card > h2'
       target: inner-html
       text: Links
-    - selector: 'body > div.index > a:nth-child(3) > div:nth-child(1) > h2'
+    - selector: '.index:nth-child(3) > mdui-card > h2'
       target: inner-html
       text: Blog
+
+  _other:
+    title: Home | Revealry Demo

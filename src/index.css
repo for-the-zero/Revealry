@@ -3,48 +3,31 @@
 .welcome-card{
     width: calc(100vw - 40px);
     height: calc(100vh - 40px);
-    box-sizing: border-box;
     margin-top: 20px;
-}
-.swtich-lang{
+    box-sizing: border-box;
+    font-size: 3em;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: row;
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    padding: 10px;
-    border-radius: 100px;
-    transition: all 0.5s cubic-bezier(0.3, 0.35, 0, 1.00);
-}
-.swtich-lang > span{
-    width: 0;
-    font-size: 0;
-    content: none;
-}
-.swtich-lang.active{
-    background-color: #22232A;
-}
-.swtich-lang.active > span{
-    width: auto;
-    font-size: 12px;
-    margin-right: 10px;
-    content: normal;
+    align-items: center;
+    position: relative;
 }
 
-.index{
-    margin-top: 40px;
-    width: calc(100vw - 40px);
-    gap: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
+.index-icons{
+    font-size: 72px;
 }
-.divider{
-    width: 50%;
-    height: 2px;
-    background-color: #e3e2e6;
-    margin: 30px auto;
+.index {
+    gap: 5%;
+    align-items: normal;
+}
+.index > mdui-card{
+    width: 48%;
+    padding: 10px;
+    gap: 10px;
+    cursor: none;
+}
+index > mdui-card > *{
+    cursor: none;
+}
+.index > div{
+    width: 47%;
 }

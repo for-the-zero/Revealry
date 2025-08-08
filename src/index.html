@@ -8,47 +8,68 @@
         <title>Home | Revealry</title>
         <link rel="stylesheet" href="./index.css" />
     </head>
-    <body>
-        <div class="card welcome-card">
-            <div class="swtich-lang">
-                <span>SWITCH_LANGUAGE</span>
-                <mdui-icon-translate style="width: 20px;"></mdui-icon-translate>
+    <body data-barba="wrapper">
+        <mdui-card class="welcome-card" variant="outlined" clickable><!----></mdui-card>
+        <div class="h-box" style="
+            width: calc(100% - 20px - 36px);
+            margin-top: 20px;
+            margin-bottom: 20px;"
+        >   
+            <mdui-avatar src="" style="margin-right: 10px;"></mdui-avatar>
+            <p class="welcome-subt"><!----></p>
+            <div style="flex-grow: 1;"></div>
+            <mdui-tooltip class="switch-lang" content="Plain tooltip" placement="left">
+                <mdui-button-icon>
+                    <mdui-icon-translate></mdui-icon-translate>
+                </mdui-button-icon>
+            </mdui-tooltip>
+        </div>
+
+        <div class="v-box" style="
+            width: calc(100% - 20px - 36px);
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+            gap: 20px;
+        ">
+            <div class="h-box index" style="width: 100%;">
+                <mdui-card variant="filled" clickable class="auto-box" href="./intro/index.html">
+                    <mdui-icon-badge--outlined class="index-icons"></mdui-icon-badge--outlined>
+                    <h2><!----></h2>
+                </mdui-card>
+                <div>
+                    <p><!----></p>
+                </div>
             </div>
-            <h1><!--WELCOME_TITLE--></h1>
+            <div class="h-box index" style="width: 100%;">
+                <mdui-card variant="filled" clickable class="auto-box" href="./links/index.html">
+                    <mdui-icon-connect-without-contact class="index-icons"></mdui-icon-connect-without-contact>
+                    <h2><!----></h2>
+                </mdui-card>
+                <div>
+                    <p><!----></p>
+                </div>
+            </div>
+            <div class="h-box index" style="width: 100%;">
+                <mdui-card variant="filled" clickable class="auto-box" href="./blog/index.html">
+                    <mdui-icon-feed--outlined class="index-icons"></mdui-icon-feed--outlined>
+                    <h2><!----></h2>
+                </mdui-card>
+                <div>
+                    <p><!----></p>
+                </div>
+            </div>
         </div>
 
-        <div class="index">
-            <a class="h-box" href="./intro/index.html">
-                <div class="card" style="width: 40%; margin-right: 5%; padding: 15px;">
-                    <mdui-icon-badge--outlined style="font-size: 72px;"></mdui-icon-badge--outlined>
-                    <h2><!--INTRO--></h2>
-                </div>
-                <div class="card" style="width: 40%; border: none; padding: 15px;">
-                    <p><!--INTRO_SUB--></p>
-                </div>
-            </a>
-            <a class="h-box" href="./links/index.html">
-                <div class="card" style="width: 40%; border: none; padding: 15px;">
-                    <p><!--LINKS_SUB--></p>
-                </div>
-                <div class="card" style="width: 40%; margin-left: 5%; padding: 15px;">
-                    <mdui-icon-connect-without-contact style="font-size: 72px;"></mdui-icon-connect-without-contact>
-                    <h2><!--LINKS--></h2>
-                </div>
-            </a>
-            <a class="h-box" href="./blog/index.html">
-                <div class="card" style="width: 40%; margin-right: 5%; padding: 15px;">
-                    <mdui-icon-feed--outlined style="font-size: 72px;"></mdui-icon-feed--outlined>
-                    <h2><!--BLOG--></h2>
-                </div>
-                <div class="card" style="width: 40%; border: none; padding: 15px;">
-                    <p><!--BLOG_SUB--></p>
-                </div>
-            </a>
+        <mdui-divider style="
+            width: calc(100% - 20px - 36px);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        "></mdui-divider>
+
+        <div class="mdui-prose" style="margin-bottom: 20px;">
+            Powered by <a href="https://mdui.org">MDUI</a> and <a href="https://github.com/for-the-zero/Revealry">Revealry</a>
         </div>
-
-        <div class="divider"></div>
-
 
         <script type="module" src="./public_assets/global.ts"></script>
         <script type="module" src="./index.ts"></script>
