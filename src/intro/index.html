@@ -3,12 +3,44 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blog</title>
+        <title>Intro | Revealry</title>
         <link rel="stylesheet" href="./index.css">
     </head>
     <body>
-        <h1>111</h1>
-        <a href="..">Go</a>
+        <mdui-top-app-bar>
+            <mdui-button-icon href="..">
+                <mdui-icon-arrow-back></mdui-icon-arrow-back>
+            </mdui-button-icon>
+            <mdui-top-app-bar-title>Title</mdui-top-app-bar-title>
+        </mdui-top-app-bar>
+        <div class="container">
+            <div class="boxes">
+                <div class="v-box">
+                    <div class="h-box">
+                        <div class="v-box">
+                            <mdui-card variant="outlined">
+                                <mdui-avatar></mdui-avatar>
+                            </mdui-card>
+                            <mdui-card variant="outlined">兴趣</mdui-card>
+                        </div>
+                        <div class="v-box">
+                            <mdui-card variant="outlined">名字</mdui-card>
+                            <div class="h-box">
+                                <div class="v-box">
+                                    <mdui-card variant="outlined">年龄生日</mdui-card>
+                                    <mdui-card variant="outlined">性别</mdui-card>
+                                </div>
+                                <mdui-card variant="outlined">位置</mdui-card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-box">
+                        <mdui-card variant="outlined">简介</mdui-card>
+                        <mdui-card variant="outlined">身份</mdui-card>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script src="../public_assets/global.ts" type="module"></script>
         <script src="./index.ts" type="module"></script>

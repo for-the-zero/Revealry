@@ -1,0 +1,17 @@
+zh-CN:
+  name: yourname
+  age: 24岁，事学生，1970-01-01
+  sex: 沃尔玛购物袋
+  locate: 地球
+  hobby: 我不到啊
+  profile: 这里可以写你的简介
+  identity: 关于身份
+
+en:
+  name: yourname
+  age: 200yo, 1970-01-01
+  sex: Amazon shopping bag
+  locate: Earth
+  hobby: idk
+  profile: You can write a brief introduction here
+  identity: About your identity

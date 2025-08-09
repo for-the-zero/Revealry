@@ -1,1 +1,19 @@
-@import url('../public_assets/global.css')
+@import url('../public_assets/global.css');
+
+body{
+    padding: 24px;
+}
+.boxes{
+    width: 100%;
+}
+.boxes :is(.v-box, .h-box){
+    align-items: normal;
+    gap: 10px;
+}
+.boxes :is(.v-box, .h-box) > mdui-card{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}

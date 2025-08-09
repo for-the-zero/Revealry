@@ -8,7 +8,11 @@ interface staticinfo {
         _other?: any;
     }
 };
-declare module '*.static.yaml' {
+declare module '*.yaml' {
     const content: any;
+    export default content;
+};
+declare module '*.static.yaml' {
+    const content: staticinfo;
     export default content;
 };

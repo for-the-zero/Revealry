@@ -14,7 +14,7 @@ import '@mdui/icons/feed--outlined.js';
 
 import { init_i18n, change_lang } from './public_assets/i18n';
 import config_static_home from './_configs/home.static.yaml';
-init_i18n(config_static_home as staticinfo);
+init_i18n(config_static_home);
 
 const e_switchlang = $('.switch-lang > mdui-button-icon');
 const e_linkcard1 = $('.link-card:nth-child(1)');
