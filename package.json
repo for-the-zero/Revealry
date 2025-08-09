@@ -13,10 +13,10 @@
     "vite": "^7.0.6"
   },
   "dependencies": {
-    "@barba/core": "^2.10.3",
     "@mdui/icons": "^1.0.3",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "jquery": "^3.7.1",
-    "mdui": "^2.1.4"
+    "mdui": "^2.1.4",
+    "pace-js": "^1.2.4"
   }
 }

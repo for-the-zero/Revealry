@@ -10,7 +10,7 @@
 body{
     background-color: var(--mdui-color-background);
     font-family: 'Wanted Sans Std', 'LXGW xxh+';
-    color: #e4e4e4;
+    color: var(--mdui-color-on-surface);
     display: flex;
     flex-direction: column;
     align-items: center;
