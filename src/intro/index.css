@@ -2,13 +2,29 @@
 
 body{
     padding: 24px;
+    user-select: auto;
 }
-.boxes{
+
+.container{
+    align-items: normal;
     width: 100%;
+    gap: 24px;
+}
+
+.boxes{
+    width: 50vw;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .boxes{
+        width: calc(100vw - 48px);
+        margin: 0 auto;
+    }
 }
 .boxes :is(.v-box, .h-box){
     align-items: normal;
     gap: 10px;
+    flex: 1;
 }
 .boxes :is(.v-box, .h-box) > mdui-card{
     padding: 10px;
@@ -16,4 +32,59 @@ body{
     justify-content: center;
     align-items: center;
     flex: 1;
+}
+
+.intros, .sens{
+    padding: 15px;
+    padding-right: 43px;
+    width: calc(100% - 28px);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.intros h3, .intros p, .sens h3, .sens p, .sens h6{
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+.intros mdui-fab, .sens mdui-fab{
+    position: absolute;
+    right: -28px;
+    bottom: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.sens h6{
+    color: var(--mdui-color-outline);
+    font-weight: 50;
+    opacity: 0.5;
+}
+
+.lifelog-title{
+    margin: 0;
+}
+.lifelog-cards{
+    align-items: normal;
+    gap: 10px;
+}
+.lifelog-cards mdui-card{
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.lifelog-cards h3, .lifelog-cards p{
+    margin: 0;
+    word-break: break-all;
+    width: 100%;
+}
+mdui-list-item::part(container){
+    cursor: none;
 }

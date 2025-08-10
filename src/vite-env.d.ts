@@ -16,3 +16,24 @@ declare module '*.static.yaml' {
     const content: staticinfo;
     export default content;
 };
+
+interface intro {
+    name: string;
+    age: string;
+    sex: string;
+    locate: string;
+    hobby: string;
+    profile: string;
+    identity: string;
+    detail_intros: string[];
+    sentences: Array<{
+        text: string;
+        note: string | null;
+    }> | null;
+    lifelog: {
+        url: string;
+        phone_alias: object | null;
+        laptop_alias: object | null;
+        notice: object | null;
+    } | null;
+};

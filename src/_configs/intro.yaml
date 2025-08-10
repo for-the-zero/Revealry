@@ -1,11 +1,46 @@
 zh-CN:
-  name: yourname
+  name: 君の名は
   age: 24岁，事学生，1970-01-01
   sex: 沃尔玛购物袋
   locate: 地球
   hobby: 我不到啊
   profile: 这里可以写你的简介
   identity: 关于身份
+  detail_intros: 
+    - |
+      前面忘了
+      中间忘了
+      后面忘了
+    - 你有病吧填这些示例数据
+    - awmc
+    - 我看你完全是不懂哦（坏笑
+    - 我不管，睡大觉
+    - '114514'
+    - '1919810'
+    - '0721'
+    - 'ciallo ～ (∠・ω< )⌒★'
+    - 喵~
+    - 'ヾ(•ω•`)o'
+    - '1 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+    - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+    - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+  sentences:
+    - text: |
+        听好了！
+        前面忘了，中间忘了，后面忘了！
+        至此，一锤定音！
+        尘埃，已然落定！
+      note: 我操，源！
+    - text: 嗯哼哼啊啊 啊啊啊啊 啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊
+      note: null
+    - text: 你是一个一个一个什么啊
+      note: null
+  lifelog:
+    url: 'https://lifelog.forthezero.dpdns.org/get'
+    phone_alias:
+      - 'tv.danmaku.bili': '在看视频'
+    laptop_alias:
+      - 'Code.exe': '在写代码'
 
 en:
   name: yourname
@@ -15,3 +50,21 @@ en:
   hobby: idk
   profile: You can write a brief introduction here
   identity: About your identity
+  detail_intros: 
+    - qwertyuiop
+    - asdfghjkl
+    - zxcvbnm
+    - Tralalero Tralala
+    - Burbaloni Luliloli
+    - Boneka Ambalabu
+    - Tung Tung Tung Sahur
+    - '1 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+    - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+    - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+  sentences: null
+  lifelog:
+    url: 'https://lifelog.forthezero.dpdns.org/get'
+    phone_alias:
+      - 'tv.danmaku.bili': 'watching video'
+    laptop_alias:
+      - 'Tai.exe': '什么也没在干'

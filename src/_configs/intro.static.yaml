@@ -3,6 +3,12 @@ zh-CN:
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
     text: 介绍
+  - selector: '.intros h3'
+    target: inner-html
+    text: 更多介绍
+  - selector: '.sens h3'
+    target: inner-html
+    text: 小句子
 
   _other:
     title: 介绍 | Revealry 示例
@@ -12,6 +18,12 @@ en:
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
     text: Introduction
-    
+  - selector: '.intros h3'
+    target: inner-html
+    text: More About Me
+  - selector: '.sens h3'
+    target: inner-html
+    text: Sentences
+
   _other:
     title: Intro | Revealry Demo
