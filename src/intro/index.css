@@ -65,11 +65,19 @@ body{
     opacity: 0.5;
 }
 
+mdui-top-app-bar-title, .intros h3, .sens h3, .lifelog-title, .lifelog-cards h3{
+    user-select: none;
+}
+
 .lifelog-title{
     margin: 0;
 }
+.lifelog-subtitle{
+    font-weight: 100;
+    font-size: 1.25rem;
+}
 .lifelog-cards{
-    align-items: normal;
+    align-items: flex-start;
     gap: 10px;
 }
 .lifelog-cards mdui-card{
@@ -87,4 +95,7 @@ body{
 }
 mdui-list-item::part(container){
     cursor: none;
+}
+th, td{
+    word-break: break-all;
 }

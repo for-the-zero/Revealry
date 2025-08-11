@@ -9,6 +9,39 @@ zh-CN:
   - selector: '.sens h3'
     target: inner-html
     text: 小句子
+  - selector: '.lifelog-title > span:first-child'
+    target: inner-html
+    text: 我在干什么
+  - selector: '.lifelog-card-laptop > h3'
+    target: inner-html
+    text: 电脑
+  - selector: '.lifelog-card-phone > h3'
+    target: inner-html
+    text: 手机
+  - selector: '.lifelog-card-laptop > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
+    target: inner-html
+    text: 历史数据
+  - selector: '.lifelog-card-phone > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
+    target: inner-html
+    text: 历史数据
+  - selector: '.lifelog-card-laptop-table > thead > tr > th:first-child'
+    target: inner-html
+    text: 时间
+  - selector: '.lifelog-card-laptop-table > thead > tr > th:nth-child(2)'
+    target: inner-html
+    text: 正在……
+  - selector: '.lifelog-card-laptop-table > thead > tr > th:last-child'
+    target: inner-html
+    text: 用了这么久
+  - selector: '.lifelog-card-phone-table > thead > tr > th:first-child'
+    target: inner-html
+    text: 时间
+  - selector: '.lifelog-card-phone-table > thead > tr > th:nth-child(2)'
+    target: inner-html
+    text: 正在……
+  - selector: '.lifelog-card-phone-table > thead > tr > th:last-child'
+    target: inner-html
+    text: 电量
 
   _other:
     title: 介绍 | Revealry 示例
@@ -24,6 +57,39 @@ en:
   - selector: '.sens h3'
     target: inner-html
     text: Sentences
+  - selector: '.lifelog-title > span:first-child'
+    target: inner-html
+    text: What I'm Doing
+  - selector: '.lifelog-card-laptop > h3'
+    target: inner-html
+    text: Laptop
+  - selector: '.lifelog-card-phone > h3'
+    target: inner-html
+    text: Mobile Phone
+  - selector: '.lifelog-card-laptop > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
+    target: inner-html
+    text: Historical Data
+  - selector: '.lifelog-card-phone > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
+    target: inner-html
+    text: Historical Data
+  - selector: '.lifelog-card-laptop-table > thead > tr > th:first-child'
+    target: inner-html
+    text: Time
+  - selector: '.lifelog-card-laptop-table > thead > tr > th:nth-child(2)'
+    target: inner-html
+    text: Doing...
+  - selector: '.lifelog-card-laptop-table > thead > tr > th:last-child'
+    target: inner-html
+    text: Used for
+  - selector: '.lifelog-card-phone-table > thead > tr > th:first-child'
+    target: inner-html
+    text: Time
+  - selector: '.lifelog-card-phone-table > thead > tr > th:nth-child(2)'
+    target: inner-html
+    text: Doing...
+  - selector: '.lifelog-card-phone-table > thead > tr > th:last-child'
+    target: inner-html
+    text: Battery
 
   _other:
     title: Intro | Revealry Demo

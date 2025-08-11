@@ -66,15 +66,37 @@ function show_intros(){
 };
 function show_sens(){
     if(config_intro.sentences){
-        let sens = config_intro.sentences;
-        let random_sens = sens[Math.floor(Math.random() * sens.length)];
-        if(random_sens.text === e_sens_p.text()){
-            show_sens();
-            return;
+        let probablity = 0;
+        if(config_intro.hitokoto){
+            probablity = config_intro.hitokoto;
         };
-        e_sens_p.text(random_sens.text);
-        if(random_sens.note){
-            e_sens_h6.text(random_sens.note);
+        if(Math.random() < probablity){
+            fetch('https://v1.hitokoto.cn/').then((response: Response) => {
+                response.json().then((data: any)=>{
+                    let hitokoto = data.hitokoto;
+                    let id = data.id;
+                    let from = data.from + (data.from_who ? ', ' + data.from_who: '');
+                    e_sens_p.text(hitokoto);
+                    e_sens_h6.text(`From ${from} via Hitokoto (ID: ${id})`);
+                }).catch((error: any)=>{
+                    console.error(error);
+                    show_sens();
+                    return;
+                });
+            });
+        } else {
+            let sens = config_intro.sentences;
+            let random_sens = sens[Math.floor(Math.random() * sens.length)];
+            if(random_sens.text === e_sens_p.text()){
+                show_sens();
+                return;
+            };
+            e_sens_p.text(random_sens.text);
+            if(random_sens.note){
+                e_sens_h6.text(random_sens.note);
+            } else {
+                e_sens_h6.text('');
+            };
         };
     } else {
         e_sens.hide();
@@ -84,3 +106,155 @@ e_intros_fab.on('click', show_intros);
 e_sens_fab.on('click', show_sens);
 show_intros();
 show_sens();
+
+//
+const e_ll_subt = $('.lifelog-subtitle');
+const e_ll_cards = $('.lifelog-cards');
+const e_ll_l = $('.lifelog-card-laptop');
+const e_ll_p = $('.lifelog-card-phone');
+const e_ll_lt = $('.lifelog-card-laptop-table');
+const e_ll_pt = $('.lifelog-card-phone-table');
+interface lifelog_item_laptop {
+    device: 'laptop';
+    time: number;
+    app_title: string;
+    app_exe: string;
+    used: number;
+};
+interface lifelog_item_phone {
+    device: 'phone';
+    time: number;
+    app_name: string;
+    app_pn: string;
+    battery: number;
+    is_charging: boolean;
+};
+type lifelog_item = lifelog_item_laptop | lifelog_item_phone;
+function sort_lifelog(data: lifelog_item[]): { phone_data: lifelog_item_phone[], laptop_data: lifelog_item_laptop[] }{
+    // 分类phone和laptop
+    let phone_data: lifelog_item_phone[] = [];
+    let laptop_data: lifelog_item_laptop[] = [];
+    for(let i = 0; i < data.length; i++){
+        if(data[i].device === 'phone'){
+            phone_data.push(data[i] as lifelog_item_phone);
+        } else if(data[i].device === 'laptop'){
+            laptop_data.push(data[i] as lifelog_item_laptop);
+        };
+    };
+    return { phone_data, laptop_data };
+};
+e_ll_cards.hide();
+if(config_intro.lifelog){
+    fetch(config_intro.lifelog.url).then((response: Response) => {
+        response.json().then((data: lifelog_item[]) => {
+            let { phone_data, laptop_data } = sort_lifelog(data);
+            show_lifelog(phone_data, laptop_data, data);
+            e_ll_cards.show();
+        });
+    }).catch((error: any) => {
+        console.error(error);
+        e_ll_subt.text(error.message);
+    });
+} else {
+    $('.lifelog-title').hide();
+};
+function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[], data: lifelog_item[]){
+    function sec2str(sec: number): string {
+        let h = String(Math.floor(sec / 3600)).padStart(2, '0');
+        h = h === '00' ? '' : `${h}:`;
+        const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+        const s = String(sec % 60).padStart(2, '0');
+        return `${h}${m}:${s}`;
+    };
+    function ts2str(ts: number): string {
+        if(ts < 1e10){ts *= 1000};
+        const date = new Date(ts);
+        const M = String(date.getMonth() + 1).padStart(2, '0');
+        const D = String(date.getDate()).padStart(2, '0');
+        const h = String(date.getHours()).padStart(2, '0');
+        const m = String(date.getMinutes()).padStart(2, '0');
+        return `${M}-${D} ${h}:${m}`;
+    };
+
+    if (laptop.length === 0) {
+        if (config_intro.lifelog?.laptop.when_no_records) {
+            e_ll_l.find('p').text(config_intro.lifelog.laptop.when_no_records);
+            e_ll_l.find('mdui-chip:first-child span').hide();
+            e_ll_l.find('mdui-chip:last-child span').hide();
+        };
+    } else {
+        function get_app_title(app_exe: string): string {
+            const aliases = config_intro.lifelog?.laptop.alias ?? {};
+            if (Object.keys(aliases).includes(app_exe)){
+                return aliases[app_exe];
+            } else {
+                return app_exe;
+            };
+        };
+        e_ll_l.find('p').text(get_app_title(laptop[0].app_exe));
+        e_ll_l.find('mdui-chip:first-child span').text(sec2str(laptop[0].used));
+        e_ll_l.find('mdui-chip:last-child span').text(ts2str(laptop[0].time));
+        laptop.forEach((item: lifelog_item_laptop) => {
+            let tbody_html = `
+                <tr>
+                    <td>${ts2str(item.time)}</td>
+                    <td>${get_app_title(item.app_exe)}</td>
+                    <td>${sec2str(item.used)}</td>
+                </tr>
+            `;
+            e_ll_lt.find('tbody').append(tbody_html);
+        });
+    };
+
+    if(phone.length === 0){
+        if(config_intro.lifelog?.phone.when_no_records){
+            e_ll_p.find('p').text(config_intro.lifelog.phone.when_no_records);
+            e_ll_p.find('mdui-chip:first-child span').hide();
+            e_ll_p.find('mdui-chip:last-child span').hide();
+        };
+    } else {
+        function get_app_name(app_pn: string): string {
+            const aliases = config_intro.lifelog?.phone.alias ?? {};
+            if (Object.keys(aliases).includes(app_pn)){
+                return aliases[app_pn];
+            } else {
+                return app_pn;
+            };
+        };
+        e_ll_p.find('p').text(get_app_name(phone[0].app_pn));
+        e_ll_p.find('mdui-chip:first-child span').text(phone[0].battery + '%');
+        e_ll_p.find('mdui-chip:last-child span').text(ts2str(phone[0].time));
+        e_ll_p.find('mdui-chip:first-child :first-child').replaceWith(
+            phone[0].is_charging ? '<mdui-icon-battery-charging-full slot="icon"></mdui-icon-battery-charging-full>' : '<mdui-icon-battery-0-bar slot="icon"></mdui-icon-battery-0-bar>'
+        );
+        phone.forEach((item: lifelog_item_phone) => {
+            let tbody_html = `
+                <tr>
+                    <td>${ts2str(item.time)}</td>
+                    <td>${get_app_name(item.app_pn)}</td>
+                    <td>${item.battery}%</td>
+                </tr>
+            `;
+            e_ll_pt.find('tbody').append(tbody_html);
+        });
+    };
+
+    let notice = '';
+    if (config_intro.lifelog?.offline) {
+        let last_hour = 0;
+        if (data.length > 0) {
+            last_hour = Math.round((Date.now() - data[0].time) / 3600000);
+        };
+        const offline_hours = Object.keys(config_intro.lifelog.offline).map(Number);
+        const possible_hours = offline_hours.filter(h => h <= last_hour);
+        if (possible_hours.length > 0) {
+            const ideal_hour = Math.max(...possible_hours);
+            notice = config_intro.lifelog.offline[ideal_hour];
+        };
+    };
+    if(notice){
+        e_ll_subt.text(notice);
+    } else {
+        e_ll_subt.hide();
+    };
+};

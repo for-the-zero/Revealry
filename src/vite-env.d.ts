@@ -26,14 +26,27 @@ interface intro {
     profile: string;
     identity: string;
     detail_intros: string[];
+    hitokoto: number | false;
     sentences: Array<{
         text: string;
         note: string | null;
     }> | null;
     lifelog: {
         url: string;
-        phone_alias: object | null;
-        laptop_alias: object | null;
-        notice: object | null;
+        phone: {
+            alias: {
+                [app_name: string]: string;
+            } | null;
+            when_no_records: string;
+        };
+        laptop: {
+            alias: {
+                [app_exe: string]: string;
+            } | null;
+            when_no_records: string;
+        };
+        offline: {
+            [hours: number]: string;
+        } | null;
     } | null;
 };

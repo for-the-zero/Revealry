@@ -24,6 +24,7 @@ zh-CN:
     - '1 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+  hitokoto: 0.5
   sentences:
     - text: |
         听好了！
@@ -37,10 +38,20 @@ zh-CN:
       note: null
   lifelog:
     url: 'https://lifelog.forthezero.dpdns.org/get'
-    phone_alias:
-      - 'tv.danmaku.bili': '在看视频'
-    laptop_alias:
-      - 'Code.exe': '在写代码'
+    phone:
+      alias:
+        'tv.danmaku.bili': '在看视频'
+      when_no_records: '最近没在用手机，不知道在干嘛'
+    laptop:
+      alias:
+        'Code.exe': '写代码'
+        'Tai.exe': '开着电脑但是什么也没在干'
+      when_no_records: '最近没在用电脑，不知道在干嘛'
+    offline:
+      0: '>w<'
+      12: '半天没在用手机电脑了怎么回事'
+      24: '一天了，可能是去上学还是什么之类的吧'
+      168: '一周了，有点担心呢'
 
 en:
   name: yourname
@@ -61,10 +72,6 @@ en:
     - '1 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+  hitokoto: false
   sentences: null
-  lifelog:
-    url: 'https://lifelog.forthezero.dpdns.org/get'
-    phone_alias:
-      - 'tv.danmaku.bili': 'watching video'
-    laptop_alias:
-      - 'Tai.exe': '什么也没在干'
+  lifelog: null

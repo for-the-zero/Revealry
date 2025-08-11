@@ -11,7 +11,7 @@
             <mdui-button-icon href="..">
                 <mdui-icon-arrow-back></mdui-icon-arrow-back>
             </mdui-button-icon>
-            <mdui-top-app-bar-title>Title</mdui-top-app-bar-title>
+            <mdui-top-app-bar-title><!----></mdui-top-app-bar-title>
         </mdui-top-app-bar>
 
         <div class="v-box container">
@@ -82,44 +82,40 @@
             <h2 class="lifelog-title">
                 <span>Lifelog</span>
                 <br/>
-                <span style="font-weight: 100; font-size: 1.25rem;">good</span>
+                <span class="lifelog-subtitle">Requesting...</span>
             </h2>
 
             <div class="auto-box lifelog-cards">
-                <mdui-card variant="filled">
-                    <h3>电脑</h3>
-                    <p>Visual Studio Code</p>
+                <mdui-card variant="filled" class="lifelog-card-laptop">
+                    <h3><!----></h3>
+                    <p><!----></p>
                     <div class="h-box" style="gap: 5px;">
                         <mdui-chip>
                             <mdui-icon-timelapse slot="icon"></mdui-icon-timelapse>
-                            <span>?小时</span>
+                            <span><!----></span>
                         </mdui-chip>
                         <mdui-chip>
                             <mdui-icon-update slot="icon"></mdui-icon-update>
-                            <span>时间</span>
+                            <span><!----></span>
                         </mdui-chip>
                     </div>
                     <mdui-collapse>
-                        <mdui-collapse-item>
+                        <mdui-collapse-item style="overflow-x: scroll;">
                             <mdui-list-item slot="header">
                                 <mdui-icon-history slot="icon"></mdui-icon-history>
-                                <span>历史数据</span>
+                                <span><!----></span>
                             </mdui-list-item>
-
-                            <table class="mdui-table" style="margin: 0;">
+                            
+                            <table class="mdui-table lifelog-card-laptop-table" style="margin: 0; width: 100%;table-layout: fixed">
                                 <thead>
                                     <tr>
-                                        <th>时间</th>
-                                        <th>应用</th>
-                                        <th>使用时长</th>
+                                        <th><!----></th>
+                                        <th><!----></th>
+                                        <th><!----></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>123</td>
-                                        <td>Visual Studio Code</td>
-                                        <td>123</td>
-                                    </tr>
+                                    <!---->
                                 </tbody>
                             </table>
 
@@ -127,40 +123,36 @@
                     </mdui-collapse>
                 </mdui-card>
 
-                <mdui-card variant="filled">
-                    <h3>手机</h3>
-                    <p>Chrome</p>
+                <mdui-card variant="filled" class="lifelog-card-phone">
+                    <h3><!----></h3>
+                    <p><!----></p>
                     <div class="h-box" style="gap: 5px;">
                         <mdui-chip>
                             <mdui-icon-battery-0-bar slot="icon"></mdui-icon-battery-0-bar>
-                            <spam>100%</spam>
+                            <span><!----></span>
                         </mdui-chip>
                         <mdui-chip>
                             <mdui-icon-update slot="icon"></mdui-icon-update>
-                            <span>时间</span>
+                            <span><!----></span>
                         </mdui-chip>
                     </div>
                     <mdui-collapse>
-                        <mdui-collapse-item>
+                        <mdui-collapse-item style="overflow-x: scroll;">
                             <mdui-list-item slot="header">
                                 <mdui-icon-history slot="icon"></mdui-icon-history>
-                                <span>历史数据</span>
+                                <span><!----></span>
                             </mdui-list-item>
 
-                            <table class="mdui-table" style="margin: 0;">
+                            <table class="mdui-table lifelog-card-phone-table" style="margin: 0; width: 100%;table-layout: fixed">
                                 <thead>
                                     <tr>
-                                        <th>时间</th>
-                                        <th>应用</th>
-                                        <th>电量</th>
+                                        <th><!----></th>
+                                        <th><!----></th>
+                                        <th><!----></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>123</td>
-                                        <td>Chrome</td>
-                                        <td>100</td>
-                                    </tr>
+                                    <!---->
                                 </tbody>
                             </table>
 
@@ -169,7 +161,7 @@
                 </mdui-card>
             </div>
 
-            
+
         </div>
 
         <script src="../public_assets/global.ts" type="module"></script>
