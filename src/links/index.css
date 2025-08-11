@@ -1,0 +1,18 @@
+@import url('../public_assets/global.css');
+
+body {
+    padding: 24px;
+    gap: 10px;
+}
+
+.container {
+    align-items: normal;
+    width: 100%;
+    gap: 12px;
+}
+h1{
+    margin: 0;
+}
+mdui-card{
+    padding: 10px;
+}

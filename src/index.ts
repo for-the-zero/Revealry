@@ -17,11 +17,9 @@ import config_static_home from './_configs/home.static.yaml';
 init_i18n(config_static_home);
 
 const e_switchlang = $('.switch-lang > mdui-button-icon');
-const e_linkcard1 = $('.link-card:nth-child(1)');
-const e_linkcard2 = $('.link-card:nth-child(2)');
-const e_linkcard3 = $('.link-card:nth-child(3)');
+const e_linkcard = $('.link-card');
 
 e_switchlang.on('click', change_lang);
-e_linkcard1.on('click', () => {window.location.href = './intro/'});
-e_linkcard2.on('click', () => {window.location.href = './links/'});
-e_linkcard3.on('click', () => {window.location.href = './blog/'});
+e_linkcard.eq(0).on('click', () => {window.location.href = './intro/'});
+e_linkcard.eq(1).on('click', () => {window.location.href = './links/'});
+e_linkcard.eq(2).on('click', () => {window.location.href = './blog/'});
