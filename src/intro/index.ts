@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $, { get } from 'jquery';
 
 // components
 import 'mdui/components/top-app-bar.js';
@@ -183,22 +183,22 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
             e_ll_l.find('mdui-chip:last-child span').hide();
         };
     } else {
-        function get_app_title(app_exe: string): string {
+        function get_app_title(app_exe: string, app_title: string): string {
             const aliases = config_intro.lifelog?.laptop.alias ?? {};
             if (Object.keys(aliases).includes(app_exe)){
                 return aliases[app_exe];
             } else {
-                return app_exe;
+                return app_title;
             };
         };
-        e_ll_l.find('p').text(get_app_title(laptop[0].app_exe));
+        e_ll_l.find('p').text(get_app_title(laptop[0].app_exe, laptop[0].app_title));
         e_ll_l.find('mdui-chip:first-child span').text(sec2str(laptop[0].used));
         e_ll_l.find('mdui-chip:last-child span').text(ts2str(laptop[0].time));
         laptop.forEach((item: lifelog_item_laptop) => {
             let tbody_html = `
                 <tr>
                     <td>${ts2str(item.time)}</td>
-                    <td>${get_app_title(item.app_exe)}</td>
+                    <td>${get_app_title(item.app_exe, item.app_title)}</td>
                     <td>${sec2str(item.used)}</td>
                 </tr>
             `;
@@ -213,15 +213,15 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
             e_ll_p.find('mdui-chip:last-child span').hide();
         };
     } else {
-        function get_app_name(app_pn: string): string {
+        function get_app_name(app_pn: string, app_name: string): string {
             const aliases = config_intro.lifelog?.phone.alias ?? {};
             if (Object.keys(aliases).includes(app_pn)){
                 return aliases[app_pn];
             } else {
-                return app_pn;
+                return app_name;
             };
         };
-        e_ll_p.find('p').text(get_app_name(phone[0].app_pn));
+        e_ll_p.find('p').text(get_app_name(phone[0].app_pn, phone[0].app_name));
         e_ll_p.find('mdui-chip:first-child span').text(phone[0].battery + '%');
         e_ll_p.find('mdui-chip:last-child span').text(ts2str(phone[0].time));
         e_ll_p.find('mdui-chip:first-child :first-child').replaceWith(
@@ -231,7 +231,7 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
             let tbody_html = `
                 <tr>
                     <td>${ts2str(item.time)}</td>
-                    <td>${get_app_name(item.app_pn)}</td>
+                    <td>${get_app_name(item.app_pn, item.app_name)}</td>
                     <td>${item.battery}%</td>
                 </tr>
             `;
@@ -240,17 +240,25 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
     };
 
     let notice = '';
-    if (config_intro.lifelog?.offline) {
-        let last_hour = 0;
-        if (data.length > 0) {
-            last_hour = Math.round((Date.now() - data[0].time) / 3600000);
+    function get_notice(hour: number): string {
+        if(config_intro.lifelog?.offline){
+            const keys = Object.keys(config_intro.lifelog?.offline).map(Number).sort((a, b) => a - b);
+            if (hour < keys[0]) {
+                return config_intro.lifelog?.offline[keys[0]];
+            };
+            for (let i = 0; i < keys.length; i++) {
+                if (hour < keys[i]) {
+                    return config_intro.lifelog?.offline[keys[i - 1]];
+                };
+            };
+            return config_intro.lifelog?.offline[keys[keys.length - 1]];
+        } else {
+            return '';
         };
-        const offline_hours = Object.keys(config_intro.lifelog.offline).map(Number);
-        const possible_hours = offline_hours.filter(h => h <= last_hour);
-        if (possible_hours.length > 0) {
-            const ideal_hour = Math.max(...possible_hours);
-            notice = config_intro.lifelog.offline[ideal_hour];
-        };
+    };
+    if (data.length > 0) {
+        let last_hour = Math.round((Date.now() - data[0].time) / 3600000);
+        notice = get_notice(last_hour);
     };
     if(notice){
         e_ll_subt.text(notice);

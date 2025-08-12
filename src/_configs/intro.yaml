@@ -43,9 +43,7 @@ zh-CN:
         'tv.danmaku.bili': '在看视频'
       when_no_records: '最近没在用手机，不知道在干嘛'
     laptop:
-      alias:
-        'Code.exe': '写代码'
-        'Tai.exe': '开着电脑但是什么也没在干'
+      alias: null
       when_no_records: '最近没在用电脑，不知道在干嘛'
     offline:
       0: '>w<'

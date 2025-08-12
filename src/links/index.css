@@ -10,9 +10,26 @@ body {
     width: 100%;
     gap: 12px;
 }
-h1{
+h1, p{
     margin: 0;
 }
 mdui-card{
     padding: 10px;
+    margin: 2.5px;
+    aspect-ratio: 1/1;
+}
+mdui-card img{
+    width: 40px;
+}
+
+.link-detail > .v-box{
+    align-items: flex-start;
+    gap: 15px;
+}
+.link-detail > .v-box > .h-box{
+    gap: 10px;
+    width: 100%
+}
+.link-detail > .v-box > .h-box:first-child{
+    width: auto;
 }
