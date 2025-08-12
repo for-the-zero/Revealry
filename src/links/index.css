@@ -12,6 +12,9 @@ body {
 }
 h1, p{
     margin: 0;
+    font-weight: 400;
+    word-break: break-all;
+    white-space: pre-wrap;
 }
 mdui-card{
     padding: 10px;
@@ -32,6 +35,9 @@ mdui-card img{
 }
 .link-detail > .v-box > .h-box:first-child{
     width: auto;
+}
+.link-detail-title{
+    margin-bottom: 5px;
 }
 .link-detail-title > img{
     width: 40px;

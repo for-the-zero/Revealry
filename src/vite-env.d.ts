@@ -54,12 +54,12 @@ interface intro {
 interface links_linkdetail {
     name: string;
     content: string;
-    type: 'text' | 'link'
+    type: 'text' | 'url'
 };
 interface links_item {
     name: string;
     img: string;
-    description: string;
+    description: string | null;
     links: links_linkdetail[] | null;
 };
 interface links_group {

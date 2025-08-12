@@ -30,5 +30,5 @@ zh-CN:
         links:
           - name: "114514"
             content: "https://example.com"
-            type: link
+            type: url
 # en: null
