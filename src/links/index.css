@@ -33,3 +33,6 @@ mdui-card img{
 .link-detail > .v-box > .h-box:first-child{
     width: auto;
 }
+.link-detail-title > img{
+    width: 40px;
+}

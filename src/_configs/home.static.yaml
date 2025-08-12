@@ -4,7 +4,7 @@ zh-CN:
     # Custom Part
     - selector: '.welcome-card'
       target: inner-html
-      text: 欢迎！
+      text: Revealry的一个演示
     - selector: '.welcome-subt'
       target: inner-html
       text: Revealry
@@ -41,7 +41,7 @@ en:
     # Custom Part
     - selector: '.welcome-card'
       target: inner-html
-      text: Welcome!
+      text: Here's a demo of Revealry
     - selector: '.welcome-subt'
       target: inner-html
       text: Revealry

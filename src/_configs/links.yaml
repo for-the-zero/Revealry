@@ -1,0 +1,34 @@
+zh-CN:
+  - title: "测试1"
+    items:
+      - name: "Github"
+        img: "mdi--github.svg"
+        description: "这是这个项目的Github地址"
+        links:
+          - name: "链接"
+            content: "https://github.com/for-the-zero/Revealry"
+            type: url
+          - name: "名字"
+            content: "Revealry"
+            type: text
+      - name: "测试114514"
+        img: "f7--number.svg"
+        description: |
+          测试
+          line1
+          line2
+          line3
+        links:
+          - name: "114514"
+            content: "1919810"
+            type: text
+  - title: "测试2"
+    items:
+      - name: "测试1919810"
+        img: "f7--number.svg"
+        description: "测试"
+        links:
+          - name: "114514"
+            content: "https://example.com"
+            type: link
+# en: null

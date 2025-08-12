@@ -50,3 +50,20 @@ interface intro {
         } | null;
     } | null;
 };
+
+interface links_linkdetail {
+    name: string;
+    content: string;
+    type: 'text' | 'link'
+};
+interface links_item {
+    name: string;
+    img: string;
+    description: string;
+    links: links_linkdetail[] | null;
+};
+interface links_group {
+    title: string;
+    items: links_item[] | null;
+};
+type links = links_group[] | null;

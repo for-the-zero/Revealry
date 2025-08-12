@@ -6,6 +6,7 @@ zh-CN:
 
   _other:
     title: 链接 | Revealry 示例
+    copied_snackbar_msg: 复制成功
 
 en:
   translations: 
@@ -15,3 +16,4 @@ en:
 
   _other:
     title: links | Revealry Demo
+    copied_snackbar_msg: Copied!

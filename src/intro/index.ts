@@ -1,4 +1,4 @@
-import $, { get } from 'jquery';
+import $ from 'jquery';
 
 // components
 import 'mdui/components/top-app-bar.js';
@@ -131,7 +131,6 @@ interface lifelog_item_phone {
 };
 type lifelog_item = lifelog_item_laptop | lifelog_item_phone;
 function sort_lifelog(data: lifelog_item[]): { phone_data: lifelog_item_phone[], laptop_data: lifelog_item_laptop[] }{
-    // 分类phone和laptop
     let phone_data: lifelog_item_phone[] = [];
     let laptop_data: lifelog_item_laptop[] = [];
     for(let i = 0; i < data.length; i++){
@@ -176,6 +175,7 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
         return `${M}-${D} ${h}:${m}`;
     };
 
+    //
     if (laptop.length === 0) {
         if (config_intro.lifelog?.laptop.when_no_records) {
             e_ll_l.find('p').text(config_intro.lifelog.laptop.when_no_records);
@@ -206,6 +206,7 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
         });
     };
 
+    //
     if(phone.length === 0){
         if(config_intro.lifelog?.phone.when_no_records){
             e_ll_p.find('p').text(config_intro.lifelog.phone.when_no_records);
@@ -239,6 +240,7 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
         });
     };
 
+    //
     let notice = '';
     function get_notice(hour: number): string {
         if(config_intro.lifelog?.offline){
