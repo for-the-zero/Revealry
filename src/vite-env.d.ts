@@ -45,9 +45,6 @@ interface intro {
             } | null;
             when_no_records: string;
         };
-        offline: {
-            [hours: number]: string;
-        } | null;
     } | null;
 };
 

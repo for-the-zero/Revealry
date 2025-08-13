@@ -27,3 +27,6 @@
 .index > div{
     width: 47%;
 }
+.index > div > p{
+    white-space: pre-wrap;
+}

@@ -45,11 +45,6 @@ zh-CN:
     laptop:
       alias: null
       when_no_records: '最近没在用电脑，不知道在干嘛'
-    offline:
-      0: '>w<'
-      12: '半天没在用手机电脑了怎么回事'
-      24: '一天了，可能是去上学还是什么之类的吧'
-      168: '一周了，有点担心呢'
 
 en:
   name: yourname

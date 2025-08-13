@@ -13,7 +13,9 @@ zh-CN:
       text: 这里可以写一些东西
     - selector: '.index:nth-child(2) > div > p'
       target: inner-html
-      text: 这里可以也写一些东西
+      text: |
+        这里可以也写一些东西
+        我不知道写什么
     - selector: '.index:nth-child(3) > div > p'
       target: inner-html
       text: 这里到底可以写什么东西啊喂（

@@ -7,18 +7,16 @@ body{
 
 .container{
     align-items: normal;
-    width: 100%;
+    width: 75%;
     gap: 24px;
 }
-
 .boxes{
-    width: 50vw;
+    width: 75%;
     margin: 0 auto;
 }
 @media screen and (max-width: 768px) {
-    .boxes{
-        width: calc(100vw - 48px);
-        margin: 0 auto;
+    .container{
+        width: 100%;
     }
 }
 .boxes :is(.v-box, .h-box){
@@ -53,6 +51,10 @@ body{
     white-space: pre-wrap;
     max-height: 50vh;
     overflow-y: auto;
+    scrollbar-width: none;
+}
+.intros h3::-webkit-scrollbar, .intros p::-webkit-scrollbar, .sens h3::-webkit-scrollbar, .sens p::-webkit-scrollbar, .sens h6::-webkit-scrollbar{
+    display: none;
 }
 .intros mdui-fab, .sens mdui-fab{
     position: absolute;
