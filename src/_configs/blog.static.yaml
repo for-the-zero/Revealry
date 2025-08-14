@@ -1,0 +1,17 @@
+zh-CN:
+  translations: 
+  - selector: 'mdui-top-app-bar-title'
+    target: inner-html
+    text: 博客
+
+  _others: 
+    title: 博客 | Revealry 示例
+
+en: 
+  translations: 
+  - selector: 'mdui-top-app-bar-title'
+    target: inner-html
+    text: Blog
+
+  _others: 
+    title: Blog | Revealry Demo

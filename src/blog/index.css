@@ -1,0 +1,5 @@
+@import url('../public_assets/global.css');
+body {
+    padding: 24px;
+    gap: 10px;
+}

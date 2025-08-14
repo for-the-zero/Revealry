@@ -17,9 +17,14 @@ import config_static_home from './_configs/home.static.yaml';
 init_i18n(config_static_home);
 
 const e_switchlang = $('.switch-lang > mdui-button-icon');
-const e_linkcard = $('.link-card');
-
 e_switchlang.on('click', change_lang);
-e_linkcard.eq(0).on('click', () => {window.location.href = './intro/'});
-e_linkcard.eq(1).on('click', () => {window.location.href = './links/'});
-e_linkcard.eq(2).on('click', () => {window.location.href = './blog/'});
+
+let ele_a = document.querySelectorAll('.index > mdui-card');
+if(ele_a.length > 0){
+    ele_a.forEach((e)=>{
+        let target_ele = e.shadowRoot?.querySelector('a');
+        if(target_ele){
+            target_ele.style.cursor = 'none';
+        };
+    });
+};

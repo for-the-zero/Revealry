@@ -9,14 +9,24 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.32",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^24.2.1",
+    "glob": "^11.0.3",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-katex": "^2.0.3",
     "typescript": "~5.9.2",
-    "vite": "^7.0.6"
+    "vite": "^7.0.6",
+    "vite-plugin-static-copy": "^3.1.1"
   },
   "dependencies": {
     "@mdui/icons": "^1.0.3",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
+    "highlight.js": "^11.11.1",
     "jquery": "^3.7.1",
+    "katex": "^0.16.22",
+    "markdown-it": "^14.1.0",
     "mdui": "^2.1.4",
-    "pace-js": "^1.2.4"
+    "pace-js": "^1.2.4",
+    "viewerjs": "^1.11.7"
   }
 }

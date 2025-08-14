@@ -23,6 +23,7 @@
     width: 48%;
     padding: 10px;
     gap: 10px;
+    cursor: none !important;
 }
 .index > div{
     width: 47%;
