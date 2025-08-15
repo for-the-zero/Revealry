@@ -1,5 +1,75 @@
 @import url('../public_assets/global.css');
-body {
+body{
     padding: 24px;
     gap: 10px;
+}
+.container{
+    width: 100%;
+    gap: 12px;
+    align-items: normal;
+}
+h1{
+    font-weight: 400;
+    font-size: 3em;
+    margin: 0;
+}
+.footer{
+    margin: 0;
+}
+
+mdui-menu-item::part(container){
+    cursor: none;
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+@media (min-width: 650px) {
+    .posts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.post {
+    height: 183px;
+    width: 100%;
+    padding: 15px;
+}
+.post-content {
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-direction: column;
+}
+.post-content > h2 {
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.post-content > p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+}
+.post-tags {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.searching{
+    margin: auto;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.searching > mdui-text-field, .searching > mdui-select{
+    display: inline-block;
+    width: auto;
 }

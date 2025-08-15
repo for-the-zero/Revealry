@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 30px;
 }
 
 .index-icons{
@@ -19,11 +20,13 @@
     gap: 5%;
     align-items: normal;
 }
-.index > mdui-card{
+.link-card{
     width: 48%;
     padding: 10px;
+}
+.link-card-content{
+    width: 100%;
     gap: 10px;
-    cursor: none !important;
 }
 .index > div{
     width: 47%;

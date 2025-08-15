@@ -13,7 +13,56 @@
         </mdui-button-icon>
         <mdui-top-app-bar-title><!----></mdui-top-app-bar-title>
     </mdui-top-app-bar>
-    
+    <div class="v-box container">
+        <h1>Welcome</h1>
+        <mdui-divider></mdui-divider>
+        <div class="h-box searching">
+            <mdui-icon-search style="font-size: 28px;"></mdui-icon-search>
+            <mdui-segmented-button-group selects="single" value="name">
+                <mdui-segmented-button value="name">Name</mdui-segmented-button>
+                <mdui-segmented-button value="cate">Category</mdui-segmented-button>
+                <mdui-segmented-button value="tag">Tag</mdui-segmented-button>
+            </mdui-segmented-button-group>
+            <mdui-text-field variant="outlined" label="Text Field"></mdui-text-field>
+            <mdui-select variant="outlined" value="item-1">
+                <mdui-menu-item value="item-1">Item 1</mdui-menu-item>
+                <mdui-menu-item value="item-2">Item 2</mdui-menu-item>
+            </mdui-select>
+        </div>
+        <div class="v-box posts">
+            <mdui-card variant="filled" class="post" href="..">
+                <div class="v-box post-content">
+                    <h2>Title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit. At, corrupti! Consectetur dolor aliquid at natus velit incidunt officia similique non eveniet. Suscipit minus obcaecati rem quos ullam hic, corporis placeat.</p>
+                    <div class="h-box post-tags">
+                        <mdui-chip selected>
+                            <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
+                            Chip
+                        </mdui-chip>
+                        <mdui-chip><mdui-icon-tag slot="icon"></mdui-icon-tag>Chip</mdui-chip><mdui-chip><mdui-icon-tag slot="icon"></mdui-icon-tag>Chip</mdui-chip><mdui-chip><mdui-icon-tag slot="icon"></mdui-icon-tag>Chip</mdui-chip><mdui-chip><mdui-icon-tag slot="icon"></mdui-icon-tag>Chip</mdui-chip><mdui-chip><mdui-icon-tag slot="icon"></mdui-icon-tag>Chip</mdui-chip>
+                    </div>
+                </div>
+            </mdui-card>
+            <mdui-card variant="filled" class="post" href="#">
+                <div class="v-box post-content">
+                    <h2>TitleTitleTitleTitleTitleTitleTitleTitle</h2>
+                    <p>1235890</p>
+                    <div class="h-box post-tags">
+                        <mdui-chip selected>
+                            <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
+                            Chip
+                        </mdui-chip>
+                        <mdui-chip>
+                            <mdui-icon-tag slot="icon"></mdui-icon-tag>
+                            Chip
+                        </mdui-chip>
+                    </div>
+                </div>
+            </mdui-card>
+        </div>
+        <mdui-divider></mdui-divider>
+        <p class="footer">Footer</p>
+    </div>
     <script src="../public_assets/global.ts" type="module"></script>
     <script src="./index.ts" type="module"></script>
 </body>

@@ -24,13 +24,13 @@ zh-CN:
     - selector: '.switch-lang'
       target: content
       text: Switch to English
-    - selector: '.index:nth-child(1) > mdui-card > h2'
+    - selector: '.index:nth-child(1) > mdui-card > div > h2'
       target: inner-html
       text: 介绍
-    - selector: '.index:nth-child(2) > mdui-card > h2'
+    - selector: '.index:nth-child(2) > mdui-card > div > h2'
       target: inner-html
       text: 链接
-    - selector: '.index:nth-child(3) > mdui-card > h2'
+    - selector: '.index:nth-child(3) > mdui-card > div > h2'
       target: inner-html
       text: 博客
     
