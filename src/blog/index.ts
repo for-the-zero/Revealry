@@ -156,18 +156,16 @@ function show_posts(){
                             <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
                             ${post.category}
                         </mdui-chip>
-                        ${post.tags ? post.tags.map((tag: string)=>{
-                            return `
-                                <mdui-chip>
-                                    <mdui-icon-tag slot="icon"></mdui-icon-tag>
-                                    ${tag}
-                                </mdui-chip>
-                            `;
-                        }).join('') : ''}
+                        ${post.tags ? post.tags.map((tag: string)=>{return `
+                            <mdui-chip>
+                                <mdui-icon-tag slot="icon"></mdui-icon-tag>
+                                ${tag}
+                            </mdui-chip>
+                        `;}).join('') : ''}
                     </div>
                 </div>
             </mdui-card>
-        `); // 我操，这是React吗！爽！
+        `); // 这是在写React呢bro?
     });
 };
 show_posts();

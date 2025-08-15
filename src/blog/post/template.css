@@ -1,0 +1,19 @@
+@import url('../../public_assets/global.css');
+body{
+    display: block;
+    padding: 36px;
+}
+main{
+    user-select: text;
+    width: calc(100vw - 72px);
+    margin-top: 16px;
+}
+mdui-list{
+    margin: 12px;
+}
+
+/* TODO: article styling */
+.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{
+    margin: 0;
+    margin-bottom: 0.5em; /* margin-bottom */
+}

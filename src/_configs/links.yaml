@@ -27,8 +27,5 @@ zh-CN:
       - name: "测试1919810"
         img: "f7--number.svg"
         description: "测试"
-        links:
-          - name: "114514"
-            content: "https://example.com"
-            type: url
+        links: null
 # en: null
