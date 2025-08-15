@@ -1,0 +1,36 @@
+- title: test
+  desc: markdwon test
+  href: ./post/test
+  category: normal
+  tags:
+  - test1
+  - test2
+  allow_lang:
+  - zh-CN
+  - en
+- title: link
+  desc: link to Github
+  href: https://github.com/
+  category: link
+  tags:
+  - git
+  - test1
+  allow_lang:
+  - en
+- title: 跳转
+  desc: 到GitHub
+  href: https://github.com/
+  category: link
+  tags:
+  - github
+  - test2
+  allow_lang:
+  - zh-CN
+- title: no tags
+  desc: no tags test
+  href: "#"
+  category: normal
+  tags: null
+  allow_lang:
+  - zh-CN
+  - en

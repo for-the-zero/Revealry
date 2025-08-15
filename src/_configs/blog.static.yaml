@@ -3,6 +3,24 @@ zh-CN:
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
     text: 博客
+  - selector: '.container > h1'
+    target: inner-html
+    text: 欢迎来到博客页面
+  - selector: 'footer'
+    target: inner-html
+    text: 注脚文本
+  - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(1)'
+    target: inner-html
+    text: 标题
+  - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(2)'
+    target: inner-html
+    text: 分类
+  - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(3)'
+    target: inner-html
+    text: 标签
+  - selector: 'mdui-text-field'
+    target: label
+    text: 搜索
 
   _others: 
     title: 博客 | Revealry 示例
@@ -12,6 +30,24 @@ en:
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
     text: Blog
+  - selector: '.container > h1'
+    target: inner-html
+    text: Welcome to the blog page
+  - selector: 'footer'
+    target: inner-html
+    text: Footer text
+  - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(1)'
+    target: inner-html
+    text: Title
+  - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(2)'
+    target: inner-html
+    text: Category
+  - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(3)'
+    target: inner-html
+    text: Tag
+  - selector: 'mdui-text-field'
+    target: label
+    text: Search Here
 
   _others: 
     title: Blog | Revealry Demo

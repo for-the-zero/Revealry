@@ -64,3 +64,12 @@ interface links_group {
     items: links_item[] | null;
 };
 type links = links_group[] | null;
+
+interface blog_post {
+    title: string;
+    desc: string | null;
+    href: string;
+    category: string;
+    tags: string[] | null;
+    allow_lang: string[];
+};
