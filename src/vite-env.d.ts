@@ -73,3 +73,9 @@ interface blog_post {
     tags: string[] | null;
     allow_lang: string[];
 };
+
+interface toc_item {
+    text: string;
+    slug: string;
+    children: toc_item[] | null;
+};
