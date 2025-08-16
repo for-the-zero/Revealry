@@ -1,4 +1,5 @@
 @import url('../../public_assets/global.css');
+@import url('../../../node_modules/highlight.js/styles/atom-one-dark.css');
 body{
     display: block;
     padding: 36px;

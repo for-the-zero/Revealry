@@ -38,9 +38,9 @@ let select_ele_main = document.querySelector('.searching > mdui-select') // fuck
 if(select_ele_main){
     select_ele_main.style.cursor = 'none';
 };
-e_search_method.find('mdui-segmented-button:nth-child(3)').trigger('click'); // fix bug (or cannot display text)
-e_search_method.find('mdui-segmented-button:nth-child(2)').trigger('click');
-e_search_method.find('mdui-segmented-button:nth-child(1)').trigger('click');
+// e_search_method.find('mdui-segmented-button:nth-child(3)').trigger('click'); // fix bug (or cannot display text)
+// e_search_method.find('mdui-segmented-button:nth-child(2)').trigger('click');
+// e_search_method.find('mdui-segmented-button:nth-child(1)').trigger('click');
 e_search_select.hide();
 
 var search_method = 'name';
