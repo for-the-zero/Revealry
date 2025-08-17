@@ -1,0 +1,29 @@
+zh-CN:
+  translations: 
+  - selector: 'h1'
+    target: inner-html
+    text: '404'
+  - selector: 'mdui-button > span'
+    target: inner-html
+    text: '返回'
+  - selector: 'p'
+    target: inner-html
+    text: '访问的页面不存在或已删除'
+
+  _other:
+    title: 404 - 页面未找到
+
+en:
+  translations: 
+  - selector: 'h1'
+    target: inner-html
+    text: '404'
+  - selector: 'mdui-button > span'
+    target: inner-html
+    text: 'Go Home'
+  - selector: 'p'
+    target: inner-html
+    text: 'The page you are looking for does not exist or has been deleted'
+
+  _other:
+    title: 404 - Page Not Found
