@@ -8,7 +8,7 @@
 </head>
 <body>
     <mdui-top-app-bar scroll-behavior="elevate shrink" variant="medium">
-        <mdui-button-icon href="../../">
+        <mdui-button-icon href="../">
             <mdui-icon-arrow-back></mdui-icon-arrow-back>
         </mdui-button-icon>
         <mdui-top-app-bar-title>BlogPostTitleHere</mdui-top-app-bar-title>
@@ -27,10 +27,7 @@
             <mdui-list class="toc-list"></mdui-list>
         </mdui-navigation-drawer>
     </aside>
-    <script src="../../public_assets/global.ts" type="module"></script>
     <script src="./template.ts" type="module"></script>
-    <!-- <script type="application/json" id="toc-json">[{"text": "1","slug": "1","children": null},{"text": "2","slug": "2","children": [{"text": "2.1","slug": "2-1","children": [{"text": "2.1.1","slug": "2-1-1","children": null}]},{"text": "2.2","slug": "2-2","children": null}]},{"text": "3","slug": "3","children": null}] -->
     {{ toc_json }}
-    </script>
 </body>
 </html>

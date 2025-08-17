@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import '../../public_assets/global.ts';
+import './template.css';
 
 // components
 import 'mdui/components/top-app-bar.js';
