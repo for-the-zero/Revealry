@@ -1,6 +1,7 @@
 // 该文件AI参与度高
 
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
+
 import fs from 'fs';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
@@ -31,7 +32,16 @@ const md = new MarkdownIt({
 });
 
 md.renderer.rules.hr = () => '<mdui-divider></mdui-divider>\n';
-md.use(mdKatex.default);
+const defaultTableOpenRenderer = md.renderer.rules.table_open || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+};
+md.renderer.rules.table_open = function(tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    token.attrJoin('class', 'mdui-table');
+    return defaultTableOpenRenderer(tokens, idx, options, env, self);
+};
+
+md.use(mdKatex.default, {output: 'mathml'});
 md.use(mdAnchor, {
     level: [1, 2, 3, 4, 5, 6],
     slugify: (s: string) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-')),

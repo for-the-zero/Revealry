@@ -147,7 +147,7 @@ function show_posts(){
     e_blog_posts.empty();
     filtered_posts.forEach((post: blog_post)=>{
         e_blog_posts.append(`
-            <mdui-card variant="filled" class="post" href="${post.href}">
+            <mdui-card variant="filled" class="post" href="${post.filename ? `./posts/${post.filename}` : post.href}">
                 <div class="v-box post-content">
                     <h2>${post.title}</h2>
                     <p>${post.desc ? post.desc : ''}</p>

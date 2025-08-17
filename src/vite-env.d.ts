@@ -1,3 +1,8 @@
+declare module '*.css' {
+    const content: string;
+    export default content;
+};
+
 interface staticinfo {
     [tl: string]: {
         translations: Array<{
@@ -68,12 +73,12 @@ type links = links_group[] | null;
 interface blog_post {
     title: string;
     desc: string | null;
-    href: string;
+    href?: string;
+    filename?: string;
     category: string;
     tags: string[] | null;
     allow_lang: string[];
 };
-
 interface toc_item {
     text: string;
     slug: string;

@@ -1,9 +1,17 @@
 - title: test
   desc: markdwon test
-  href: ./posts/test
+  filename: test
   category: normal
   tags:
   - test1
+  allow_lang:
+  - zh-CN
+  - en
+- title: test2
+  desc: markdwon test2
+  filename: test2
+  category: normal
+  tags:
   - test2
   allow_lang:
   - zh-CN

@@ -1,20 +1,33 @@
 @import url('../../public_assets/global.css');
 @import url('../../../node_modules/highlight.js/styles/atom-one-dark.css');
+@import url('../../../node_modules/viewerjs/dist/viewer.min.css');
 body{
     display: block;
-    padding: 36px;
+    padding: 20vw;
 }
 main{
     user-select: text;
-    width: calc(100vw - 72px);
+    width: 60vw;
     margin-top: 16px;
+}
+@media screen and (max-width: 768px) {
+    body{padding: 10vw;}
+    main{width: 80vw;}
 }
 mdui-list.toc-list{
     margin: 12px;
 }
+mdui-list-item::part(container), .viewer-button, .viewer-toolbar > ul > li {
+    cursor: none;
+}
 
-/* TODO: article styling */
 .article h1,.article h2,.article h3,.article h4,.article h5,.article h6{
-    margin: 0;
-    margin-bottom: 0.5em; /* margin-bottom */
+    margin: 0.5em 0;
+    font-weight: normal;
+}
+pre.hljs > code{
+    display: block;
+}
+pre.hljs{
+    border-radius: var(--mdui-shape-corner-extra-small);
 }

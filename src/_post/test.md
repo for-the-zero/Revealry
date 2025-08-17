@@ -1,86 +1,59 @@
-# Markdown测试
+# Markdown Test 测试
 
-## 1. 普通文本和标题
+## 1. Basic Text and Headings 基础文本和标题
 
-这是一个普通的段落，包含一些**粗体文本**和*斜体文本*。你也可以使用~~删除线~~和<u>下划线（HTML）</u>。
+This is a normal paragraph 这是一个普通段落, containing some **bold text 粗体文本** and *italic text 斜体文本*. You can also use ~~strikethrough 删除线~~ and <u>underline (HTML) 下划线</u>.
 
-### 1.1 子标题和引用
+### 1.1 Subheadings and Quotes 子标题和引用
 
-> 这是一个引用的例子。引用块可以用来突出重要的信息或者别人的话。
+> This is a quote example 这是一个引用的例子
 
-## 2. 列表
+## 2. Lists 列表
 
-### 2.1 无序列表
+### 2.1 Unordered List 无序列表
 
-* 列表项 A
-* 列表项 B
-  * 嵌套列表项 B.1
-  * 嵌套列表项 B.2
-* 列表项 C
+* List item A 列表项A
+* List item B 列表项B
+  * Nested item B.1 嵌套项B.1
+  * Nested item B.2 嵌套项B.2
+* List item C 列表项C
 
-### 2.2 有序列表
+### 2.2 Ordered List 有序列表
 
-1. 第一个有序列表项
+1. First ordered item 第一个有序项
+2. Second ordered item 第二个有序项
+   1. Nested first 嵌套第一项
+   2. Nested second 嵌套第二项
+3. Third ordered item 第三个有序项
 
-2. 第二个有序列表项
-   
-   1. 嵌套的第一个有序列表项
-   2. 嵌套的第二个有序列表项
+## 3. Code Blocks 代码块
 
-3. 第三个有序列表项
+### 3.1 Inline Code 行内代码
 
-4. 1. 嵌套
-   
-   2. 嵌套
-   
-   3. 嵌套
+You can use `print("Hello, World!") #打印语句` in line.
 
-## 3. 代码块
-
-### 3.1 行内代码
-
-你可以在行内使用 `print("Hello, World!")` 来表示代码。
-
-### 3.2 代码块（带语法高亮）
+### 3.2 Code Block 代码块
 
 ```python
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
-result = factorial(5)
-print(f"5的阶乘是: {result}")
+def greet(name):
+    print(f"Hello, {name}!")  # 打印问候语
 ```
 
-```javascript
-console.log('fuck world')
-```
+## 4. Tables 表格
 
-```
-文本文本文本
-```
-
-## 4. 表格
-
-| 表头1         | 表头2         | 表头3         |
+| Header1 表头1 | Header2 表头2 | Header3 表头3 |
 |:----------- |:-----------:| -----------:|
-| 左对齐         | 居中对齐        | 右对齐         |
-| Row 2 Col 1 | Row 2 Col 2 | Row 2 Col 3 |
-| Row 3 Col 1 | Row 3 Col 2 | Row 3 Col 3 |
+| Left align 左对齐 | Center 居中 | Right align 右对齐 |
+| Data 数据1 | Data 数据2 | Data 数据3 |
 
-## 5. 链接
+## 5. Links 链接
 
-这是一个[外部链接](https://example.com)。
-这是一个[内部链接到本文件中的某个部分](#2-列表)。
+This is an [external link 外部链接](https://example.com).
+This is an [internal link 内部链接](#2.-lists-列表).
 
-## 6. LaTeX数学公式
+## 6. LaTeX
 
-### 6.1 行内公式
-
-圆的面积公式是 $A = \pi r^2$。
-
-### 6.2 块级公式
+such as $E = mc^2$ or $A = \pi r^2$
 
 $$
 \begin{pmatrix}
@@ -91,14 +64,12 @@ $$
 
 ## 7. 图片
 
-### 7.1 本地图片
+## 7. Images 图片
 
-这是一张本地图片，表示一个占位符。
+### Local Image 本地图片
 
-![](./img/2025-08-14-18-49-36-image.png)
+![Local image 本地图片](./img/2025-08-14-18-49-36-image.png)
 
-### 7.2 网络图片
-
-这是一张来自网络的图片，通常是GitHub的logo。
+### Web Image 网络图片
 
 ![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png "GitHub标志")

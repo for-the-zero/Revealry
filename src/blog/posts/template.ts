@@ -1,6 +1,8 @@
 import $ from 'jquery';
+import Viewer from 'viewerjs';
+
 import '../../public_assets/global.ts';
-import './template.css';
+import './template.css'; // 能跑就行
 
 // components
 import 'mdui/components/top-app-bar.js';
@@ -55,4 +57,23 @@ if(e_toc_data.length){
     };
 } else {
     e_drawer_btn.hide();
+};
+
+//
+new Viewer(document.body);
+
+//
+import { get_lang } from '../../public_assets/i18n';
+const lang = get_lang();
+import config_blog from '../../_configs/blog.yaml';
+const blog_posts = config_blog.filter((post: blog_post)=>{
+    return post.allow_lang.includes(lang);
+}) as blog_post[];
+const this_filename = window.location.pathname.split('/').filter(part => part).pop() || '';
+if(this_filename){
+    const this_post = blog_posts.find(post => post.filename === this_filename);
+    if(this_post){
+        window.document.title = this_post.title;
+        $('mdui-top-app-bar-title').text(this_post.title);
+    };
 };
