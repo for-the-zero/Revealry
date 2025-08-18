@@ -17,7 +17,7 @@ import '@mdui/icons/shuffle.js';
 import '@mdui/icons/history.js';
 import '@mdui/icons/battery-0-bar.js';
 import '@mdui/icons/battery-charging-full.js';
-import '@mdui/icons/timelapse.js';
+import '@mdui/icons/memory.js';
 import '@mdui/icons/update.js';
 
 //
@@ -119,7 +119,7 @@ interface lifelog_item_laptop {
     time: number;
     app_title: string;
     app_exe: string;
-    used: number;
+    mem: string;
 };
 interface lifelog_item_phone {
     device: 'phone';
@@ -159,13 +159,6 @@ if(config_intro.lifelog){
     $('.lifelog-title').hide();
 };
 function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]){
-    function sec2str(sec: number): string {
-        let h = String(Math.floor(sec / 3600)).padStart(2, '0');
-        h = h === '00' ? '' : `${h}:`;
-        const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
-        const s = String(sec % 60).padStart(2, '0');
-        return `${h}${m}:${s}`;
-    };
     function ts2str(ts: number): string {
         if(ts < 1e10){ts *= 1000};
         const date = new Date(ts);
@@ -193,14 +186,14 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
             };
         };
         e_ll_l.find('p').text(get_app_title(laptop[0].app_exe, laptop[0].app_title));
-        e_ll_l.find('mdui-chip:first-child span').text(sec2str(laptop[0].used));
+        e_ll_l.find('mdui-chip:first-child span').text(laptop[0].mem);
         e_ll_l.find('mdui-chip:last-child span').text(ts2str(laptop[0].time));
         laptop.forEach((item: lifelog_item_laptop) => {
             let tbody_html = `
                 <tr>
                     <td>${ts2str(item.time)}</td>
                     <td>${get_app_title(item.app_exe, item.app_title)}</td>
-                    <td>${sec2str(item.used)}</td>
+                    <td>${item.mem}</td>
                 </tr>
             `;
             e_ll_lt.find('tbody').append(tbody_html);

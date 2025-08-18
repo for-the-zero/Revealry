@@ -3,6 +3,7 @@
 
 import { defineConfig } from 'vite';
 import path from 'path';
+import fs from 'fs';
 import { glob } from 'glob';
 import yaml from '@modyfi/vite-plugin-yaml';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -74,7 +75,11 @@ export default defineConfig({
         {
           src: 'assets/icon.svg',
           dest: ''
-        }
+        },
+        ...(fs.existsSync('src/README.md') ? [{
+          src: 'README.md',
+          dest: ''
+        }] : [])
       ]
     }),
   ],

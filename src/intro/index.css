@@ -103,3 +103,7 @@ mdui-list-item::part(container){
 th, td{
     word-break: break-all;
 }
+.lifelog-cards mdui-card > div.h-box{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}

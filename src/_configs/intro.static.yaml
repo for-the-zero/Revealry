@@ -32,7 +32,7 @@ zh-CN:
     text: 正在……
   - selector: '.lifelog-card-laptop-table > thead > tr > th:last-child'
     target: inner-html
-    text: 用了这么久
+    text: 内存使用情况
   - selector: '.lifelog-card-phone-table > thead > tr > th:first-child'
     target: inner-html
     text: 时间
@@ -80,7 +80,7 @@ en:
     text: Doing...
   - selector: '.lifelog-card-laptop-table > thead > tr > th:last-child'
     target: inner-html
-    text: Used for
+    text: Memory Usage
   - selector: '.lifelog-card-phone-table > thead > tr > th:first-child'
     target: inner-html
     text: Time
