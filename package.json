@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.32",
+    "@types/js-yaml": "^4.0.9",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.2.1",
     "glob": "^11.0.3",

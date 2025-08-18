@@ -1,16 +1,49 @@
 // 该文件AI参与度高
 // This file has a high AI participation rate.
-// Gemini 2.5 Pro -> Claude 4 Sonnet -> GPT-5(free) -> Claude 4 Sonnet[Final ver.]
+// Gemini 2.5 Pro -> Claude 4 Sonnet -> GPT-5(free) -> Claude 4 Sonnet -> Gemini 2.5 Pro[Final ver.]
 
 import type { Plugin, ResolvedConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 import { processMarkdown } from './md-processor';
-
+import yaml from 'js-yaml';
+interface BlogPostConfig {
+    filename: string;
+    title: string;
+    [key: string]: any;
+};
 export function markdownBlog(): Plugin {
     const projectRoot = path.resolve(__dirname, '..');
     const templatePath = path.resolve(projectRoot, 'src/blog/posts/template.html');
     const template = fs.readFileSync(templatePath, 'utf-8');
+    const blogConfigPath = path.resolve(projectRoot, 'src/_configs/blog.yaml');
+    let blogData: BlogPostConfig[] = [];
+    try {
+        blogData = yaml.load(fs.readFileSync(blogConfigPath, 'utf8')) as BlogPostConfig[];
+    } catch (e) {
+        console.error('Failed to load or parse blog.yaml:', e);
+    };
+    function generateDescription(mdContent: string): string {
+        const plainText = mdContent
+            .replace(/---[\s\S]*?---/, '')
+            .replace(/#+\s.*/g, '')
+            .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+            .replace(/!\[.*?\]\(.*?\)/g, '')
+            .replace(/`{1,3}[\s\S]*?`{1,3}/g, '')
+            .replace(/<[^>]+>/g, '')
+            .replace(/[*>_-]/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+        return plainText.substring(0, 100) + (plainText.length > 100 ? '...' : '');
+    };
+    function generateMetaTags(title: string, description: string): string {
+        return `
+<meta name="description" content="${description}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:type" content="article">
+`;
+    };
     let viteCommand: ResolvedConfig['command'];
     let viteConfig: ResolvedConfig;
     function transformTemplate(templateStr: string, entryChunk: any, bundle: any, htmlOutputPath: string) {
@@ -49,9 +82,9 @@ export function markdownBlog(): Plugin {
         const templateCssFiles: string[] = [];
         const chunkBaseName = entryChunk.fileName.replace(/\.js$/, '');
         const matchingCss = Object.values(bundle).find((item: any) => {
-            return item && 
-                item.type === 'asset' && 
-                item.fileName && 
+            return item &&
+                item.type === 'asset' &&
+                item.fileName &&
                 item.fileName.endsWith('.css') &&
                 item.fileName.replace(/\.css$/, '') === chunkBaseName;
         });
@@ -60,11 +93,11 @@ export function markdownBlog(): Plugin {
             return templateCssFiles;
         };
         const templateCss = Object.values(bundle).filter((item: any) => {
-            return item && 
-                item.type === 'asset' && 
-                item.fileName && 
+            return item &&
+                item.type === 'asset' &&
+                item.fileName &&
                 item.fileName.endsWith('.css') &&
-                (item.fileName.includes('template') || 
+                (item.fileName.includes('template') ||
                 item.fileName.includes('blog-posts') ||
                 item.fileName.includes('post-template'));
         }).map((item: any) => item.fileName);
@@ -111,11 +144,17 @@ export function markdownBlog(): Plugin {
                 const slug = urlMatch[1];
                 const mdPath = path.resolve(projectRoot, `src/_post/${slug}.md`);
                 if (fs.existsSync(mdPath)) {
+                    const mdContent = fs.readFileSync(mdPath, 'utf-8');
                     const { html, toc } = processMarkdown(mdPath);
                     const adjustedHtml = adjustImagePaths(html, false);
+                    const postInfo = blogData.find(p => p.filename === slug);
+                    const title = postInfo ? postInfo.title : 'Blog Post';
+                    const description = generateDescription(mdContent);
+                    const metaTags = generateMetaTags(title, description);
                     const pageHtml = template
                         .replace('{{ content }}', adjustedHtml)
-                        .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`);
+                        .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
+                        .replace('</head>', `${metaTags}\n</head>`);
                     let finalHtml = '';
                     if (req.url) {
                         finalHtml = await server.transformIndexHtml(req.url, pageHtml, req.originalUrl);
@@ -138,12 +177,17 @@ export function markdownBlog(): Plugin {
                 if (path.extname(file) !== '.md') { continue; };
                 const slug = path.basename(file, '.md');
                 const mdPath = path.join(postsDir, file);
+                const mdContent = fs.readFileSync(mdPath, 'utf-8');
                 const { html: postHtml, toc } = processMarkdown(mdPath);
                 const adjustedPostHtml = adjustImagePaths(postHtml, true);
+                const postInfo = blogData.find(p => p.filename === slug);
+                const title = postInfo ? postInfo.title : 'Blog Post';
+                const description = generateDescription(mdContent);
+                const metaTags = generateMetaTags(title, description);
                 const entryKey = `blog/posts/${slug}/index`;
-                const entryChunk = Object.values(bundle).find(chunk => 
-                    chunk.type === 'chunk' && 
-                    chunk.isEntry && 
+                const entryChunk = Object.values(bundle).find(chunk =>
+                    chunk.type === 'chunk' &&
+                    chunk.isEntry &&
                     chunk.name === entryKey
                 );
                 if (entryChunk && entryChunk.type === 'chunk') {
@@ -157,11 +201,12 @@ export function markdownBlog(): Plugin {
                     }).join('\n');
                     let processedTemplate = template
                         .replace('{{ content }}', adjustedPostHtml)
-                        .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`);
+                        .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
+                        .replace('</head>', `${metaTags}\n</head>`);
                     if (cssLinks) {
                         if (/<link\s+rel=["']stylesheet["'][^>]*>/i.test(processedTemplate)){
                             processedTemplate = processedTemplate.replace(
-                                /<link\s+rel=["']stylesheet["'][^>]*>/gi, 
+                                /<link\s+rel=["']stylesheet["'][^>]*>/gi,
                                 cssLinks
                             );
                         } else {
@@ -179,9 +224,9 @@ export function markdownBlog(): Plugin {
         },
         handleHotUpdate({ file, server }) {
             const postsDir = path.resolve(projectRoot, 'src/_post');
-            if (file.startsWith(postsDir)) {
+            if (file.startsWith(postsDir) || file.endsWith('blog.yaml')) {
                 server.ws.send({ type: 'full-reload', path: '*' });
             };
         },
     };
-}
+};
