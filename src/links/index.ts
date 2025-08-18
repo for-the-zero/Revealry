@@ -41,7 +41,13 @@ function render_links(){
                 let item = $(`
                     <mdui-tooltip content="${link_item.name}">
                         <mdui-card variant="filled" clickable>
-                            <img src="../assets/intro/${link_item.img}" draggable="false" />
+                            ${link_item.img.endsWith('.svg')? `
+                                <svg draggable="false" width="40px" height="40px" class="svg-fill">
+                                    <use href="../assets/intro/${link_item.img}" width="40px" height="40px"></use>
+                                </svg>
+                            ` : `
+                                <img src="../assets/intro/${link_item.img}" draggable="false" />
+                            `}
                         </mdui-card>
                     </mdui-tooltip>`
                 );
@@ -59,7 +65,13 @@ function detail_of_links(link_item: links_item){
     e_dia_body.empty();
     e_dia_body.append(`
         <div class="h-box link-detail-title">
-            <img src="../assets/intro/${link_item.img}" draggable="false" />
+            ${link_item.img.endsWith('.svg')? `
+                <svg draggable="false" width="40px" height="40px" class="svg-fill">
+                    <use href="../assets/intro/${link_item.img}" width="40px" height="40px"></use>
+                </svg>
+            ` : `
+                <img src="../assets/intro/${link_item.img}" draggable="false" />
+            `}
             <h1>${link_item.name}</h1>
         </div>
     `);
@@ -73,7 +85,8 @@ function detail_of_links(link_item: links_item){
             copy_ibtn.on('click',()=>{
                 navigator.clipboard.writeText(link_detail.content);
                 snackbar({
-                    message: config_static_links[lang]._other.copied_snackbar_msg
+                    message: config_static_links[lang]._other.copied_snackbar_msg,
+                    autoCloseDelay: 500,
                 });
             });
             link_html.append(copy_ibtn);

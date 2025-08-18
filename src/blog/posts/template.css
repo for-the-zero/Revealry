@@ -27,7 +27,10 @@ mdui-list-item::part(container), .viewer-button, .viewer-toolbar > ul > li {
 }
 pre.hljs > code{
     display: block;
+    background-color: rgb(var(--mdui-color-surface-container-dark));
+    border-radius: var(--mdui-shape-corner-small);
 }
 pre.hljs{
-    border-radius: var(--mdui-shape-corner-extra-small);
+    border-radius: var(--mdui-shape-corner-small);
+    background-color: rgb(var(--mdui-color-surface-container-dark));
 }

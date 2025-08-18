@@ -21,8 +21,12 @@ mdui-card{
     margin: 2.5px;
     aspect-ratio: 1/1;
 }
-mdui-card img{
+img, .svg-fill use{
     width: 40px;
+    height: 40px;
+}
+.svg-fill use{
+    fill: rgb(var(--mdui-color-on-background));
 }
 
 .link-detail > .v-box{

@@ -6,6 +6,7 @@ import type { Plugin, ResolvedConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 import { processMarkdown } from './md-processor';
+
 export function markdownBlog(): Plugin {
     const projectRoot = path.resolve(__dirname, '..');
     const templatePath = path.resolve(projectRoot, 'src/blog/posts/template.html');
@@ -40,6 +41,62 @@ export function markdownBlog(): Plugin {
         } else {
             return html.replace(/(<img[^>]*src=["'])\.\.\/img\//g, '$1img/');
         };
+    };
+    function findTemplateCssFiles(entryChunk: any, bundle: any, slug: string): string[] {
+        if ((entryChunk as any).viteMetadata?.importedCss && (entryChunk as any).viteMetadata.importedCss.size > 0) {
+            return Array.from((entryChunk as any).viteMetadata.importedCss);
+        };
+        const templateCssFiles: string[] = [];
+        const chunkBaseName = entryChunk.fileName.replace(/\.js$/, '');
+        const matchingCss = Object.values(bundle).find((item: any) => {
+            return item && 
+                item.type === 'asset' && 
+                item.fileName && 
+                item.fileName.endsWith('.css') &&
+                item.fileName.replace(/\.css$/, '') === chunkBaseName;
+        });
+        if (matchingCss) {
+            templateCssFiles.push((matchingCss as any).fileName);
+            return templateCssFiles;
+        };
+        const templateCss = Object.values(bundle).filter((item: any) => {
+            return item && 
+                item.type === 'asset' && 
+                item.fileName && 
+                item.fileName.endsWith('.css') &&
+                (item.fileName.includes('template') || 
+                item.fileName.includes('blog-posts') ||
+                item.fileName.includes('post-template'));
+        }).map((item: any) => item.fileName);
+        if (templateCss.length > 0) {
+            templateCssFiles.push(...templateCss);
+            return templateCssFiles;
+        };
+        const contentBasedCss = Object.values(bundle).filter((item: any) => {
+            if (!item || item.type !== 'asset' || !item.fileName || !item.fileName.endsWith('.css')) {
+                return false;
+            };
+            const source = typeof item.source === 'string' ? item.source : item.source?.toString();
+            if (!source) return false;
+            const blogFeatures = [
+                source.includes('.article'),
+                source.includes('.toc-list'),
+                source.includes('highlight.js') || source.includes('.hljs'),
+                source.includes('mdui-prose') || source.includes('.prose')
+            ];
+            const matchCount = blogFeatures.filter(Boolean).length;
+            const excludeFeatures = [
+                source.includes('.homepage'),
+                source.includes('.nav-main'),
+                source.includes('.footer-main'),
+                source.includes('.gallery'),
+                source.includes('.contact-form')
+            ];
+            return matchCount >= 2 && !excludeFeatures.some(Boolean);
+        }).map((item: any) => item.fileName);
+        templateCssFiles.push(...contentBasedCss.slice(0, 2));
+        console.log(`[${slug}] Found CSS files:`, templateCssFiles);
+        return templateCssFiles;
     };
     return {
         name: 'vite-posts-plugin',
@@ -77,22 +134,6 @@ export function markdownBlog(): Plugin {
             };
             const postsDir = path.resolve(projectRoot, 'src/_post');
             const files = fs.readdirSync(postsDir);
-            // console.log('\n=== DEBUG: All bundle items ===');
-            Object.entries(bundle).forEach(([key, item]) => {
-                if (item.type === 'asset' && item.fileName.endsWith('.css')) {
-                    // console.log(`CSS Asset: ${item.fileName}`, {
-                    //     originalFileName: (item as any).originalFileName,
-                    //     source: typeof item.source === 'string' ? item.source.substring(0, 100) + '...' : '[Buffer]'
-                    // });
-                } else if (item.type === 'chunk' && item.isEntry) {
-                    // console.log(`Entry Chunk: ${item.fileName}`, {
-                    //     name: item.name,
-                    //     facadeModuleId: item.facadeModuleId,
-                    //     imports: item.imports,
-                    //     viteMetadata: (item as any).viteMetadata
-                    // });
-                };
-            });
             for (const file of files) {
                 if (path.extname(file) !== '.md') { continue; };
                 const slug = path.basename(file, '.md');
@@ -108,56 +149,17 @@ export function markdownBlog(): Plugin {
                 if (entryChunk && entryChunk.type === 'chunk') {
                     const htmlOutputPath = `blog/posts/${slug}/index.html`;
                     const htmlDir = path.posix.dirname(htmlOutputPath);
-                    // console.log(`\n=== DEBUG: Processing ${slug} ===`);
-                    // console.log('Entry chunk:', {
-                    //     fileName: entryChunk.fileName,
-                    //     name: entryChunk.name,
-                    //     facadeModuleId: entryChunk.facadeModuleId,
-                    //     imports: entryChunk.imports,
-                    //     viteMetadata: (entryChunk as any).viteMetadata
-                    // });
-                    let templateCssFiles: string[] = [];
-                    if ((entryChunk as any).viteMetadata?.importedCss && (entryChunk as any).viteMetadata.importedCss.size > 0) {
-                        templateCssFiles = Array.from((entryChunk as any).viteMetadata.importedCss);
-                    };
-                    if (templateCssFiles.length === 0) {
-                        templateCssFiles = Object.values(bundle).filter((item: any) => {
-                            if (item && item.type === 'asset' && item.fileName && item.fileName.endsWith('.css')) {
-                                const source = typeof item.source === 'string' ? item.source : item.source?.toString();
-                                if (source && (
-                                    source.includes('.article') || 
-                                    source.includes('.toc-list') ||
-                                    source.includes('highlight.js') ||
-                                    source.includes('hljs') ||
-                                    source.includes('mdui-prose')
-                                )) {
-                                    return true;
-                                };
-                            };
-                            return false;
-                        }).map((item: any) => item.fileName);
-                    };
-                    if (templateCssFiles.length === 0) {
-                        const chunkBaseName = entryChunk.name.replace(/^blog\/posts\//, '').replace(/\/index$/, '');
-                        templateCssFiles = Object.values(bundle).filter((item: any) => {
-                            if (item && item.type === 'asset' && item.fileName && item.fileName.endsWith('.css')) {
-                                return item.fileName.includes(chunkBaseName) || item.fileName.includes('template');
-                            };
-                            return false;
-                        }).map((item: any) => item.fileName);
-                    };
-                    // console.log('Found template CSS files:', templateCssFiles);
+                    const templateCssFiles = findTemplateCssFiles(entryChunk, bundle, slug);
                     const cssLinks = templateCssFiles.map(cssFile => {
                         const rel = path.posix.relative(htmlDir, cssFile).replace(/\\/g, '/');
                         const href = rel.startsWith('.') ? rel : './' + rel;
                         return `<link rel="stylesheet" href="${href}">`;
                     }).join('\n');
-                    // console.log('Generated CSS links:', cssLinks);
                     let processedTemplate = template
                         .replace('{{ content }}', adjustedPostHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`);
                     if (cssLinks) {
-                        if (/<link\s+rel=["']stylesheet["'][^>]*>/i.test(processedTemplate)) {
+                        if (/<link\s+rel=["']stylesheet["'][^>]*>/i.test(processedTemplate)){
                             processedTemplate = processedTemplate.replace(
                                 /<link\s+rel=["']stylesheet["'][^>]*>/gi, 
                                 cssLinks
@@ -167,7 +169,6 @@ export function markdownBlog(): Plugin {
                         };
                     };
                     processedTemplate = transformTemplate(processedTemplate, entryChunk, bundle, htmlOutputPath);
-                    // console.log('Final HTML head section:', processedTemplate.match(/<head>[\s\S]*?<\/head>/)?.[0]);
                     this.emitFile({
                         type: 'asset',
                         fileName: htmlOutputPath,

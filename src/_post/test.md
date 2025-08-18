@@ -68,7 +68,7 @@ $$
 
 ### Local Image 本地图片
 
-![Local image 本地图片](./img/2025-08-14-18-49-36-image.png)
+![Local image 本地图片](./img/1.jpg)
 
 ### Web Image 网络图片
 

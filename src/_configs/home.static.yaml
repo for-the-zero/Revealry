@@ -36,6 +36,16 @@ zh-CN:
     
   _other:
     title: 首页 | Revealry演示
+    daynight:
+      auto:
+        tooltip: 切换至自动
+        notice: 已切换至自动
+      light:
+        tooltip: 切换至浅色模式
+        notice: 已切换至浅色模式
+      dark:
+        tooltip: 切换至深色模式
+        notice: 已切换至深色模式
 
 en: 
   translations:
@@ -61,15 +71,25 @@ en:
     - selector: '.switch-lang'
       target: content
       text: 切换至中文
-    - selector: '.index:nth-child(1) > mdui-card > h2'
+    - selector: '.index:nth-child(1) > mdui-card > div > h2'
       target: inner-html
       text: Introduction
-    - selector: '.index:nth-child(2) > mdui-card > h2'
+    - selector: '.index:nth-child(2) > mdui-card > div > h2'
       target: inner-html
       text: Links
-    - selector: '.index:nth-child(3) > mdui-card > h2'
+    - selector: '.index:nth-child(3) > mdui-card > div > h2'
       target: inner-html
       text: Blog
 
   _other:
     title: Home | Revealry Demo
+    daynight:
+      auto:
+        tooltip: Switch to Auto
+        notice: Switched to Auto
+      light:
+        tooltip: Switch to Light Mode
+        notice: Switched to Light Mode
+      dark:
+        tooltip: Switch to Dark Mode
+        notice: Switched to Dark Mode

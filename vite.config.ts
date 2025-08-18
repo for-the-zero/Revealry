@@ -1,3 +1,6 @@
+// 该文件AI参与度高
+// This file has a high AI participation rate.
+
 import { defineConfig } from 'vite';
 import path from 'path';
 import { glob } from 'glob';
@@ -65,6 +68,10 @@ export default defineConfig({
         {
           src: '_post/img/**/*',
           dest: 'img'
+        },
+        {
+          src: 'assets/icon.svg',
+          dest: ''
         }
       ]
     }),
