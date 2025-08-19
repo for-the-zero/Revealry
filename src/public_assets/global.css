@@ -1,15 +1,19 @@
 @import url('mdui/mdui.css');
 @font-face {
-    font-family: 'Wanted Sans Std';
-    src: url(../assets/WantedSansStd-Regular.otf);
+    font-family: "Wanted Sans Std Variable";
+    font-style: normal;
+    font-display: swap;
+    src: url("../assets/WantedSansStdVariable.woff2") format("woff2-variations");
 }
 @font-face {
-    font-family: 'LXGW xxh+';
-    src: url(../assets/LXGWNeoXiHeiPlus.ttf);
+    font-family: 'SHS HWSCVF';
+    font-style: normal;
+    font-display: swap;
+    src: url('../assets/SourceHanSansHWSC-VF.otf.woff2') format('woff2-variations');
 }
 body{
     background-color: rgb(var(--mdui-color-background));
-    font-family: 'Wanted Sans Std', 'LXGW xxh+';
+    font-family: 'Wanted Sans Std Variable', 'SHS HWSCVF';
     color: rgb(var(--mdui-color-on-background));
     display: flex;
     flex-direction: column;

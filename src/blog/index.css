@@ -9,9 +9,12 @@ body{
     align-items: normal;
 }
 h1{
-    font-weight: 400;
+    font-weight: 550;
     font-size: 2.4em;
     margin: 0;
+}
+h2{
+    font-weight: 500;
 }
 .footer{
     margin: 0;

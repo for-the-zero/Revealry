@@ -12,9 +12,12 @@ body {
 }
 h1, p{
     margin: 0;
-    font-weight: 400;
+    font-weight: 500;
     word-break: break-all;
     white-space: pre-wrap;
+}
+p{
+    font-weight: 300;
 }
 mdui-card{
     padding: 10px;

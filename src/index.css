@@ -28,9 +28,16 @@
     width: 100%;
     gap: 10px;
 }
+.link-card-content > h2{
+    font-weight: 500;
+}
 .index > div{
     width: 47%;
 }
 .index > div > p{
     white-space: pre-wrap;
+}
+.footer{
+    font-weight: 50;
+    font-size: 0.8em;
 }
