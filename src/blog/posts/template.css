@@ -34,3 +34,16 @@ pre.hljs{
     border-radius: var(--mdui-shape-corner-small);
     background-color: rgb(var(--mdui-color-surface-container-dark));
 }
+.article img {
+    background-color: rgb(var(--mdui-color-surface-bright));
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.3, 0.35, 0, 1.00);
+    max-width: 100%;
+    width: 100px;
+    height: 100px;
+}
+.article img.loaded {
+    opacity: 1;
+    width: auto;
+    height: auto;
+}

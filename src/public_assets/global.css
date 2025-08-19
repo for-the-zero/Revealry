@@ -1,20 +1,15 @@
 @import url('mdui/mdui.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
 @font-face {
     font-family: "Wanted Sans Std Variable";
     font-style: normal;
     font-display: swap;
     src: url("../assets/WantedSansStdVariable.woff2") format("woff2-variations");
 }
-@font-face {
-    font-family: 'SHS HWSCVF';
-    font-style: normal;
-    font-display: swap;
-    src: url('../assets/SourceHanSansHWSC-VF.otf.woff2') format('woff2-variations');
-}
 body{
-    background-color: rgb(var(--mdui-color-background));
-    font-family: 'Wanted Sans Std Variable', 'SHS HWSCVF';
-    color: rgb(var(--mdui-color-on-background));
+    background-color: rgb(var(--mdui-color-surface));
+    font-family: 'Wanted Sans Std Variable', 'Noto Sans SC';
+    color: rgb(var(--mdui-color-on-surface));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +28,7 @@ body{
     position: absolute;
     contain: layout;
     border-radius: 50%;
-    border: 2px solid rgb(var(--mdui-color-on-background));
+    border: 2px solid rgb(var(--mdui-color-on-surface));
     width: 20px;
     height: 20px;
     position: absolute;
@@ -41,10 +36,10 @@ body{
     pointer-events: none;
     transform: translate(-50%, -50%);
     box-shadow: 
-        0 0 15px rgb(var(--mdui-color-background)),
-        0 0 5px rgb(var(--mdui-color-on-background)), 
-        inset 0 0 10px rgb(var(--mdui-color-background)),
-        inset 0 0 5px rgb(var(--mdui-color-on-background));
+        0 0 15px rgb(var(--mdui-color-surface)),
+        0 0 5px rgb(var(--mdui-color-on-surface)), 
+        inset 0 0 10px rgb(var(--mdui-color-surface)),
+        inset 0 0 5px rgb(var(--mdui-color-on-surface));
     transition: 
         width 0.1s cubic-bezier(0.3, 0.35, 0, 1.00),
         height 0.1s cubic-bezier(0.3, 0.35, 0, 1.00),
@@ -59,9 +54,9 @@ body{
     border-radius: 50%;
     opacity: 0.9;
     box-shadow: 
-        0 0 15px rgb(var(--mdui-color-background)),
-        0 0 10px rgb(var(--mdui-color-on-background)), 
-        inset 0 0 10px rgb(var(--mdui-color-on-background));
+        0 0 15px rgb(var(--mdui-color-surface)),
+        0 0 10px rgb(var(--mdui-color-on-surface)), 
+        inset 0 0 10px rgb(var(--mdui-color-on-surface));
 }
 
 .h-box{

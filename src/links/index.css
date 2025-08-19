@@ -29,7 +29,7 @@ img, .svg-fill use{
     height: 40px;
 }
 .svg-fill use{
-    fill: rgb(var(--mdui-color-on-background));
+    fill: rgb(var(--mdui-color-on-surface));
 }
 
 .link-detail > .v-box{

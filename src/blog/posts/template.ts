@@ -60,9 +60,6 @@ if(e_toc_data.length){
 };
 
 //
-new Viewer(document.body);
-
-//
 import { get_lang } from '../../public_assets/i18n';
 const lang = get_lang();
 import config_blog from '../../_configs/blog.yaml';
@@ -77,3 +74,17 @@ if(this_filename){
         $('mdui-top-app-bar-title').text(this_post.title);
     };
 };
+
+//
+new Viewer(document.body);
+$('.article img').each(function() {
+    const img_ele = this as HTMLImageElement;
+    const $img = $(img_ele);
+    if (img_ele.complete) {
+        $img.addClass('loaded');
+    } else {
+        $img.on('load', function() {
+            $img.addClass('loaded');
+        });
+    }
+});

@@ -8,7 +8,7 @@ function run(cmd, cwd) {
     execSync(cmd, { cwd, stdio: 'inherit' });
 };
 const now = new Date();
-const cmt_msg = `Site updated: ${now.toISOString().replace('T', ' ').slice(0, 19)}`;
+const cmt_msg = `Site updated: ${new Date().toLocaleString('en-CA', { hour12: false }).replace(',', '')}`;
 
 console.log('[LOG] 开始构建...');
 run('npm run build', process.cwd());
