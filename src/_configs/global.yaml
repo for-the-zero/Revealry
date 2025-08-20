@@ -4,4 +4,4 @@ color: '#0059c7'
 
 # repo: 用于上传构建后文件的 Git 仓库地址（如果已经存在git仓库，则此配置会被忽略）
 # repo: Git repository address for uploading the built file (if a Git repository already exists, this configuration will be ignored).
-repo: 'git@github.com:for-the-zero/TEST.git'
+repo: 'git@github.com:for-the-zero/Revealry.git'

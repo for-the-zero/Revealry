@@ -76,6 +76,10 @@ export default defineConfig({
           src: 'assets/icon.svg',
           dest: ''
         },
+        {
+          src: 'assets/intro/**/*',
+          dest: 'assets/intro'
+        },
         ...(fs.existsSync('src/README.md') ? [{
           src: 'README.md',
           dest: ''
