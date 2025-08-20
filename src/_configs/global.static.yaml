@@ -3,6 +3,7 @@ zh-CN: # 语言: 中文
     - selector: 'mdui-avatar'
       target: 'src'
       text: '' # 主页上头像的图片地址
+
 en: # Language: English
   translations: 
     - selector: 'mdui-avatar'

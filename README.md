@@ -1,8 +1,126 @@
-# Devloping
+# Revealry
+
+一个个人网站模板
+
+A personal website template
+
+主要是我自己的需求，许多功能是为我自己设计的，不过你可以更改代码来迎合你自己的需求
+
+Mainly for my own needs, but you can modify the code to suit your own needs.
+
+可以修改yaml配置实现自定义
+
+You can customize the website by modifying .yaml files.
+
+---
+
+# 特性 / Features
+
+## 内容 / Contents
+
+介绍页 / Intro Page
+
+- 卡片化展示个人基础信息
+- Card-based display of personal basic information
+- 随机抽卡，介绍更多详细条目
+- Randomly introduce more detailed entries
+- 展示一点小文段，让页面有点趣味（可选）
+- Show a small snippet, add some fun to the page(optional)
+- 基于[LifeLog](https://github.com/for-the-zero/LifeLog)的个人实时状态分享，让别人知道你在干什么（可选）
+- Personal real-time status sharing based on [LifeLog](https://github.com/for-the-zero/LifeLog), let others know what you're doing(optional)
+
+链接页 / Links Page
+
+- 分组分类展示
+- Grouping and categorization
+- 自定义图标
+- Custom icons
+- 卡片化展示链接项目，一个项目可以有多个链接，也可以放文本（比如可以做到一键复制QQ号等），可以添加描述
+- Card-based display of link projects, a project can have multiple links or text, and can add a description
+
+博客页 / Blog Page
+
+- 支持搜索，可以按名称、分类、标签搜索
+- Support for search, can search by name, category, tag
+- 自定义文章展示顺序
+- Customize the order of article display
+- 使用Markdown编辑文章
+- Use Markdown to edit articles
+- Latex、Highlight.js、viewer.js支持
+- Latex, Highlight.js, viewer.js supported
+- 支持章节跳转
+- Support for section jumping
+
+## 体验 / Experience
+
+- 支持切换亮色/暗色模式
+- Support for switching between light/dark mode
+- 支持多语言切换
+- Support for multi-language switching
+
+---
+
+# 开发 / Developing
+
+使用 vite 开发，使用 mdui 构建 UI
+
+Developed using vite, built with mdui
+
+```bash
+npm install --verbose # 安装依赖 / Install dependencies
+npm run dev           # 开发模式 / Development mode
+npm run build         # 构建     / Build
+```
+
+## 部署 / Deploy
+
+该命令会先执行构建，然后将 `dist` 目录下的内容推送到 `global.yaml` 中配置的 Git 仓库的 `built` 分支
+
+This command first builds the project, then pushes the contents of the `dist` directory to the `built` branch of the Git repository configured in `global.yaml`.
+
+```bash
+npm run deploy
+```
+
+---
+
+# 自定义与配置 / Customization & Configuration
+
+修改网站内容的核心是编辑 `src/_configs/` 目录下的 `.yaml` 文件
+
+The core of modifying the website content is to edit the `.yaml` files in the `src/_configs/` directory.
+
+你可以根据yaml中的注释更改
+
+You can modify the files according to the comments in the yaml files.
+
+`*.static.yaml`用于编辑网页静态内容，其余用于编辑个性化内容
+
+`*.static.yaml` is used to edit static content on the webpage, and the rest are used to edit personalized content.
+
+- **全局设置 (`global.yaml`)**: 配置主题色和部署的 Git 仓库地址。
+- **Global Configyration (`global.yaml`)**: Configure the color scheme and Git repository address for deployment.
+- **Meta 标签 (`meta.yaml`)**: 为每个页面配置独立的 SEO `title` 和 `description`。
+- **Meta Tags (`meta.yaml`)**: 配置网站的标题、描述、关键字、作者、图标等。
+
+要添加一篇新博客，只需：
+
+To add a new blog post, simply:
+
+- 在 `src/_post/` 目录下创建一个新的 `.md` 文件
+- Create a new `.md` file in the `src/_post/` directory.
+- 在 `src/_configs/blog.yaml` 中添加该文章的条目
+- Add an entry for the new post to `src/_configs/blog.yaml`.
 
 ---
 
 # 其它 / Other
+
+## 后记 / Conclusion
+
+这个项目仍然有许多不完善以及充满bug的地方，如果可以的话，欢迎提交PR或者issue
+
+This project still has many imperfections and bugs, and if you can, please submit PR or issue.
 
 ## 图标 / Icons
 

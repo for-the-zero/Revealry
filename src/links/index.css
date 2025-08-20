@@ -17,7 +17,8 @@ h1, p{
     white-space: pre-wrap;
 }
 p{
-    font-weight: 300;
+    font-weight: 400;
+    user-select: text;
 }
 mdui-card{
     padding: 10px;

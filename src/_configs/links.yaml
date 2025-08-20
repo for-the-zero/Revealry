@@ -2,7 +2,7 @@ zh-CN: # 语言: 中文
   - title: "测试1" # 链接分组的标题
     items: # 链接项列表 (可为 null)
       - name: "Github" # 链接项名称
-        img: "mdi--github.svg" # 链接项图片，相对于 `src/assets/`
+        img: "mdi--github.svg" # 链接项图片，相对于 `src/assets/`，也可以填写链接（图标可以到Iconify等平台找）
         description: "这是这个项目的Github地址" # 链接项描述 (可为 null)
         links: # 链接列表 (可为 null)
           - name: "链接" # 链接名称（小标题）
@@ -12,7 +12,7 @@ zh-CN: # 语言: 中文
             content: "Revealry"
             type: text
       - name: "测试114514"
-        img: "f7--number.svg"
+        img: "https://placehold.net/shape-400x400.png"
         description: |
           测试
           line1
@@ -25,14 +25,15 @@ zh-CN: # 语言: 中文
   - title: "测试2"
     items:
       - name: "测试1919810"
-        img: "f7--number-blue.png"
+        img: "f7--number.png"
         description: "测试"
         links: null
+
 en: # Language: English
   - title: "Test1" # Title of the link group
     items: # List of link items (can be null)
       - name: "Github" # Name of the link item
-        img: "mdi--github.svg" # Image of the link item, relative to `src/assets/`
+        img: "mdi--github.svg" # Image of the link item, relative to `src/assets/`, or a link (icon can be found on Iconify etc.)
         description: "This is the Github address of this project" # Description of the link item (can be null)
         links: # List of links (can be null)
           - name: "Link" # Name of the link (small title)
@@ -42,7 +43,7 @@ en: # Language: English
             content: "Revealry"
             type: text
       - name: "Test114514"
-        img: "f7--number.svg"
+        img: "https://placehold.net/shape-400x400.png"
         description: |
           Test
           line1
@@ -55,6 +56,6 @@ en: # Language: English
   - title: "Test2"
     items:
       - name: "Test1919810"
-        img: "f7--number-blue.png"
+        img: "f7--number.png"
         description: "Test"
         links: null

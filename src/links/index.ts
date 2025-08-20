@@ -46,7 +46,7 @@ function render_links(){
                                     <use href="../assets/intro/${link_item.img}" width="40px" height="40px"></use>
                                 </svg>
                             ` : `
-                                <img src="../assets/intro/${link_item.img}" draggable="false" />
+                                <img src="${link_item.img.startsWith('http://') || link_item.img.startsWith('https://')? link_item.img : `../assets/intro/${link_item.img}`}" draggable="false" />
                             `}
                         </mdui-card>
                     </mdui-tooltip>`
@@ -70,7 +70,7 @@ function detail_of_links(link_item: links_item){
                     <use href="../assets/intro/${link_item.img}" width="40px" height="40px"></use>
                 </svg>
             ` : `
-                <img src="../assets/intro/${link_item.img}" draggable="false" />
+                <img src="${link_item.img.startsWith('http://') || link_item.img.startsWith('https://')? link_item.img : `../assets/intro/${link_item.img}`}" draggable="false" />
             `}
             <h1>${link_item.name}</h1>
         </div>
