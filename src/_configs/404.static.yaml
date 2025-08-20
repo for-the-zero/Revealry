@@ -1,29 +1,29 @@
-zh-CN:
+zh-CN: # 语言: 中文
   translations: 
   - selector: 'h1'
     target: inner-html
-    text: '404'
+    text: '404' # 对应 404 页面的大标题
   - selector: 'mdui-button > span'
     target: inner-html
-    text: '返回'
+    text: '返回' # 对应 404 中的返回主页按钮
   - selector: 'p'
     target: inner-html
-    text: '访问的页面不存在或已删除'
+    text: '访问的页面不存在或已删除' # 用于显示404信息文本
 
   _other:
-    title: 404 - 页面未找到
+    title: 404 - 页面未找到 # 设置浏览器标签页中显示的页面标题
 
-en:
+en: # Language: English
   translations: 
   - selector: 'h1'
     target: inner-html
-    text: '404'
+    text: '404' # Corresponds to the main heading of 404 page.
   - selector: 'mdui-button > span'
     target: inner-html
-    text: 'Go Home'
+    text: 'Go Home' # Corresponds Go Home button in 404.
   - selector: 'p'
     target: inner-html
-    text: 'The page you are looking for does not exist or has been deleted'
+    text: 'The page you are looking for does not exist or has been deleted' # Used to display 404 information text.
 
   _other:
-    title: 404 - Page Not Found
+    title: 404 - Page Not Found # Sets the page title displayed in the browser tab.

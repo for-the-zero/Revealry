@@ -1,53 +1,53 @@
-zh-CN:
+zh-CN: # 语言: 中文
   translations: 
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
-    text: 博客
+    text: 博客 # 博客页面的顶部导航栏标题
   - selector: '.container > h1'
     target: inner-html
-    text: 欢迎来到博客页面
+    text: 欢迎来到博客页面 # 博客页面的主标题
   - selector: 'footer'
     target: inner-html
-    text: 注脚文本
+    text: 注脚文本 # 页面底部的注脚文本
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(1)'
     target: inner-html
-    text: 标题
+    text: 标题 # 搜索栏的“标题”筛选按钮
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(2)'
     target: inner-html
-    text: 分类
+    text: 分类 # 搜索栏的“分类”筛选按钮
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(3)'
     target: inner-html
-    text: 标签
+    text: 标签 # 搜索栏的“标签”筛选按钮
   - selector: 'mdui-text-field'
     target: label
-    text: 搜索
+    text: 搜索 # 搜索输入框的标签文本
 
   _others: 
-    title: 博客 | Revealry 示例
+    title: 博客 | Revealry 示例 # 设置浏览器标签页中显示的页面标题
 
-en: 
+en: # Language: English
   translations: 
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
-    text: Blog
+    text: Blog # The title in the top app bar on the blog page.
   - selector: '.container > h1'
     target: inner-html
-    text: Welcome to the blog page
+    text: Welcome to the blog page # The main heading on the blog page.
   - selector: 'footer'
     target: inner-html
-    text: Footer text
+    text: Footer text # The footer text at the bottom of the page.
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(1)'
     target: inner-html
-    text: Title
+    text: Title # The "Title" filter button in the search bar.
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(2)'
     target: inner-html
-    text: Category
+    text: Category # The "Category" filter button in the search bar.
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(3)'
     target: inner-html
-    text: Tag
+    text: Tag # The "Tag" filter button in the search bar.
   - selector: 'mdui-text-field'
     target: label
-    text: Search Here
+    text: Search Here # The label text for the search input field.
 
   _others: 
-    title: Blog | Revealry Demo
+    title: Blog | Revealry Demo # Sets the page title displayed in the browser tab.

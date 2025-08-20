@@ -1,10 +1,25 @@
+# 该文件定义了博客文章列表。
+# This file defines the list of blog posts.
+
 - title: test
+  # 文章标题
+  # Post title
   desc: markdwon test
+  # 文章的简短描述
+  # A short description of the post
   filename: test
+  # 对应 `src/_post/` 目录下的 .md 文件名（不带扩展名）
+  # The .md file name in the `src/_post/` directory (without extension)
   category: normal
+  # 文章分类
+  # Post category
   tags:
+  # 文章标签列表
+  # List of post tags
   - test1
   allow_lang:
+  # 允许显示该文章的语言列表
+  # List of languages in which the post is allowed to be displayed
   - zh-CN
   - en
 - title: test2
@@ -19,6 +34,8 @@
 - title: link
   desc: link to Github
   href: https://github.com/
+  # 可以不使用filename，使用href作为跳转目标
+  # You can use href instead of filename to specify the jump target
   category: link
   tags:
   - git
@@ -39,6 +56,8 @@
   href: "#"
   category: normal
   tags: null
+  # 如果没有标签，可以设为 null
+  # Can be set to null if there are no tags
   allow_lang:
   - zh-CN
   - en

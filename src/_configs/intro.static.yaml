@@ -1,95 +1,95 @@
-zh-CN:
+zh-CN: # 语言: 中文
   translations: 
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
-    text: 介绍
+    text: 介绍 # 页面顶部导航栏的标题
   - selector: '.intros h3'
     target: inner-html
-    text: 更多介绍
+    text: 更多介绍 # 详细介绍卡片的标题
   - selector: '.sens h3'
     target: inner-html
-    text: 小句子
+    text: 小句子 # 其它文字片段卡片的标题
   - selector: '.lifelog-title > span:first-child'
     target: inner-html
-    text: 我在干什么
+    text: 我在干什么 # "Lifelog"部分的主标题
   - selector: '.lifelog-card-laptop > h3'
     target: inner-html
-    text: 电脑
+    text: 电脑 # "Lifelog"中“电脑”卡片的标题
   - selector: '.lifelog-card-phone > h3'
     target: inner-html
-    text: 手机
+    text: 手机 # "Lifelog"中“手机”卡片的标题
   - selector: '.lifelog-card-laptop > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
     target: inner-html
-    text: 历史数据
+    text: 历史数据 # “电脑”卡片中可折叠部分“历史数据”的文本
   - selector: '.lifelog-card-phone > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
     target: inner-html
-    text: 历史数据
+    text: 历史数据 # “手机”卡片中可折叠部分“历史数据”的文本
   - selector: '.lifelog-card-laptop-table > thead > tr > th:first-child'
     target: inner-html
-    text: 时间
+    text: 时间 # “电脑”历史数据表格的表头“时间”列
   - selector: '.lifelog-card-laptop-table > thead > tr > th:nth-child(2)'
     target: inner-html
-    text: 正在……
+    text: 正在…… # “电脑”历史数据表格的处于的应用表头
   - selector: '.lifelog-card-laptop-table > thead > tr > th:last-child'
     target: inner-html
-    text: 内存使用情况
+    text: 内存使用情况 # “电脑”历史数据表格的表头“内存使用情况”列
   - selector: '.lifelog-card-phone-table > thead > tr > th:first-child'
     target: inner-html
-    text: 时间
+    text: 时间 # “手机”历史数据表格的表头“时间”列
   - selector: '.lifelog-card-phone-table > thead > tr > th:nth-child(2)'
     target: inner-html
-    text: 正在……
+    text: 正在…… # “手机”历史数据表格的处于的应用表头
   - selector: '.lifelog-card-phone-table > thead > tr > th:last-child'
     target: inner-html
-    text: 电量
+    text: 电量 # “手机”历史数据表格的表头“电量”列
 
   _other:
-    title: 介绍 | Revealry 示例
+    title: 介绍 | Revealry 示例 # 设置浏览器标签页中显示的页面标题
 
-en:
+en: # Language: English
   translations: 
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
-    text: Introduction
+    text: Introduction # The title in the top app bar of the page
   - selector: '.intros h3'
     target: inner-html
-    text: More About Me
+    text: More About Me # The title for the More About Me card
   - selector: '.sens h3'
     target: inner-html
-    text: Sentences
+    text: Sentences # The title for the other text cards
   - selector: '.lifelog-title > span:first-child'
     target: inner-html
-    text: What I'm Doing
+    text: What I'm Doing # The main title for the "Lifelog" section
   - selector: '.lifelog-card-laptop > h3'
     target: inner-html
-    text: Laptop
+    text: Laptop # The title for the "Laptop" card in the Lifelog section
   - selector: '.lifelog-card-phone > h3'
     target: inner-html
-    text: Mobile Phone
+    text: Mobile Phone # The title for the "Mobile Phone" card in the Lifelog section
   - selector: '.lifelog-card-laptop > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
     target: inner-html
-    text: Historical Data
+    text: Historical Data # The text for the "Historical Data" collapsible section in the "Laptop" card
   - selector: '.lifelog-card-phone > mdui-collapse > mdui-collapse-item > mdui-list-item > span'
     target: inner-html
-    text: Historical Data
+    text: Historical Data # The text for the "Historical Data" collapsible section in the "Mobile Phone" card
   - selector: '.lifelog-card-laptop-table > thead > tr > th:first-child'
     target: inner-html
-    text: Time
+    text: Time # The header for the "Time" column in the laptop historical data table
   - selector: '.lifelog-card-laptop-table > thead > tr > th:nth-child(2)'
     target: inner-html
-    text: Doing...
+    text: Doing... # The header for the application currently in use in the laptop historical data table
   - selector: '.lifelog-card-laptop-table > thead > tr > th:last-child'
     target: inner-html
-    text: Memory Usage
+    text: Memory Usage # The header for the "Memory Usage" column in the laptop historical data table
   - selector: '.lifelog-card-phone-table > thead > tr > th:first-child'
     target: inner-html
-    text: Time
+    text: Time # The header for the "Time" column in the mobile phone historical data table
   - selector: '.lifelog-card-phone-table > thead > tr > th:nth-child(2)'
     target: inner-html
-    text: Doing...
+    text: Doing... # The header for the application currently in use in the mobile phone historical data table
   - selector: '.lifelog-card-phone-table > thead > tr > th:last-child'
     target: inner-html
-    text: Battery
+    text: Battery # The header for the "Battery" column in the mobile phone historical data table
 
   _other:
-    title: Intro | Revealry Demo
+    title: Intro | Revealry Demo # Sets the page title displayed in the browser tab

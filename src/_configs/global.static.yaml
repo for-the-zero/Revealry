@@ -1,10 +1,10 @@
-zh-CN: 
+zh-CN: # 语言: 中文
   translations: 
     - selector: 'mdui-avatar'
       target: 'src'
-      text: ''
-en:
+      text: '' # 主页上头像的图片地址
+en: # Language: English
   translations: 
     - selector: 'mdui-avatar'
       target: 'src'
-      text: ''
+      text: '' # The image source for the avatar on the homepage

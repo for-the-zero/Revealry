@@ -1,42 +1,42 @@
-zh-CN: 
+zh-CN: # 语言: 中文
   translations:
 
     # Custom Part
     - selector: '.welcome-card'
       target: inner-html
-      text: Revealry的一个演示
+      text: Revealry的一个演示 # 页面顶部欢迎卡片中的文本
     - selector: '.welcome-subt'
       target: inner-html
-      text: Revealry
+      text: Revealry # 头像旁边的副标题文本，可以填写你的名字
     - selector: '.index:nth-child(1) > div > p'
       target: inner-html
-      text: 这里可以写一些东西
+      text: 这里可以写一些东西 # “介绍”卡片旁边的描述文本
     - selector: '.index:nth-child(2) > div > p'
       target: inner-html
-      text: |
+      text: | # “链接”卡片旁边的描述文本
         这里可以也写一些东西
         我不知道写什么
     - selector: '.index:nth-child(3) > div > p'
       target: inner-html
-      text: 这里到底可以写什么东西啊喂（
+      text: 这里到底可以写什么东西啊喂（ # “博客”卡片旁边的描述文本
 
     # Fixed Part
     - selector: '.switch-lang'
       target: content
-      text: Switch to English
+      text: Switch to English # 切换语言按钮的提示文本
     - selector: '.index:nth-child(1) > mdui-card > div > h2'
       target: inner-html
-      text: 介绍
+      text: 介绍 # 指向“介绍”页面的卡片标题
     - selector: '.index:nth-child(2) > mdui-card > div > h2'
       target: inner-html
-      text: 链接
+      text: 链接 # 指向“链接”页面的卡片标题
     - selector: '.index:nth-child(3) > mdui-card > div > h2'
       target: inner-html
-      text: 博客
+      text: 博客 # 指向“博客”页面的卡片标题
     
   _other:
-    title: 首页 | Revealry演示
-    daynight:
+    title: 首页 | Revealry演示 # 设置浏览器标签页中显示的页面标题
+    daynight: # 暗黑模式切换按钮的提示文本和切换后的提示消息
       auto:
         tooltip: 切换至自动
         notice: 已切换至自动
@@ -47,43 +47,43 @@ zh-CN:
         tooltip: 切换至深色模式
         notice: 已切换至深色模式
 
-en: 
+en: # Language: English
   translations:
 
     # Custom Part
     - selector: '.welcome-card'
       target: inner-html
-      text: Here's a demo of Revealry
+      text: Here's a demo of Revealry # Text in the welcome card at the top of the page.
     - selector: '.welcome-subt'
       target: inner-html
-      text: Revealry
+      text: Revealry # Subtitle text next to the avatar, it can be your name.
     - selector: '.index:nth-child(1) > div > p'
       target: inner-html
-      text: Here you can write something
+      text: Here you can write something # Description text next to the "Introduction" card.
     - selector: '.index:nth-child(2) > div > p'
       target: inner-html
-      text: Here you can also write something
+      text: Here you can also write something # Description text next to the "Links" card.
     - selector: '.index:nth-child(3) > div > p'
       target: inner-html
-      text: So?
+      text: So? # Description text next to the "Blog" card.
 
     # Fixed Part
     - selector: '.switch-lang'
       target: content
-      text: 切换至中文
+      text: 切换至中文 # Tooltip text for the language switch button.
     - selector: '.index:nth-child(1) > mdui-card > div > h2'
       target: inner-html
-      text: Introduction
+      text: Introduction # Title for the card linking to the "Introduction" page.
     - selector: '.index:nth-child(2) > mdui-card > div > h2'
       target: inner-html
-      text: Links
+      text: Links # Title for the card linking to the "Links" page.
     - selector: '.index:nth-child(3) > mdui-card > div > h2'
       target: inner-html
-      text: Blog
+      text: Blog # Title for the card linking to the "Blog" page.
 
   _other:
-    title: Home | Revealry Demo
-    daynight:
+    title: Home | Revealry Demo # Sets the page title displayed in the browser tab.
+    daynight: # Tooltips and snackbar messages for the dark mode switch button.
       auto:
         tooltip: Switch to Auto
         notice: Switched to Auto

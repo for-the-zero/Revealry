@@ -1,19 +1,19 @@
-zh-CN:
+zh-CN: # 语言: 中文
   translations: 
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
-    text: 链接
+    text: 链接 # 链接页面的顶部导航栏标题
 
   _other:
-    title: 链接 | Revealry 示例
-    copied_snackbar_msg: 复制成功
+    title: 链接 | Revealry 示例 # 设置浏览器标签页中显示的页面标题
+    copied_snackbar_msg: 复制成功 # 复制成功后显示的消息
 
-en:
+en: # Language: English
   translations: 
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
-    text: Links
+    text: Links # The title in the top app bar on the links page
 
   _other:
-    title: links | Revealry Demo
-    copied_snackbar_msg: Copied!
+    title: links | Revealry Demo # Sets the page title displayed in the browser tab
+    copied_snackbar_msg: Copied! # Message displayed after successful copy

@@ -65,7 +65,7 @@ body{
 }
 .sens h6{
     color: var(--mdui-color-outline);
-    font-weight: 100;
+    font-weight: 300;
     opacity: 0.5;
 }
 
@@ -78,7 +78,7 @@ mdui-top-app-bar-title, .intros h3, .sens h3, .lifelog-title, .lifelog-cards h3{
     font-weight: 500;
 }
 .lifelog-subtitle{
-    font-weight: 100;
+    font-weight: 200;
     font-size: 1.25rem;
 }
 .lifelog-cards{

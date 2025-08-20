@@ -1,11 +1,19 @@
-zh-CN:
+zh-CN: # 语言: 中文
+  # 你的名字
   name: 君の名は
+  # 年龄，生日等
   age: 24岁，事学生，1970-01-01
+  # 性别
   sex: 沃尔玛购物袋
+  # 所在地
   locate: 地球
+  # 爱好
   hobby: 我不到啊
+  # 个人简介
   profile: 这里可以写你的简介
+  # 身份
   identity: 关于身份
+  # 详细介绍，随机显示一条
   detail_intros: 
     - |
       前面忘了
@@ -24,36 +32,54 @@ zh-CN:
     - '1 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+  # 从 v1.hitokoto.cn 获取“一言”的概率 (0 到 1)，设为 false 则禁用
   hitokoto: 0.5
+  # 自定义句子列表，设为 null 可禁用此功能
   sentences:
-    - text: |
+    - text: | # 句子内容
         听好了！
         前面忘了，中间忘了，后面忘了！
         至此，一锤定音！
         尘埃，已然落定！
-      note: 我操，源！
+      note: 我操，源！ # 句子的出处或备注 (可为 null)
     - text: 嗯哼哼啊啊 啊啊啊啊 啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊
       note: null
     - text: 你是一个一个一个什么啊
       note: null
+  # Lifelog 功能的相关配置，设为 null 可禁用此功能
   lifelog:
-    url: 'https://lifelog.forthezero.dpdns.org/get'
+    # 获取 Lifelog 数据的 API 地址
+    url: 'https://your-api-endpoint/get'
+    # 手机相关的配置
     phone:
+      # 通过包名设置的别名（可为 null）
       alias:
         'tv.danmaku.bili': '在看视频'
+      # 当没有手机数据时显示的文本
       when_no_records: '最近没在用手机，不知道在干嘛'
+    # 笔记本电脑相关的配置
     laptop:
+      # 通过exe名称设置的别名（可为 null）
       alias: null
+      # 当没有笔记本数据时显示的文本
       when_no_records: '最近没在用电脑，不知道在干嘛'
 
-en:
+en: # Language: English
+  # Your name
   name: yourname
+  # Age, birthday, etc.
   age: 200yo, 1970-01-01
+  # Gender
   sex: Amazon shopping bag
+  # Location
   locate: Earth
+  # Hobby
   hobby: idk
+  # Your profile introduction
   profile: You can write a brief introduction here
+  # Identity
   identity: About your identity
+  # More detailed introductions, randomly display one
   detail_intros: 
     - qwertyuiop
     - asdfghjkl
@@ -65,6 +91,26 @@ en:
     - '1 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
+  # The probability (from 0 to 1) of fetching a sentence from v1.hitokoto.cn, set to false to disable
   hitokoto: false
+  # A list of custom sentences. Can be set to null to disable this feature.
+  # If enabled, the structure should be:
+  # sentences:
+  #   - text: "The content of the sentence."
+  #     note: "A note about the sentence (can be null)."
   sentences: null
+  # Configuration for the Lifelog feature. Can be set to null to disable this feature.
+  # If enabled, the structure should be:
+  # lifelog:
+  #   url: "https://your-api-endpoint/get"
+  #   phone:
+  #     alias:
+  #       # Package name: Friendly name (can be null)
+  #       "com.package.name": "A friendly name"
+  #     when_no_records: "Text to display when no phone data is available."
+  #   laptop:
+  #     alias: 
+  #       # exe name: Friendly name (can be null)
+  #       "program.exe": "A friendly name"
+  #     when_no_records: "Text to display when no laptop data is available."
   lifelog: null

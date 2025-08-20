@@ -1,13 +1,13 @@
-zh-CN:
-  - title: "测试1"
-    items:
-      - name: "Github"
-        img: "mdi--github.svg"
-        description: "这是这个项目的Github地址"
-        links:
-          - name: "链接"
-            content: "https://github.com/for-the-zero/Revealry"
-            type: url
+zh-CN: # 语言: 中文
+  - title: "测试1" # 链接分组的标题
+    items: # 链接项列表 (可为 null)
+      - name: "Github" # 链接项名称
+        img: "mdi--github.svg" # 链接项图片，相对于 `src/assets/`
+        description: "这是这个项目的Github地址" # 链接项描述 (可为 null)
+        links: # 链接列表 (可为 null)
+          - name: "链接" # 链接名称（小标题）
+            content: "https://github.com/for-the-zero/Revealry" # 链接或文本内容
+            type: url # 类型, 'text' 或 'url'
           - name: "名字"
             content: "Revealry"
             type: text
@@ -28,4 +28,33 @@ zh-CN:
         img: "f7--number-blue.png"
         description: "测试"
         links: null
-# en: null
+en: # Language: English
+  - title: "Test1" # Title of the link group
+    items: # List of link items (can be null)
+      - name: "Github" # Name of the link item
+        img: "mdi--github.svg" # Image of the link item, relative to `src/assets/`
+        description: "This is the Github address of this project" # Description of the link item (can be null)
+        links: # List of links (can be null)
+          - name: "Link" # Name of the link (small title)
+            content: "https://github.com/for-the-zero/Revealry" # Link or text content
+            type: url # Type, 'text' or 'url'
+          - name: "Name"
+            content: "Revealry"
+            type: text
+      - name: "Test114514"
+        img: "f7--number.svg"
+        description: |
+          Test
+          line1
+          line2
+          line3
+        links:
+          - name: "114514"
+            content: "1919810"
+            type: text
+  - title: "Test2"
+    items:
+      - name: "Test1919810"
+        img: "f7--number-blue.png"
+        description: "Test"
+        links: null

@@ -43,7 +43,7 @@ try {
     console.log('[WRN] 提交报错');
 };
 try {
-    run('git push -u origin master --force', dist_dir);
+    run('git push -u origin built --force', dist_dir);
 } catch {
     console.log('[WRN] 上传报错');
 };
