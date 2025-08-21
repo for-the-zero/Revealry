@@ -1,1 +1,1 @@
-import"../../../assets/global-yKGb6Mty.js";import"../test2/index.js";import"../../../assets/arrow-back-DC_ByJ79.js";import"../../../assets/blog-FFAcrSbs.js";
+import"../../../assets/global-DCeofmpY.js";import"../test2/index.js";import"../../../assets/arrow-back-Dvur6pHk.js";import"../../../assets/blog-FFAcrSbs.js";
