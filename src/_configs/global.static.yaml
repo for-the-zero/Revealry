@@ -3,9 +3,15 @@ zh-CN: # 语言: 中文
     - selector: 'mdui-avatar'
       target: 'src'
       text: '' # 主页上头像的图片地址
+    - selector: 'mdui-card > mdui-avatar'
+      target: 'src'
+      text: '' # 介绍页头像的图片地址
 
 en: # Language: English
   translations: 
     - selector: 'mdui-avatar'
       target: 'src'
-      text: '' # The image source for the avatar on the homepage
+      text: '' # Homepage avatar image address
+    - selector: 'mdui-card > mdui-avatar'
+      target: 'src'
+      text: '' # About page avatar image address

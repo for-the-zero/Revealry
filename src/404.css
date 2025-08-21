@@ -14,3 +14,6 @@ h1{
 .h-box{
     gap: 10px;
 }
+p{
+    white-space: pre-wrap;
+}

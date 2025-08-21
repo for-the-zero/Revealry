@@ -6,7 +6,7 @@ zh-CN: # 语言: 中文
   - selector: '.container > h1'
     target: inner-html
     text: 欢迎来到博客页面 # 博客页面的主标题
-  - selector: 'footer'
+  - selector: '.footer'
     target: inner-html
     text: 注脚文本 # 页面底部的注脚文本
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(1)'
@@ -33,7 +33,7 @@ en: # Language: English
   - selector: '.container > h1'
     target: inner-html
     text: Welcome to the blog page # The main heading on the blog page.
-  - selector: 'footer'
+  - selector: '.footer'
     target: inner-html
     text: Footer text # The footer text at the bottom of the page.
   - selector: 'mdui-segmented-button-group > mdui-segmented-button:nth-child(1)'

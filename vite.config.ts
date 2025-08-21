@@ -9,6 +9,7 @@ import yaml from '@modyfi/vite-plugin-yaml';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { markdownBlog } from './scripts/vite-posts-plugin';
 import { viteMeta } from './scripts/vite-meta-plugin';
+import sitemap from 'vite-plugin-sitemap';
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -86,5 +87,10 @@ export default defineConfig({
         }] : [])
       ]
     }),
+    sitemap({
+      // 请将 'https://example.com' 替换为您的网站域名
+      // Please replace 'https://example.com' with your website domain
+      hostname: 'https://example.com'
+    })
   ],
 });
