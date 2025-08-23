@@ -5,6 +5,9 @@
   # 文章标题
   # Post title
   desc: markdwon test
+  # 时间（字符串）
+  # Date (string)
+  date: "1900-01-01 00:00:00"
   # 文章的简短描述
   # A short description of the post
   filename: test
@@ -24,6 +27,7 @@
   - en
 - title: test2
   desc: markdwon test2
+  date: "1900-01-01 00:00:00"
   filename: test2
   category: normal
   tags:
@@ -33,6 +37,7 @@
   - en
 - title: link
   desc: link to Github
+  date: "1900-01-01 00:00:00"
   href: https://github.com/
   # 可以不使用filename，使用href作为跳转目标
   # You can use href instead of filename to specify the jump target
@@ -44,6 +49,7 @@
   - en
 - title: 跳转
   desc: 到GitHub
+  date: "1900-01-01 00:00:00"
   href: https://github.com/
   category: link
   tags:
@@ -53,6 +59,7 @@
   - zh-CN
 - title: no tags
   desc: no tags test
+  date: "1900-01-01 00:00:00"
   href: "#"
   category: normal
   tags: null

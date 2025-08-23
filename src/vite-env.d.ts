@@ -73,6 +73,7 @@ type links = links_group[] | null;
 interface blog_post {
     title: string;
     desc: string | null;
+    date?: string;
     href?: string;
     filename?: string;
     category: string;

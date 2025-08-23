@@ -76,3 +76,10 @@ mdui-menu-item::part(container){
     display: inline-block;
     width: auto;
 }
+mdui-tooltip > mdui-chip::part(icon){
+    margin-right: 4px;
+}
+mdui-tooltip > mdui-chip::part(label){
+    padding: 0;
+    margin: 0;
+}

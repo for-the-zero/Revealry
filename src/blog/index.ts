@@ -10,11 +10,13 @@ import 'mdui/components/chip.js';
 import 'mdui/components/text-field.js';
 import 'mdui/components/select.js';
 import 'mdui/components/menu-item.js';
+import 'mdui/components/tooltip.js';
 // icons
 import '@mdui/icons/arrow-back.js';
 import '@mdui/icons/tag.js';
 import '@mdui/icons/category--outlined.js';
 import '@mdui/icons/search.js';
+import '@mdui/icons/access-time.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';
@@ -85,9 +87,9 @@ function load_filter(){
             const added_tags = new Set();
             for (const post of blog_posts) {
                 const tags = post?.tags;
-                if (!Array.isArray(tags) || tags.length === 0) {continue;};
+                if (!Array.isArray(tags) || tags.length === 0 || !tags) {continue;};
                 for (const tag of tags) {
-                    if (!added_tags.has(tag)) {
+                    if (!added_tags.has(tag) && tag.trim()) {
                         added_tags.add(tag);
                         e_search_select.append(
                             `<mdui-menu-item value="${tag}">${tag}</mdui-menu-item>`
@@ -152,6 +154,14 @@ function show_posts(){
                     <h2>${post.title}</h2>
                     <p>${post.desc ? post.desc : ''}</p>
                     <div class="h-box post-tags">
+                        ${post.date ? `
+                            <mdui-tooltip content="${post.date}" placement="right">
+                                <mdui-chip variant="input">
+                                    <mdui-icon-access-time slot="icon"></mdui-icon-access-time>
+                                    <span></span>
+                                </mdui-chip>
+                            </mdui-tooltip>
+                        ` : ''}
                         <mdui-chip selected>
                             <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
                             ${post.category}
