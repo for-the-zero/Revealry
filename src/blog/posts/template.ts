@@ -66,7 +66,8 @@ import config_blog from '../../_configs/blog.yaml';
 const blog_posts = config_blog.filter((post: blog_post)=>{
     return post.allow_lang.includes(lang);
 }) as blog_post[];
-const this_filename = window.location.pathname.split('/').filter(part => part).pop() || '';
+let this_filename = window.location.pathname.split('/').filter(part => part).pop() || '';
+this_filename = decodeURIComponent(this_filename);
 if(this_filename){
     const this_post = blog_posts.find(post => post.filename === this_filename);
     if(this_post){

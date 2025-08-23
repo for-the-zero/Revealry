@@ -33,8 +33,7 @@ body{
 }
 
 .intros, .sens{
-    padding: 15px;
-    padding-right: 43px;
+    padding: 15px 43px;
     width: calc(100% - 28px);
     position: relative;
     overflow: visible;
@@ -51,11 +50,11 @@ body{
     white-space: pre-wrap;
     max-height: 50vh;
     overflow-y: auto;
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
 }
-.intros h3::-webkit-scrollbar, .intros p::-webkit-scrollbar, .sens h3::-webkit-scrollbar, .sens p::-webkit-scrollbar, .sens h6::-webkit-scrollbar{
+/* .intros h3::-webkit-scrollbar, .intros p::-webkit-scrollbar, .sens h3::-webkit-scrollbar, .sens p::-webkit-scrollbar, .sens h6::-webkit-scrollbar{
     display: none;
-}
+} */
 .intros mdui-fab, .sens mdui-fab{
     position: absolute;
     right: -28px;

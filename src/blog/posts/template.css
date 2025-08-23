@@ -3,7 +3,8 @@
 @import url('../../../node_modules/viewerjs/dist/viewer.min.css');
 body{
     display: block;
-    padding: 20vw;
+    padding: 0 20vw;
+    padding-bottom: 50px;
 }
 main{
     user-select: text;
@@ -23,7 +24,7 @@ mdui-list-item::part(container), .viewer-button, .viewer-toolbar > ul > li {
 
 .article h1,.article h2,.article h3,.article h4,.article h5,.article h6{
     margin: 0.5em 0;
-    font-weight: normal;
+    font-weight: 600;
 }
 pre.hljs > code{
     display: block;

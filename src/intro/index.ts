@@ -63,6 +63,11 @@ function show_intros(){
         return;
     };
     e_intros_p.text(random_intros);
+    if(/[\n\r]/.test(random_intros)){
+        e_intros_p.css('text-align', 'left')
+    } else {
+        e_intros_p.css('text-align', 'center')
+    };
 };
 function show_sens(){
     if(config_intro.sentences){
@@ -71,6 +76,7 @@ function show_sens(){
             probablity = config_intro.hitokoto;
         };
         if(Math.random() < probablity){
+            e_sens_p.text('Requesting...')
             fetch('https://v1.hitokoto.cn/').then((response: Response) => {
                 response.json().then((data: any)=>{
                     let hitokoto = data.hitokoto;
@@ -80,7 +86,7 @@ function show_sens(){
                     e_sens_h6.text(`From ${from} via Hitokoto (ID: ${id})`);
                 }).catch((error: any)=>{
                     console.error(error);
-                    show_sens();
+                    e_sens_p.text(error.message);
                     return;
                 });
             });
@@ -96,6 +102,11 @@ function show_sens(){
                 e_sens_h6.text(random_sens.note);
             } else {
                 e_sens_h6.text('');
+            };
+            if(/[\n\r]/.test(random_sens.text)){
+                e_sens_p.css('text-align', 'left')
+            } else {
+                e_sens_p.css('text-align', 'center')
             };
         };
     } else {

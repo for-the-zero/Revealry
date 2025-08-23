@@ -7,6 +7,7 @@ import fs from 'fs';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import mdAnchor from 'markdown-it-anchor';
+import linkAttributes from 'markdown-it-link-attributes';
 const mdKatex = require('@vscode/markdown-it-katex'); // import mdKatex from '@vscode/markdown-it-katex';
 
 interface toc_item {
@@ -46,6 +47,12 @@ md.use(mdKatex.default, {output: 'mathml'});
 md.use(mdAnchor, {
     level: [1, 2, 3, 4, 5, 6],
     slugify: (s: string) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-')),
+});
+md.use(linkAttributes, {
+    attrs: {
+        target: '_blank',
+        rel: 'noopener',
+    }
 });
 
 function buildTocTree(flatToc: flat_toc_item[]): toc_item[] {

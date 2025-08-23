@@ -92,13 +92,11 @@ en: # Language: English
     - '2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
     - '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium corrupti dicta doloribus soluta. Eum, voluptatibus accusantium inventore excepturi accusamus aspernatur adipisci fugit doloremque maiores recusandae dignissimos consequuntur suscipit iste vero!'
   # The probability (from 0 to 1) of fetching a sentence from v1.hitokoto.cn, set to false to disable
-  hitokoto: false
+  hitokoto: 0.5
   # A list of custom sentences. Can be set to null to disable this feature.
-  # If enabled, the structure should be:
-  # sentences:
-  #   - text: "The content of the sentence."
-  #     note: "A note about the sentence (can be null)."
-  sentences: null
+  sentences:
+    - text: "The content of the sentence."
+      note: "A note about the sentence (can be null)."
   # Configuration for the Lifelog feature. Can be set to null to disable this feature.
   # If enabled, the structure should be:
   # lifelog:

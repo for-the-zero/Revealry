@@ -12,6 +12,14 @@ interface BlogPostConfig {
     title: string;
     [key: string]: any;
 };
+function escapeHtml(text: string): string {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
 export function markdownBlog(): Plugin {
     const projectRoot = path.resolve(__dirname, '..');
     const templatePath = path.resolve(projectRoot, 'src/blog/posts/template.html');
@@ -37,10 +45,12 @@ export function markdownBlog(): Plugin {
         return plainText.substring(0, 100) + (plainText.length > 100 ? '...' : '');
     };
     function generateMetaTags(title: string, description: string): string {
+        const safeTitle = escapeHtml(title);
+        const safeDescription = escapeHtml(description);
         return `
-<meta name="description" content="${description}">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${description}">
+<meta name="description" content="${safeDescription}">
+<meta property="og:title" content="${safeTitle}">
+<meta property="og:description" content="${safeDescription}">
 <meta property="og:type" content="article">
 `;
     };
@@ -139,15 +149,16 @@ export function markdownBlog(): Plugin {
         },
         configureServer(server) {
             server.middlewares.use(async (req, res, next) => {
-                const urlMatch = req.url?.match(/^\/blog\/posts\/([a-zA-Z0-9_-]+)\/?$/);
+                const urlMatch = req.url?.match(/^\/blog\/posts\/([^/]+)\/?$/);
                 if (!urlMatch) { return next(); };
                 const slug = urlMatch[1];
-                const mdPath = path.resolve(projectRoot, `src/_post/${slug}.md`);
+                const decodedSlug = decodeURIComponent(slug);
+                const mdPath = path.resolve(projectRoot, `src/_post/${decodedSlug}.md`);
                 if (fs.existsSync(mdPath)) {
                     const mdContent = fs.readFileSync(mdPath, 'utf-8');
                     const { html, toc } = processMarkdown(mdPath);
                     const adjustedHtml = adjustImagePaths(html, false);
-                    const postInfo = blogData.find(p => p.filename === slug);
+                    const postInfo = blogData.find(p => p.filename === decodedSlug);
                     const title = postInfo ? postInfo.title : 'Blog Post';
                     const description = generateDescription(mdContent);
                     const metaTags = generateMetaTags(title, description);

@@ -28,6 +28,7 @@
     "jquery": "^3.7.1",
     "katex": "^0.16.22",
     "markdown-it": "^14.1.0",
+    "markdown-it-link-attributes": "^4.0.1",
     "mdui": "^2.1.4",
     "pace-js": "^1.2.4",
     "viewerjs": "^1.11.7"
