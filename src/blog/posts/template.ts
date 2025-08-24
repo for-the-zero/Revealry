@@ -60,23 +60,6 @@ if(e_toc_data.length){
 };
 
 //
-import { get_lang } from '../../public_assets/i18n';
-const lang = get_lang();
-import config_blog from '../../_configs/blog.yaml';
-const blog_posts = config_blog.filter((post: blog_post)=>{
-    return post.allow_lang.includes(lang);
-}) as blog_post[];
-let this_filename = window.location.pathname.split('/').filter(part => part).pop() || '';
-this_filename = decodeURIComponent(this_filename);
-if(this_filename){
-    const this_post = blog_posts.find(post => post.filename === this_filename);
-    if(this_post){
-        window.document.title = this_post.title;
-        $('mdui-top-app-bar-title').text(this_post.title);
-    };
-};
-
-//
 new Viewer(document.body);
 $('.article img').each(function() {
     const img_ele = this as HTMLImageElement;
