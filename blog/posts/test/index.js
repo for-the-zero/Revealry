@@ -1,1 +1,1 @@
-import"../../../assets/global-DCeofmpY.js";import"../test2/index.js";import"../../../assets/arrow-back-Dvur6pHk.js";
+import"../../../assets/global-DlDcaXtu.js";import"../test2/index.js";import"../../../assets/arrow-back-DYRYsZ6s.js";
