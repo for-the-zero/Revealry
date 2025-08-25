@@ -47,3 +47,10 @@ e_switchdn_btn.on('click', ()=>{
         autoCloseDelay: 500,
     });
 });
+
+$('.welcome-card').on('click', ()=>{
+    window.scrollBy({
+        top: window.innerHeight,
+        behavior: "smooth"
+    });
+});

@@ -34,7 +34,6 @@ export function markdownBlog(): Plugin {
     } catch (e) {
         console.error('Failed to load or parse blog.yaml:', e);
     };
-
     function generateDescription(mdContent: string): string {
         const plainText = mdContent
             .replace(/---[\s\S]*?---/, '')
@@ -48,7 +47,6 @@ export function markdownBlog(): Plugin {
             .trim();
         return plainText.substring(0, 100) + (plainText.length > 100 ? '...' : '');
     };
-
     function generateMetaTags(title: string, description: string): string {
         const safeTitle = escapeHtml(title);
         const safeDescription = escapeHtml(description);
@@ -59,10 +57,8 @@ export function markdownBlog(): Plugin {
 <meta property="og:type" content="article">
 `;
     };
-
     let viteCommand: ResolvedConfig['command'];
     let viteConfig: ResolvedConfig;
-
     function transformTemplate(templateStr: string, entryChunk: any, bundle: any, htmlOutputPath: string) {
         let processedTemplate = templateStr;
         const htmlDir = path.posix.dirname(htmlOutputPath);
@@ -85,7 +81,6 @@ export function markdownBlog(): Plugin {
         };
         return processedTemplate;
     };
-
     function adjustImagePaths(html: string, isProduction: boolean): string {
         if (isProduction) {
             return html.replace(/(<img[^>]*src=["'])(?:\.\/)?img\//g, '$1../img/');
@@ -93,7 +88,6 @@ export function markdownBlog(): Plugin {
             return html.replace(/(<img[^>]*src=["'])\.\.\/img\//g, '$1img/');
         };
     };
-
     function findTemplateCssFiles(entryChunk: any, bundle: any, slug: string): string[] {
         if ((entryChunk as any).viteMetadata?.importedCss && (entryChunk as any).viteMetadata.importedCss.size > 0) {
             return Array.from((entryChunk as any).viteMetadata.importedCss);
@@ -150,7 +144,6 @@ export function markdownBlog(): Plugin {
         console.log(`[${slug}] Found CSS files:`, templateCssFiles);
         return templateCssFiles;
     };
-
     return {
         name: 'vite-posts-plugin',
         configResolved(resolvedConfig) {
@@ -172,14 +165,12 @@ export function markdownBlog(): Plugin {
                     const title = postInfo ? postInfo.title : 'Blog Post';
                     const description = generateDescription(mdContent);
                     const metaTags = generateMetaTags(title, description);
-                    
                     const pageHtml = template
                         .replace('{{ content }}', adjustedHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
                         .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}\n</head>`);
-                        
                     let finalHtml = '';
                     if (req.url) {
                         finalHtml = await server.transformIndexHtml(req.url, pageHtml, req.originalUrl);
@@ -224,14 +215,12 @@ export function markdownBlog(): Plugin {
                         const href = rel.startsWith('.') ? rel : './' + rel;
                         return `<link rel="stylesheet" href="${href}">`;
                     }).join('\n');
-                    
                     let processedTemplate = template
                         .replace('{{ content }}', adjustedPostHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
                         .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}\n</head>`);
-
                     if (cssLinks) {
                         if (/<link\s+rel=["']stylesheet["'][^>]*>/i.test(processedTemplate)){
                             processedTemplate = processedTemplate.replace(

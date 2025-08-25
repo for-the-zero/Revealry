@@ -1,7 +1,7 @@
-const is_touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const is_mobile = /Mobi|Android|webOS|iPhone|iPad/i.test(navigator.userAgent);
 
 export function init_cursor(){
-    if(is_touch){return;};
+    if(is_mobile){return;};
     const cursor = document.createElement('div');
     cursor.classList.add('cursor');
     cursor.style.display = 'none';

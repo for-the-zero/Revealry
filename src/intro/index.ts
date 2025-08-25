@@ -199,7 +199,8 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
         e_ll_l.find('p').text(get_app_title(laptop[0].app_exe, laptop[0].app_title));
         e_ll_l.find('mdui-chip:first-child span').text(laptop[0].mem);
         e_ll_l.find('mdui-chip:last-child span').text(ts2str(laptop[0].time));
-        laptop.forEach((item: lifelog_item_laptop) => {
+        laptop.forEach((item: lifelog_item_laptop, index: number) => {
+            if(index === 0){return;};
             let tbody_html = `
                 <tr>
                     <td>${ts2str(item.time)}</td>
@@ -233,7 +234,8 @@ function show_lifelog(phone: lifelog_item_phone[], laptop: lifelog_item_laptop[]
         e_ll_p.find('mdui-chip:first-child :first-child').replaceWith(
             phone[0].is_charging ? '<mdui-icon-battery-charging-full slot="icon"></mdui-icon-battery-charging-full>' : '<mdui-icon-battery-0-bar slot="icon"></mdui-icon-battery-0-bar>'
         );
-        phone.forEach((item: lifelog_item_phone) => {
+        phone.forEach((item: lifelog_item_phone, index: number) => {
+            if(index === 0){return;};
             let tbody_html = `
                 <tr>
                     <td>${ts2str(item.time)}</td>
