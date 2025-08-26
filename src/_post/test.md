@@ -68,7 +68,7 @@ $$
 
 ### Local Image 本地图片
 
-![Local image 本地图片](./img/1.jpg)
+![Local image 本地图片](img/1.jpg)
 
 ### Web Image 网络图片
 

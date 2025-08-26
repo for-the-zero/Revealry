@@ -81,6 +81,10 @@ export default defineConfig({
           src: 'assets/intro/**/*',
           dest: 'assets/intro'
         },
+        {
+          src: 'vercel.json',
+          dest: ''
+        },
         ...(fs.existsSync('src/README.md') ? [{
           src: 'README.md',
           dest: ''

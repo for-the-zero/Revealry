@@ -72,3 +72,8 @@ $('.article img').each(function() {
         });
     }
 });
+
+//
+if(!window.location.pathname.endsWith('/')){
+    window.location.href = window.location.href + '/';
+};
