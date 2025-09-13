@@ -18,4 +18,4 @@ import{s as ie,_ as ne,t as ae,i as re,a as se,$ as G}from"../../../assets/globa
                             </div>
                         </mdui-collapse-item>
                     </mdui-collapse>
-                `:`<mdui-list-item rounded href="#${a.slug}">${a.text}</mdui-list-item>`},e=n[t];de.append(i(e))}}else fe.hide();new ce(document.body);G(".article img").each(function(){const n=this,t=G(n);n.complete?t.addClass("loaded"):t.on("load",function(){t.addClass("loaded")})});window.location.pathname.endsWith("/")||(window.location.href=window.location.href+"/");
+                `:`<mdui-list-item rounded href="#${a.slug}">${a.text}</mdui-list-item>`},e=n[t];de.append(i(e))}}else fe.hide();new ce(document.body);G(".article img").each(function(){const n=this,t=G(n);n.complete?t.addClass("loaded"):t.on("load",function(){t.addClass("loaded")})});
