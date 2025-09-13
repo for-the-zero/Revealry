@@ -9,7 +9,7 @@ import yaml from '@modyfi/vite-plugin-yaml';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { markdownBlog } from './scripts/vite-posts-plugin';
 import { viteMeta } from './scripts/vite-meta-plugin';
-import sitemap from 'vite-plugin-sitemap';
+import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -91,10 +91,13 @@ export default defineConfig({
         }] : [])
       ]
     }),
-    sitemap({
-      // 请将 'https://example.com' 替换为您的网站域名
-      // Please replace 'https://example.com' with your website domain
-      hostname: 'https://example.com'
+    viteSitemapMulti({
+      hostnames: [
+        // 将域名换成你自己的，可添加多个
+        // Replace the domain with your own, you can add multiple
+        'https://for-the-zero.github.io/Revealry'
+      ],
+      baseOutDir: 'dist'
     })
   ],
 });

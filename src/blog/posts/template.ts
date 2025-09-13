@@ -74,6 +74,6 @@ $('.article img').each(function() {
 });
 
 //
-if(!window.location.pathname.endsWith('/')){
+if(!window.location.pathname.endsWith('/') && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'){
     window.location.href = window.location.href + '/';
 };

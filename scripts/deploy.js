@@ -10,11 +10,24 @@ function run(cmd, cwd) {
 const now = new Date();
 const cmt_msg = `Site updated: ${new Date().toLocaleString('en-CA', { hour12: false }).replace(',', '')}`;
 
+const dist_dir = path.resolve('dist');
+console.log('[LOG] 开始清除 dist 目录...');
+if (fs.existsSync(dist_dir)) {
+    const items = fs.readdirSync(dist_dir);
+    for (const item of items) {
+        if (item !== '.git') {
+            const itemPath = path.join(dist_dir, item);
+            console.log(`[LOG] 正在删除: ${itemPath}`);
+            fs.rmSync(itemPath, { recursive: true, force: true });
+        };
+    };
+};
+console.log('[LOG] 清除完成');
+
 console.log('[LOG] 开始构建...');
 run('npm run build', process.cwd());
 console.log('[LOG] 构建完成');
 
-const dist_dir = path.resolve('dist');
 if (!fs.existsSync(dist_dir)) {
     console.error('[ERR] dist 目录不存在');
     process.exit(1);
