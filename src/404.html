@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/icon.svg" />
+    <link rel="stylesheet" href="./404.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const hostnames_ele = document.getElementById("hostnames");
+            if(!hostnames_ele){
+                alert("Could not find the hostnames element.");
+                throw new Error("Could not find the hostnames element.");
+            };
+            const hostnames = JSON.parse(hostnames_ele.textContent);
+            const url = window.location.href;
+            function findHostname(){
+                for(let i=0;i<hostnames.length;i++){
+                    if(url.startsWith(hostnames[i])){
+                        return hostnames[i];
+                    };
+                };
+                alert("Could not find the hostname.");
+                throw new Error("Could not find the hostname.");
+            };
+            const hostname = findHostname();
+            if(url!=`${hostname}/404.html` && url!=`${hostname}404.html`){
+                window.location.href = `${hostname}/404.html`;
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1><!----></h1>
+    <div class="h-box">
+        <mdui-button variant="text" href="./">
+            <mdui-icon-home--outlined slot="icon"></mdui-icon-home--outlined>
+            <span><!----></span>
+        </mdui-button>
+        <p><!----></p>
+    </div>
+    <script type="module" src="./public_assets/global.ts"></script>
+    <script type="module" src="./404.ts"></script>
+    <!-- <script id="hostnames" type="application/json"></script> -->
+</body>
+</html>

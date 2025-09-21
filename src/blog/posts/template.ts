@@ -14,10 +14,11 @@ import 'mdui/components/list-item.js';
 import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
 import 'mdui/components/divider.js';
+import 'mdui/components/button-icon.js';
 // icons
 import '@mdui/icons/arrow-back.js';
 import '@mdui/icons/menu-open.js';
-import '@mdui/icons/expand-more.js';
+import '@mdui/icons/unfold-more.js';
 
 //
 const e_drawer = $('mdui-navigation-drawer');
@@ -38,10 +39,12 @@ if(e_toc_data.length){
             if(item.children){;
                 return `
                     <mdui-collapse>
-                        <mdui-collapse-item>
+                        <mdui-collapse-item trigger=".collapse-trigger">
                             <mdui-list-item rounded slot="header" href="#${item.slug}">
-                                <mdui-icon-expand-more slot="end-icon"></mdui-icon-expand-more>
                                 ${item.text}
+                                <mdui-button-icon slot="end-icon" class="collapse-trigger" onclick="event.preventDefault()">
+                                    <mdui-icon-unfold-more></mdui-icon-unfold-more>
+                                </mdui-button-icon>
                             </mdui-list-item>
                             <div style="margin-left: 1.5rem">
                                 ${item.children.map(get_list_item).join('')}

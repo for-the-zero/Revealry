@@ -74,7 +74,25 @@ export function viteSitemapMulti(opts: {
             const file = path.join(outDir, 'sitemap.xml');
             fs.mkdirSync(path.dirname(file), { recursive: true });
             fs.writeFileSync(file, lines.join('\n'), 'utf-8');
-            //console.log('[sitemap]', file);
+            console.log(`[sitemap-multi] sitemap.xml generated at ${file}`);
+            const notFoundHtmlPath = path.join(outDir, '404.html');
+            if (fs.existsSync(notFoundHtmlPath)) {
+                try {
+                    let htmlContent = fs.readFileSync(notFoundHtmlPath, 'utf-8');
+                    const scriptTag = `<script id="hostnames" type="application/json">${JSON.stringify(hostnames)}</script>`;
+                    if (htmlContent.includes('</body>')) {
+                        htmlContent = htmlContent.replace('</body>', `${scriptTag}\n</body>`);
+                    } else {
+                        htmlContent += `\n${scriptTag}`;
+                    };
+                    fs.writeFileSync(notFoundHtmlPath, htmlContent, 'utf-8');
+                    console.log(`[sitemap-multi] Injected hostnames into ${notFoundHtmlPath}`);
+                } catch (error) {
+                    console.error(`[sitemap-multi] Failed to inject hostnames into 404.html:`, error);
+                };
+            } else {
+                config.logger.warn(`[sitemap-multi] 404.html not found in output directory, skipping hostname injection.`);
+            };
         },
     };
 };
