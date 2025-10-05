@@ -8,6 +8,7 @@ import { glob } from 'glob';
 import yaml from '@modyfi/vite-plugin-yaml';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { markdownBlog } from './scripts/vite-posts-plugin';
+import { viteMeta } from './scripts/vite-meta-plugin';
 import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 
 
@@ -59,6 +60,7 @@ export default defineConfig({
   },
   base: './',
   plugins: [
+    viteMeta(),
     yaml(),
     markdownBlog(),
     viteStaticCopy({

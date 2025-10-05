@@ -1,0 +1,28 @@
+# 此文件用于定义每个页面的元数据（标题和描述）
+# This file is used to define the metadata (title and description) for each page.
+
+- path: /
+  # 路径
+  # Path
+  title: Revealry Demo
+  # 元数据标题
+  # Title of the metadata
+  description: This is a demo of Revealry, a template for personal website
+  # 描述
+  # Description
+
+- path: /intro/index
+  title: About Me
+  description: Learn more about me.
+
+- path: /links/index
+  title: Some Links about me
+  description: Find some useful links about me.
+
+- path: /blog/index
+  title: My Blog Posts
+  description: Read my blog posts.
+
+- path: /404
+  title: Page Not Found
+  description: The page you are looking for does not exist.
