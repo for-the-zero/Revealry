@@ -35,27 +35,10 @@ export function markdownBlog(): Plugin {
         console.error('Failed to load or parse blog.yaml:', e);
     };
 
-    function generateDescription(mdContent: string): string {
-        const plainText = mdContent
-            .replace(/---[\s\S]*?---/, '')
-            .replace(/#+\s.*/g, '')
-            .replace(/\[(.*?)\]\(.*?\)/g, '$1')
-            .replace(/!\[.*?\]\(.*?\)/g, '')
-            .replace(/`{1,3}[\s\S]*?`{1,3}/g, '')
-            .replace(/<[^>]+>/g, '')
-            .replace(/[*>_-]/g, '')
-            .replace(/\s+/g, ' ')
-            .trim();
-        return plainText.substring(0, 500) + (plainText.length > 500 ? '...' : '');
-    };
-
-    function generateMetaTags(title: string, description: string): string {
+    function generateMetaTags(title: string): string {
         const safeTitle = escapeHtml(title);
-        const safeDescription = escapeHtml(description);
         return `
-<meta name="description" content="${safeDescription}">
 <meta property="og:title" content="${safeTitle}">
-<meta property="og:description" content="${safeDescription}">
 <meta property="og:type" content="article">
 `;
     };
@@ -170,8 +153,7 @@ export function markdownBlog(): Plugin {
                     const adjustedHtml = adjustImagePaths(html, false);
                     const postInfo = blogData.find(p => p.filename === decodedSlug);
                     const title = postInfo ? postInfo.title : 'Untitled';
-                    const description = generateDescription(mdContent);
-                    const metaTags = generateMetaTags(title, description);
+                    const metaTags = generateMetaTags(title);
                     
                     const pageHtml = template
                         .replace('{{ content }}', adjustedHtml)
@@ -207,8 +189,7 @@ export function markdownBlog(): Plugin {
                 const adjustedPostHtml = adjustImagePaths(postHtml, true);
                 const postInfo = blogData.find(p => p.filename === slug);
                 const title = postInfo ? postInfo.title : 'Blog Post';
-                const description = generateDescription(mdContent);
-                const metaTags = generateMetaTags(title, description);
+                const metaTags = generateMetaTags(title);
                 const entryKey = `blog/posts/${slug}/index`;
                 const entryChunk = Object.values(bundle).find(chunk =>
                     chunk.type === 'chunk' &&
@@ -243,10 +224,14 @@ export function markdownBlog(): Plugin {
                         };
                     };
                     processedTemplate = transformTemplate(processedTemplate, entryChunk, bundle, htmlOutputPath);
+                    
+                    // 确保HTML输出为单行格式
+                    const singleLineHtml = processedTemplate.replace(/\s*\n\s*/g, '');
+                    
                     this.emitFile({
                         type: 'asset',
                         fileName: htmlOutputPath,
-                        source: processedTemplate
+                        source: singleLineHtml
                     });
                 };
             };
