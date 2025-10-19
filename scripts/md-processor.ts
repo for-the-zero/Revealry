@@ -42,6 +42,45 @@ md.renderer.rules.table_open = function(tokens, idx, options, env, self) {
     token.attrJoin('class', 'mdui-table');
     return defaultTableOpenRenderer(tokens, idx, options, env, self);
 };
+md.inline.ruler.at('strikethrough', (state, silent) => {
+    const start = state.pos;
+    const marker = state.src.charCodeAt(start);
+    if (marker !== 0x7E /* ~ */) return false;
+    let count = 0, pos = start;
+    while (pos < state.posMax && state.src.charCodeAt(pos) === marker) ++pos;
+    count = pos - start;
+    if (count < 2) return false;
+    if (count === 3) return false;
+    let end = pos;
+    let found = false;
+    while (end < state.posMax) {
+        if (state.src.charCodeAt(end) === marker) {
+            let closeCount = 0;
+            while (end < state.posMax && state.src.charCodeAt(end) === marker) {
+                ++end;
+                ++closeCount;
+            }
+            if (closeCount >= 2) {
+                found = true;
+                break;
+            };
+        } else {
+            ++end;
+        };
+    };
+    if (!found) return false;
+    if (!silent) {
+        const content = state.src.slice(pos, end - 2);
+        const token_o = state.push('s_open', 's', 1);
+        token_o.markup = '~~';
+        const token_t = state.push('text', '', 0);
+        token_t.content = content;
+        const token_c = state.push('s_close', 's', -1);
+        token_c.markup = '~~';
+    };
+    state.pos = end;
+    return true;
+});
 
 md.use(mdKatex.default, {output: 'mathml'});
 md.use(mdAnchor, {

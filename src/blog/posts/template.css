@@ -1,6 +1,11 @@
 @import url('../../public_assets/global.css');
 @import url('../../../node_modules/highlight.js/styles/atom-one-dark.css');
 @import url('../../../node_modules/viewerjs/dist/viewer.min.css');
+@font-face {
+    font-family: 'Consolas';
+    src: local('Consolas'), local('Consolas-Regular'),
+    url('../../assets//Consolas.ttf')
+}
 body{
     display: block;
     padding: 0 20vw;
