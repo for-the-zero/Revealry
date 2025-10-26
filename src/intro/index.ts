@@ -76,7 +76,8 @@ function show_sens(){
             probablity = config_intro.hitokoto;
         };
         if(Math.random() < probablity){
-            e_sens_p.text('Requesting...')
+            e_sens_p.text('Requesting...');
+            e_sens_fab.prop('disabled', true);
             fetch('https://v1.hitokoto.cn/').then((response: Response) => {
                 response.json().then((data: any)=>{
                     let hitokoto = data.hitokoto;
@@ -84,9 +85,11 @@ function show_sens(){
                     let from = data.from + (data.from_who ? ', ' + data.from_who: '');
                     e_sens_p.text(hitokoto);
                     e_sens_h6.text(`From ${from} via Hitokoto (ID: ${id})`);
+                    e_sens_fab.prop('disabled', false);
                 }).catch((error: any)=>{
                     console.error(error);
                     e_sens_p.text(error.message);
+                    e_sens_fab.prop('disabled', false);
                     return;
                 });
             });

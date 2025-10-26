@@ -10,17 +10,6 @@ import mdAnchor from 'markdown-it-anchor';
 import linkAttributes from 'markdown-it-link-attributes';
 const mdKatex = require('@vscode/markdown-it-katex'); // import mdKatex from '@vscode/markdown-it-katex';
 
-interface toc_item {
-    text: string;
-    slug: string;
-    children: toc_item[] | null;
-};
-interface flat_toc_item {
-    level: number;
-    text: string;
-    slug: string;
-};
-
 const md = new MarkdownIt({
     html: true,
     highlight: (str, lang) => {
@@ -85,7 +74,7 @@ md.inline.ruler.at('strikethrough', (state, silent) => {
 md.use(mdKatex.default, {output: 'mathml'});
 md.use(mdAnchor, {
     level: [1, 2, 3, 4, 5, 6],
-    slugify: (s: string) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-')),
+    slugify: (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-')),
 });
 md.use(linkAttributes, {
     attrs: {
@@ -94,18 +83,18 @@ md.use(linkAttributes, {
     }
 });
 
-function buildTocTree(flatToc: flat_toc_item[]): toc_item[] {
-    const toc: toc_item[] = [];
-    const parentStack: toc_item[] = [];
-    let lastItem: toc_item | null = null;
+function buildTocTree(flatToc){
+    const toc = [];
+    const parentStack = [];
+    let lastItem = null;
     flatToc.forEach(item => {
-        const newItem: toc_item = {
+        const newItem = {
             text: item.text,
             slug: item.slug,
             children: [],
         };
         const currentLevel = item.level;
-        const lastLevel = lastItem ? flatToc.find(i => i.slug === lastItem!.slug)!.level : 0;
+        const lastLevel = lastItem ? (flatToc.find(i => i.slug === lastItem.slug) || {}).level : 0;
         if (currentLevel > lastLevel) {
             if (lastItem) {
                 parentStack.push(lastItem);
@@ -113,20 +102,20 @@ function buildTocTree(flatToc: flat_toc_item[]): toc_item[] {
         } else if (currentLevel < lastLevel) {
             while (parentStack.length) {
                 const parent = parentStack[parentStack.length - 1];
-                const parentLevel = flatToc.find(i => i.slug === parent.slug)!.level;
+                const parentLevel = (flatToc.find(i => i.slug === parent.slug) || {}).level;
                 if (currentLevel > parentLevel) break;
                 parentStack.pop();
             };
         };
         const parent = parentStack.length > 0 ? parentStack[parentStack.length - 1] : null;
         if (parent) {
-            parent.children!.push(newItem);
+            (parent.children || []).push(newItem);
         } else {
             toc.push(newItem);
         };
         lastItem = newItem;
     });
-    const cleanEmptyChildren = (items: toc_item[]) => {
+    const cleanEmptyChildren = (items) => {
         items.forEach(item => {
             if (item.children?.length === 0) {
                 item.children = null;
@@ -139,11 +128,11 @@ function buildTocTree(flatToc: flat_toc_item[]): toc_item[] {
     return toc;
 };
 
-export function processMarkdown(mdPath: string) {
+export function processMarkdown(mdPath) {
     const mdContent = fs.readFileSync(mdPath, 'utf-8');
     const env = {};
     const tokens = md.parse(mdContent, env);
-    const flat_toc: flat_toc_item[] = [];
+    const flat_toc = [];
     for (let i = 0; i < tokens.length; i++) {
         const token = tokens[i];
         if (token.type === 'heading_open') {

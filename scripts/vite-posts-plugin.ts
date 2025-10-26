@@ -146,7 +146,7 @@ export function markdownBlog(): Plugin {
                 if (!urlMatch) { return next(); };
                 const slug = urlMatch[1];
                 const decodedSlug = decodeURIComponent(slug);
-                const mdPath = path.resolve(projectRoot, `src/_post/${decodedSlug}.md`);
+                const mdPath = path.resolve(projectRoot, `posts/${decodedSlug}.md`);
                 if (fs.existsSync(mdPath)) {
                     const mdContent = fs.readFileSync(mdPath, 'utf-8');
                     const { html, toc } = processMarkdown(mdPath);
@@ -158,7 +158,7 @@ export function markdownBlog(): Plugin {
                     const pageHtml = template
                         .replace('{{ content }}', adjustedHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
-                        .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
+                        .replace('{{ Title }}', escapeHtml(title))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}\n</head>`);
                         
@@ -178,7 +178,7 @@ export function markdownBlog(): Plugin {
             if (viteCommand !== 'build') {
                 return;
             };
-            const postsDir = path.resolve(projectRoot, 'src/_post');
+            const postsDir = path.resolve(projectRoot, 'posts');
             const files = fs.readdirSync(postsDir);
             for (const file of files) {
                 if (path.extname(file) !== '.md') { continue; };
@@ -209,7 +209,7 @@ export function markdownBlog(): Plugin {
                     let processedTemplate = template
                         .replace('{{ content }}', adjustedPostHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
-                        .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
+                        .replace('{{ Title }}', escapeHtml(title))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}\n</head>`);
 
@@ -237,7 +237,7 @@ export function markdownBlog(): Plugin {
             };
         },
         handleHotUpdate({ file, server }) {
-            const postsDir = path.resolve(projectRoot, 'src/_post');
+            const postsDir = path.resolve(projectRoot, 'posts');
             if (file.startsWith(postsDir) || file.endsWith('blog.yaml')) {
                 server.ws.send({ type: 'full-reload', path: '*' });
             };

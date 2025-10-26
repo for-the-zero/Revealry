@@ -20,7 +20,7 @@ const htmlEntries = glob.sync('src/**/*.html', {
   acc[name] = path.resolve(__dirname, file);
   return acc;
 }, {} as Record<string, string>);
-const postEntries = glob.sync('src/_post/*.md').reduce((acc, file) => {
+const postEntries = glob.sync('posts/*.md').reduce((acc, file) => {
   const name = path.basename(file, '.md');
   acc[`blog/posts/${name}/index`] = path.resolve(__dirname, 'src/blog/posts/template.ts');
   return acc;
@@ -66,11 +66,11 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: '_post/img/**/*',
+          src: '../posts/img/**/*',
           dest: 'blog/posts/img'
         },
         {
-          src: '_post/img/**/*',
+          src: '../posts/img/**/*',
           dest: 'img'
         },
         {

@@ -10,9 +10,9 @@
   date: "1900-01-01 00:00:00"
   # 文章的简短描述
   # A short description of the post
-  filename: test
-  # 对应 `src/_post/` 目录下的 .md 文件名（不带扩展名）
-  # The .md file name in the `src/_post/` directory (without extension)
+  filename: test1
+  # 对应 `posts` 目录下的 .md 文件名（不带扩展名）
+  # The .md file name in the `posts` directory (without extension)
   category: normal
   # 文章分类
   # Post category

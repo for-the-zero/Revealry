@@ -46,7 +46,7 @@ export function viteSitemapMulti(opts: {
             };
             for (const it of blogList) {
                 if (!it.filename) continue;
-                const mdFile = path.join(root, `src/_post/${it.filename}.md`);
+                const mdFile = path.join(root, `posts/${it.filename}.md`);
                 const date = it.date ? new Date(it.date) : gitTime(mdFile) ?? fs.statSync(mdFile).ctime;
                 urlMap.set(`/blog/posts/${it.filename}`, { loc: `/blog/posts/${it.filename}`, lastmod: date });
             };

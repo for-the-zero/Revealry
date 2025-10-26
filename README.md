@@ -107,8 +107,8 @@ You can modify the files according to the comments in the yaml files.
 
 To add a new blog post, simply:
 
-- 在 `src/_post/` 目录下创建一个新的 `.md` 文件
-- Create a new `.md` file in the `src/_post/` directory.
+- 在 `posts` 目录下创建一个新的 `.md` 文件
+- Create a new `.md` file in the `posts` directory.
 - 在 `src/_configs/blog.yaml` 中添加该文章的条目
 - Add an entry for the new post to `src/_configs/blog.yaml`.
 

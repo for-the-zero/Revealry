@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "node scripts/deploy.js"
+    "deploy": "node scripts/deploy.js",
+    "draft": "node scripts/move-draft.js"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.32",
