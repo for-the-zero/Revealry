@@ -10,6 +10,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { markdownBlog } from './scripts/vite-posts-plugin';
 import { viteMeta } from './scripts/vite-meta-plugin';
 import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
+import { viteExtendHead } from './scripts/vite-head-plugin';
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -62,7 +63,12 @@ export default defineConfig({
   plugins: [
     viteMeta(),
     yaml(),
-    markdownBlog(),
+    markdownBlog({
+      inject: [
+        '<!-- 往每篇文章的head注入一些元素 -->',
+        '<!-- Inject some elements into the head of each article -->'
+      ]
+    }),
     viteStaticCopy({
       targets: [
         {
@@ -98,6 +104,16 @@ export default defineConfig({
         'https://for-the-zero.github.io/Revealry'
       ],
       baseOutDir: 'dist'
+    }),
+    viteExtendHead({
+      heads: [
+        '<!-- 往每个页面的head注入一些元素（文章除外） -->',
+        '<!-- Inject some elements into the head of each page (excluding articles) -->'
+      ],
+      home: [
+        '<!-- 额外往首页的head注入一些元素 -->',
+        '<!-- Inject some elements into the head of the homepage -->'
+      ]
     })
   ],
 });

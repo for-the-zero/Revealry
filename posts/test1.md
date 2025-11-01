@@ -62,8 +62,6 @@ c & d
 \end{pmatrix}
 $$
 
-## 7. 图片
-
 ## 7. Images 图片
 
 ### Local Image 本地图片

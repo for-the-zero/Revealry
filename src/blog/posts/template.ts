@@ -25,6 +25,7 @@ const e_drawer = $('mdui-navigation-drawer');
 const e_drawer_btn = $('.open-content-drawer');
 e_drawer_btn.on('click', ()=>{
     e_drawer.attr('open','');
+    highlightCurrentTocItem();
 });
 
 //
@@ -39,14 +40,14 @@ if(e_toc_data.length){
             if(item.children){;
                 return `
                     <mdui-collapse>
-                        <mdui-collapse-item trigger=".collapse-trigger">
+                        <mdui-collapse-item value="${item.slug}" trigger=".collapse-trigger">
                             <mdui-list-item rounded slot="header" href="#${item.slug}">
                                 ${item.text}
                                 <mdui-button-icon slot="end-icon" class="collapse-trigger" onclick="event.preventDefault()">
                                     <mdui-icon-unfold-more></mdui-icon-unfold-more>
                                 </mdui-button-icon>
                             </mdui-list-item>
-                            <div style="margin-left: 1.5rem">
+                            <div style="margin: 0.25rem 0 0.25rem 1.5rem;">
                                 ${item.children.map(get_list_item).join('')}
                             </div>
                         </mdui-collapse-item>
@@ -77,6 +78,63 @@ $('.article img').each(function() {
 });
 
 //
-if(!window.location.pathname.endsWith('/') && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'){
-    window.location.href = window.location.href + '/';
+// 主要由AI完成
+function highlightCurrentTocItem() {
+    const headings = $('.article h1, .article h2, .article h3, .article h4, .article h5, .article h6');
+    const tocItems = $('mdui-list.toc-list mdui-list-item');
+    if (headings.length === 0 || tocItems.length === 0){return;};
+    tocItems.removeAttr('active');
+    
+    const scrollTop = $(window).scrollTop() || 0;
+    const windowHeight = $(window).height() || 0;
+    const scrollBottom = scrollTop + windowHeight;
+    
+    let currentHeading: JQuery<HTMLElement> | null = null;
+    
+    // 查找当前在视口中的标题
+    headings.each(function() {
+        const $heading = $(this);
+        const offsetTop = $heading.offset()!.top;
+        const offsetBottom = offsetTop + $heading.outerHeight()!;
+        
+        // 判断标题是否在视口中（标题的任意部分在视口中）
+        if (offsetTop < scrollBottom && offsetBottom > scrollTop) {
+            currentHeading = $heading;
+            return false;
+        }
+        
+        // 如果没有找到视口中的标题，则选择最近的上方标题
+        if (offsetTop <= scrollTop) {
+            currentHeading = $heading;
+        } else {
+            return false;
+        };
+    });
+    
+    if (!currentHeading) {
+        currentHeading = headings.first();
+    };
+    
+    const currentId = currentHeading.attr('id');
+    if (!currentId){return;};
+    
+    const targetTocItem = tocItems.filter(`[href="#${currentId}"]`);
+    if (targetTocItem.length > 0) {
+        targetTocItem.attr('active', '');
+        let parentItem = targetTocItem.closest('mdui-collapse-item').find('> mdui-list-item[slot="header"]');
+        while (parentItem.length > 0) {
+            parentItem.attr('active', '');
+            parentItem = parentItem.closest('mdui-collapse-item').parent().closest('mdui-collapse-item').find('> mdui-list-item[slot="header"]');
+        };
+    };
 };
+let scrollTimer: number | null = null;
+$(window).on('scroll', function() {
+    if (scrollTimer) {
+        clearTimeout(scrollTimer);
+    };
+    scrollTimer = window.setTimeout(function() {
+        highlightCurrentTocItem();
+    }, 100);
+});
+highlightCurrentTocItem();

@@ -1,6 +1,5 @@
 // 该文件AI参与度高
 // This file has a high AI participation rate.
-// Gemini 2.5 Pro -> Claude 4 Sonnet -> GPT-5(free) -> Claude 4 Sonnet -> Gemini 2.5 Pro[Final ver.]
 
 import type { Plugin, ResolvedConfig } from 'vite';
 import path from 'path';
@@ -13,6 +12,9 @@ interface BlogPostConfig {
     title: string;
     [key: string]: any;
 };
+interface MarkdownBlogOptions {
+    inject?: string[];
+}
 
 function escapeHtml(text: string): string {
     return text
@@ -23,7 +25,8 @@ function escapeHtml(text: string): string {
         .replace(/'/g, "&#039;");
 };
 
-export function markdownBlog(): Plugin {
+export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
+    const { inject = [] } = options;
     const projectRoot = path.resolve(__dirname, '..');
     const templatePath = path.resolve(projectRoot, 'src/blog/posts/template.html');
     const template = fs.readFileSync(templatePath, 'utf-8');
@@ -178,6 +181,12 @@ export function markdownBlog(): Plugin {
             if (viteCommand !== 'build') {
                 return;
             };
+            const isHeadTagOnFirstLine = (html: string): boolean => {
+                const headEndIndex = html.lastIndexOf('</head>');
+                if (headEndIndex === -1) return false;
+                const beforeHeadTag = html.substring(0, headEndIndex);
+                return !beforeHeadTag.includes('\n');
+            };
             const postsDir = path.resolve(projectRoot, 'posts');
             const files = fs.readdirSync(postsDir);
             for (const file of files) {
@@ -190,6 +199,7 @@ export function markdownBlog(): Plugin {
                 const postInfo = blogData.find(p => p.filename === slug);
                 const title = postInfo ? postInfo.title : 'Blog Post';
                 const metaTags = generateMetaTags(title);
+                const injectionContent = inject.length > 0 ? (isHeadTagOnFirstLine(template) ? inject.join('') : inject.join('\n') + '\n') : '';
                 const entryKey = `blog/posts/${slug}/index`;
                 const entryChunk = Object.values(bundle).find(chunk =>
                     chunk.type === 'chunk' &&
@@ -211,7 +221,7 @@ export function markdownBlog(): Plugin {
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
                         .replace('{{ Title }}', escapeHtml(title))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
-                        .replace('</head>', `${metaTags}\n</head>`);
+                        .replace('</head>', `${metaTags}${injectionContent}</head>`);
 
                     if (cssLinks) {
                         if (/<link\s+rel=["']stylesheet["'][^>]*>/i.test(processedTemplate)){
@@ -224,14 +234,20 @@ export function markdownBlog(): Plugin {
                         };
                     };
                     processedTemplate = transformTemplate(processedTemplate, entryChunk, bundle, htmlOutputPath);
-                    
-                    // 确保HTML输出为单行格式
-                    const singleLineHtml = processedTemplate.replace(/\s*\n\s*/g, '');
-                    
+                    const codeBlocks: string[] = [];
+                    const htmlWithoutCode = processedTemplate.replace(/(<pre[\s\S]*?<\/pre>)/g, (match) => {
+                        codeBlocks.push(match);
+                        return `__CODE_BLOCK_PLACEHOLDER_${codeBlocks.length - 1}__`;
+                    });
+                    const minifiedHtml = htmlWithoutCode.replace(/>\s+</g, '><').replace(/\s+/g, ' ').trim();
+                    const finalHtml = minifiedHtml.replace(/__CODE_BLOCK_PLACEHOLDER_(\d+)__/g, (_, index) => {
+                        return codeBlocks[parseInt(index, 10)];
+                    });
+
                     this.emitFile({
                         type: 'asset',
                         fileName: htmlOutputPath,
-                        source: singleLineHtml
+                        source: finalHtml
                     });
                 };
             };
