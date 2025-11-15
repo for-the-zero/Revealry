@@ -40,15 +40,22 @@ export function viteSitemapMulti(opts: {
             type UrlItem = { loc: string; lastmod?: Date };
             const urlMap = new Map<string, UrlItem>();
             for (const f of require('glob').sync('src/**/*.html', { ignore: 'src/blog/posts/template.html' })) {
-                const rel = path.relative('src', f).replace(/\\/g, '/').replace(/\.html$/, '');
-                const key = '/' + (rel.endsWith('index') ? rel.replace(/index$/, '') : rel).replace(/\/$/, '');
-                urlMap.set(key, { loc: key });
+                const rel = path.relative('src', f).replace(/\\/g, '/');
+                const filename = path.basename(f);
+                if (filename === 'index.html') {
+                    const dirPath = path.dirname(rel);
+                    const loc = dirPath === '.' ? '/' : '/' + dirPath.replace(/\\/g, '/') + '/';
+                    urlMap.set(loc, { loc });
+                } else {
+                    const loc = '/' + rel.replace(/\\/g, '/');
+                    urlMap.set(loc, { loc });
+                };
             };
             for (const it of blogList) {
                 if (!it.filename) continue;
                 const mdFile = path.join(root, `posts/${it.filename}.md`);
                 const date = it.date ? new Date(it.date) : gitTime(mdFile) ?? fs.statSync(mdFile).ctime;
-                urlMap.set(`/blog/posts/${it.filename}`, { loc: `/blog/posts/${it.filename}`, lastmod: date });
+                urlMap.set(`/blog/posts/${it.filename}/`, { loc: `/blog/posts/${it.filename}/`, lastmod: date });
             };
             const multi = hostnames.length > 1;
             const lines: string[] = [];
@@ -59,12 +66,15 @@ export function viteSitemapMulti(opts: {
 
             for (const u of urlMap.values()) {
                 lines.push('  <url>');
-                const main = hostnames[0].replace(/\/$/, '') + u.loc + '/';
+                const base = hostnames[0].replace(/\/$/, '');
+                const isHtmlFile = u.loc.endsWith('.html');
+                const finalLoc = isHtmlFile ? u.loc : (u.loc.endsWith('/') ? u.loc : u.loc + '/');
+                const main = base + finalLoc;
                 lines.push(`    <loc>${main}</loc>`);
                 if (u.lastmod) lines.push(`    <lastmod>${u.lastmod.toISOString()}</lastmod>`);
                 if (multi) {
                     for (const h of hostnames) {
-                        const href = `${h.replace(/\/$/, '')}${u.loc}`;
+                        const href = `${h.replace(/\/$/, '')}${finalLoc}`;
                         lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${href}" />`);
                     };
                 };

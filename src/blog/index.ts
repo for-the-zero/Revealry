@@ -17,6 +17,7 @@ import '@mdui/icons/tag.js';
 import '@mdui/icons/category--outlined.js';
 import '@mdui/icons/search.js';
 import '@mdui/icons/access-time.js';
+import '@mdui/icons/shuffle.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';
@@ -183,3 +184,17 @@ function show_posts(){
     });
 };
 show_posts();
+
+// ramd
+const e_ramd = $('.ramd');
+e_ramd.on('hover mouseenter touchstart',()=>{
+    function get_post(){
+        let post = blog_posts[Math.floor(Math.random() * blog_posts.length)];
+        if(!post.filename){
+            return get_post();
+        };
+        return post.filename;
+    };
+    let post = get_post();
+    e_ramd.attr('href', `./posts/${post}${window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'}`);
+})
