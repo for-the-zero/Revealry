@@ -36,6 +36,7 @@
 }
 .index > div > p{
     white-space: pre-wrap;
+    user-select: text;
 }
 .footer{
     font-weight: 50;

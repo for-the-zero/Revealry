@@ -23,7 +23,7 @@ zh-CN: # 语言: 中文
     text: 搜索 # 搜索输入框的标签文本
   - selector: 'mdui-top-app-bar > mdui-tooltip'
     target: content
-    text: '随机看一篇'
+    text: '随机看一篇' # 搜索栏的“随机”按钮
 
   _other: 
     title: 博客 | Revealry 示例 # 设置浏览器标签页中显示的页面标题
@@ -51,6 +51,9 @@ en: # Language: English
   - selector: 'mdui-text-field'
     target: label
     text: Search Here # The label text for the search input field.
+  - selector: 'mdui-top-app-bar > mdui-tooltip'
+    target: content
+    text: 'Random Post' # The "Random" button in the search bar.
 
   _other: 
     title: Blog | Revealry Demo # Sets the page title displayed in the browser tab.

@@ -19,6 +19,10 @@ body{
     min-height: 100vh;
     user-select: none;
 }
+::selection{
+    background-color: rgb(var(--mdui-color-primary-container));
+    color: rgb(var(--mdui-color-on-primary-container));
+}
 *{
     cursor: none;
 }
