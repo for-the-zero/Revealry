@@ -69,12 +69,13 @@ export function viteSitemapMulti(opts: {
                 const base = hostnames[0].replace(/\/$/, '');
                 const isHtmlFile = u.loc.endsWith('.html');
                 const finalLoc = isHtmlFile ? u.loc : (u.loc.endsWith('/') ? u.loc : u.loc + '/');
-                const main = base + finalLoc;
+                const main = encodeURI(base + finalLoc);
                 lines.push(`    <loc>${main}</loc>`);
                 if (u.lastmod) lines.push(`    <lastmod>${u.lastmod.toISOString()}</lastmod>`);
                 if (multi) {
                     for (const h of hostnames) {
-                        const href = `${h.replace(/\/$/, '')}${finalLoc}`;
+                        if(h === base){continue;};
+                        const href = encodeURI(`${h.replace(/\/$/, '')}${finalLoc}`);
                         lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${href}" />`);
                     };
                 };

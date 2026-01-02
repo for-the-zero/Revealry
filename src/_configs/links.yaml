@@ -20,8 +20,8 @@ zh-CN: # 语言: 中文
           line3
         links:
           - name: "114514"
-            content: "1919810"
-            type: text
+            content: "/sitemap.xml"
+            type: url
   - title: "测试2"
     items:
       - name: "测试1919810"

@@ -23,7 +23,16 @@ function apply_title(i18n_File: staticinfo){
     };
 };
 
+function handle_query(){
+    let params = new URLSearchParams(window.location.search);
+    if(params.has('lang')){
+        lang = params.get('lang') as string;
+        localStorage.setItem('lang', lang);
+    };
+};
+
 export function init_i18n(i18n_File: staticinfo){
+    handle_query();
     get_lang();
     apply_title(i18n_File);
     if(i18n_File[lang].translations !== null){

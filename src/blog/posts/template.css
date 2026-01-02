@@ -26,6 +26,21 @@ mdui-list.toc-list{
 mdui-list-item::part(container), .viewer-button, .viewer-toolbar > ul > li {
     cursor: none;
 }
+.cate-tag{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.cate-tag > mdui-tooltip > mdui-chip::part(icon){
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.cate-tag > mdui-tooltip > mdui-chip::part(label){
+    padding: 0;
+    margin: 0;
+}
 
 /* markdown */
 .article h1,.article h2,.article h3,.article h4,.article h5,.article h6{

@@ -15,10 +15,16 @@ import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
 import 'mdui/components/divider.js';
 import 'mdui/components/button-icon.js';
+import 'mdui/components/chip.js';
+import 'mdui/components/tooltip.js';
 // icons
 import '@mdui/icons/arrow-back.js';
 import '@mdui/icons/menu-open.js';
 import '@mdui/icons/unfold-more.js';
+import '@mdui/icons/access-time.js';
+import '@mdui/icons/tag.js';
+import '@mdui/icons/category--outlined.js';
+import '@mdui/icons/description--outlined.js';
 
 //
 const e_drawer = $('mdui-navigation-drawer');
@@ -84,40 +90,29 @@ function highlightCurrentTocItem() {
     const tocItems = $('mdui-list.toc-list mdui-list-item');
     if (headings.length === 0 || tocItems.length === 0){return;};
     tocItems.removeAttr('active');
-    
     const scrollTop = $(window).scrollTop() || 0;
     const windowHeight = $(window).height() || 0;
     const scrollBottom = scrollTop + windowHeight;
-    
     let currentHeading: JQuery<HTMLElement> | null = null;
-    
-    // 查找当前在视口中的标题
     headings.each(function() {
         const $heading = $(this);
         const offsetTop = $heading.offset()!.top;
         const offsetBottom = offsetTop + $heading.outerHeight()!;
-        
-        // 判断标题是否在视口中（标题的任意部分在视口中）
         if (offsetTop < scrollBottom && offsetBottom > scrollTop) {
             currentHeading = $heading;
             return false;
-        }
-        
-        // 如果没有找到视口中的标题，则选择最近的上方标题
+        };
         if (offsetTop <= scrollTop) {
             currentHeading = $heading;
         } else {
             return false;
         };
     });
-    
     if (!currentHeading) {
         currentHeading = headings.first();
     };
-    
     const currentId = currentHeading.attr('id');
     if (!currentId){return;};
-    
     const targetTocItem = tocItems.filter(`[href="#${currentId}"]`);
     if (targetTocItem.length > 0) {
         targetTocItem.attr('active', '');
@@ -138,3 +133,56 @@ $(window).on('scroll', function() {
     }, 100);
 });
 highlightCurrentTocItem();
+
+//
+const e_ctd_data = $('script[type="application/json"]#cate-tag-json');
+const e_ctd = $('.cate-tag');
+const ctd_data = JSON.parse(e_ctd_data.html());
+e_ctd.append(`
+    ${ctd_data.date ? `
+        <mdui-tooltip content="${ctd_data.date}" placement="top">
+            <mdui-chip variant="input">
+                <mdui-icon-access-time slot="icon"></mdui-icon-access-time>
+                <span></span>
+            </mdui-chip>
+        </mdui-tooltip>
+        ` : ''}
+    ${ctd_data.category ? `
+        <mdui-chip selected target="_blank" href='../${
+            window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '': '../'
+        }?cate=${ctd_data.category}'>
+            <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
+            ${ctd_data.category}
+        </mdui-chip>` : ''}
+    ${!(ctd_data.tags === null) && ctd_data.tags.length > 0 ? ctd_data.tags.map((tag: string)=>`
+        <mdui-chip target="_blank" href='../${
+            window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '': '../'
+        }?tag=${tag}'>
+            <mdui-icon-tag slot="icon"></mdui-icon-tag>
+            ${tag}
+        </mdui-chip>`).join('') : ''}`
+);
+if((!(ctd_data.tags === null) && ctd_data.tags.length > 0) || ctd_data.category || ctd_data.date){
+    e_ctd.prepend('<mdui-divider vertical style="height: 32px;"></mdui-divider>');
+};
+
+//
+if(window.Intl && Intl.Segmenter){
+    let text = $('article').text();
+    let chars = Array.from(new Intl.Segmenter('zh-CN', {granularity: 'grapheme'}).segment(text)).length;
+    let words = Array.from(new Intl.Segmenter('zh-CN', {granularity: 'word'}).segment(text)).filter(s => s.isWordLike).length;
+    let time = (chars / 275).toFixed(1);
+    e_ctd.prepend(`
+        <mdui-tooltip content="${chars} C / ${words} W / ~ ${time} min${time === '1.0' ? '': 's'}" placement="top">
+            <mdui-chip variant="input">
+                <mdui-icon-description--outlined slot="icon"></mdui-icon-description--outlined>
+                <span></span>
+            </mdui-chip>
+        </mdui-tooltip>
+    `);
+};
+
+//
+if(window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.')){
+    $('mdui-button-icon[href="../../"]').attr('href', '../');
+};

@@ -21,9 +21,12 @@
         </mdui-button-icon>
     </mdui-top-app-bar>
     <main>
+        <div class="cate-tag"></div>
         <article class="mdui-prose article" id="article-content">
             {{ content }}
         </article>
+        <mdui-divider style="margin-top: 40px; margin-bottom: 40px;"></mdui-divider>
+        <div class="giscus"></div>
     </main>
     <aside>
         <mdui-navigation-drawer modal close-on-esc close-on-overlay-click placement="right">
@@ -32,5 +35,6 @@
     </aside>
     <script src="./template.ts" type="module"></script>
     {{ toc_json }}
+    {{ cate_tag_json }}
 </body>
 </html>

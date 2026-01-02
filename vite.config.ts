@@ -11,6 +11,7 @@ import { markdownBlog } from './scripts/vite-posts-plugin';
 import { viteMeta } from './scripts/vite-meta-plugin';
 import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 import { viteExtendHead } from './scripts/vite-head-plugin';
+import { viteRssFeed } from './scripts/vite-rss-plugin';
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -66,8 +67,14 @@ export default defineConfig({
     markdownBlog({
       inject: [
         '<!-- 往每篇文章的head注入一些元素 -->',
-        '<!-- Inject some elements into the head of each article -->'
-      ]
+        '<!-- Inject some elements into the head of each article -->',
+        //`<script src="https://giscus.app/client.js" ...></script>`
+      ],
+      suffix: ' - Revealry Blog'
+      /*suffix: {
+        'zh-CN': ' - Revealry 中文博客后缀',
+        'en': ' - Revealry Blog Suffix English'
+      }*/
     }),
     viteStaticCopy({
       targets: [
@@ -104,6 +111,13 @@ export default defineConfig({
         'https://for-the-zero.github.io/Revealry'
       ],
       baseOutDir: 'dist'
+    }),
+    viteRssFeed({
+      hostname: 'https://for-the-zero.github.io/Revealry/',
+      feedTitle: 'Revealry Blog RSS Feed',
+      feedDescription: 'Latest blog posts from Revealry',
+      copyright: 'Copyright',
+      author: 'Author'
     }),
     viteExtendHead({
       heads: [

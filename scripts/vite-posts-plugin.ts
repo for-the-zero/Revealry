@@ -14,6 +14,7 @@ interface BlogPostConfig {
 };
 interface MarkdownBlogOptions {
     inject?: string[];
+    suffix?: string | { 'zh-CN': string; 'en': string };
 }
 
 function escapeHtml(text: string): string {
@@ -26,7 +27,7 @@ function escapeHtml(text: string): string {
 };
 
 export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
-    const { inject = [] } = options;
+    const { inject = [], suffix } = options;
     const projectRoot = path.resolve(__dirname, '..');
     const templatePath = path.resolve(projectRoot, 'src/blog/posts/template.html');
     const template = fs.readFileSync(templatePath, 'utf-8');
@@ -36,6 +37,15 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
         blogData = yaml.load(fs.readFileSync(blogConfigPath, 'utf8')) as BlogPostConfig[];
     } catch (e) {
         console.error('Failed to load or parse blog.yaml:', e);
+    };
+
+    function getSuffix(postInfo?: BlogPostConfig): string {
+        if (!suffix) return '';
+        if (typeof suffix === 'string') return suffix;
+        const lang = postInfo?.allow_lang && Array.isArray(postInfo.allow_lang) && postInfo.allow_lang.length > 0
+            ? postInfo.allow_lang[0]
+            : 'en';
+        return suffix[lang as keyof typeof suffix] || suffix['en'] || '';
     };
 
     function generateMetaTags(title: string): string {
@@ -156,12 +166,20 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                     const adjustedHtml = adjustImagePaths(html, false);
                     const postInfo = blogData.find(p => p.filename === decodedSlug);
                     const title = postInfo ? postInfo.title : 'Untitled';
-                    const metaTags = generateMetaTags(title);
+                    const suffixText = getSuffix(postInfo);
+                    const displayTitle = title !== 'Untitled' && suffixText ? `${title}${suffixText}` : title;
+                    const metaTags = generateMetaTags(displayTitle);
                     
+                    const cateTagData = {
+                        category: postInfo?.category || null,
+                        tags: postInfo?.tags || null,
+                        date: postInfo?.date || null
+                    };
                     const pageHtml = template
                         .replace('{{ content }}', adjustedHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
-                        .replace('{{ Title }}', escapeHtml(title))
+                        .replace('{{ cate_tag_json }}', `<script id="cate-tag-json" type="application/json">${JSON.stringify(cateTagData)}</script>`)
+                        .replace('{{ Title }}', escapeHtml(displayTitle))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}\n</head>`);
                         
@@ -197,9 +215,10 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                 const { html: postHtml, toc } = processMarkdown(mdPath);
                 const adjustedPostHtml = adjustImagePaths(postHtml, true);
                 const postInfo = blogData.find(p => p.filename === slug);
-                const title = postInfo ? postInfo.title : 'Blog Post';
-                const metaTags = generateMetaTags(title);
-                const injectionContent = inject.length > 0 ? (isHeadTagOnFirstLine(template) ? inject.join('') : inject.join('\n') + '\n') : '';
+                                    const title = postInfo ? postInfo.title : 'Blog Post';
+                                    const suffixText = getSuffix(postInfo);
+                                    const displayTitle = title !== 'Untitled' && suffixText ? `${title}${suffixText}` : title;
+                                    const metaTags = generateMetaTags(displayTitle);                const injectionContent = inject.length > 0 ? (isHeadTagOnFirstLine(template) ? inject.join('') : inject.join('\n') + '\n') : '';
                 const entryKey = `blog/posts/${slug}/index`;
                 const entryChunk = Object.values(bundle).find(chunk =>
                     chunk.type === 'chunk' &&
@@ -216,10 +235,16 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                         return `<link rel="stylesheet" href="${href}">`;
                     }).join('\n');
                     
+                    const cateTagData = {
+                        category: postInfo?.category || null,
+                        tags: postInfo?.tags || null,
+                        date: postInfo?.date || null
+                    };
                     let processedTemplate = template
                         .replace('{{ content }}', adjustedPostHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
-                        .replace('{{ Title }}', escapeHtml(title))
+                        .replace('{{ cate_tag_json }}', `<script id="cate-tag-json" type="application/json">${JSON.stringify(cateTagData)}</script>`)
+                        .replace('{{ Title }}', escapeHtml(displayTitle))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}${injectionContent}</head>`);
 

@@ -75,26 +75,27 @@ function detail_of_links(link_item: links_item){
             <h1>${link_item.name}</h1>
         </div>
     `);
-    if(link_item.links){
-        link_item.links.forEach((link_detail: links_linkdetail) => {
-            let link_html = $(`<div class="h-box"><mdui-text-field variant="outlined" readonly label="${link_detail.name}" value="${link_detail.content}"></mdui-text-field></div>`);
-            if(link_detail.type === 'url'){
-                link_html.append(`<mdui-button-icon href="${link_detail.content}" target="_blank"><mdui-icon-open-in-new></mdui-icon-open-in-new></mdui-button-icon>`);
-            };
-            let copy_ibtn = $(`<mdui-button-icon><mdui-icon-content-copy></mdui-icon-content-copy></mdui-button-icon>`);
-            copy_ibtn.on('click',()=>{
-                navigator.clipboard.writeText(link_detail.content);
-                snackbar({
-                    message: config_static_links[lang]._other.copied_snackbar_msg,
-                    autoCloseDelay: 500,
-                });
-            });
-            link_html.append(copy_ibtn);
-            e_dia_body.append(link_html);
-        });
-    };
     if(link_item.description){
         e_dia_body.append(`<p>${link_item.description}</p>`);
+    };
+    if(link_item.links){
+        link_item.links.forEach((link_detail: links_linkdetail) => {
+            let link_html = $(`<div class="h-box"><mdui-text-field variant="outlined" readonly label="${link_detail.name}" value="${link_detail.type === 'url' ? link_detail.content.replace(/^(https?:\/\/)/, '') : link_detail.content}"></mdui-text-field></div>`);
+            if(link_detail.type === 'url'){
+                link_html.append(`<mdui-button-icon href="${link_detail.content}" target="_blank"><mdui-icon-open-in-new></mdui-icon-open-in-new></mdui-button-icon>`);
+            } else {
+                let copy_ibtn = $(`<mdui-button-icon><mdui-icon-content-copy></mdui-icon-content-copy></mdui-button-icon>`);
+                copy_ibtn.on('click',()=>{
+                    navigator.clipboard.writeText(link_detail.content);
+                    snackbar({
+                        message: config_static_links[lang]._other.copied_snackbar_msg,
+                        autoCloseDelay: 500,
+                    });
+                });
+                link_html.append(copy_ibtn);
+            };
+            e_dia_body.append(link_html);
+        });
     };
     e_dia.attr('open', '');
 };

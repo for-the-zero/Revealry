@@ -77,6 +77,7 @@ function show_sens(){
         };
         if(Math.random() < probablity){
             e_sens_p.text('Requesting...');
+            e_sens_h6.text('');
             e_sens_fab.prop('disabled', true);
             fetch('https://v1.hitokoto.cn/').then((response: Response) => {
                 response.json().then((data: any)=>{

@@ -48,6 +48,62 @@ e_search_select.hide();
 
 var search_method = 'name';
 var filtered_posts = [...blog_posts] as blog_post[];
+
+function update_url() {
+    const params = new URLSearchParams();
+    if (search_method === 'name') {
+        const val = e_search_input.val() as string;
+        if(val){params.set('name', val);};
+    } else if (search_method === 'cate') {
+        const val = e_search_select.val() as string;
+        if(val){params.set('cate', val);};
+    } else if (search_method === 'tag') {
+        const val = e_search_select.val() as string;
+        if(val){params.set('tag', val);};
+    };
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(null, '', newUrl);
+};
+function init_from_url() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('tag')) {
+        const val = params.get('tag');
+        search_method = 'tag';
+        e_search_method.val('tag');
+        e_search_input.hide();
+        e_search_select.show();
+        load_filter();
+        if(val) {
+            e_search_select.val(val);
+            filter_posts();
+            show_posts();
+        };
+    } else if (params.has('cate')) {
+        const val = params.get('cate');
+        search_method = 'cate';
+        e_search_method.val('cate');
+        e_search_input.hide();
+        e_search_select.show();
+        load_filter();
+        if(val) {
+            e_search_select.val(val);
+            filter_posts();
+            show_posts();
+        };
+    } else if (params.has('name')) {
+        const val = params.get('name');
+        search_method = 'name';
+        e_search_method.val('name');
+        e_search_input.show();
+        e_search_select.hide();
+        if(val) {
+            e_search_input.val(val);
+            filter_posts();
+            show_posts();
+        };
+    };
+};
+
 e_search_method.on('click', ()=>{
     let val = e_search_method.val() as string;
     if(val){
@@ -63,12 +119,14 @@ e_search_method.on('click', ()=>{
             load_filter();
             show_posts();
         };
+        update_url();
     } else {
         search_method = 'name';
         e_search_method.val('name');
         e_search_input.show();
         e_search_select.hide();
         show_posts();
+        update_url();
     };
 });
 function load_filter(){
@@ -104,10 +162,12 @@ function load_filter(){
 e_search_select.on('change', ()=>{
     filter_posts();
     show_posts();
+    update_url();
 });
 e_search_input.on('input', ()=>{
     filter_posts();
     show_posts();
+    update_url();
 });
 function filter_posts(){
     switch(search_method){
@@ -184,12 +244,13 @@ function show_posts(){
     });
 };
 show_posts();
+init_from_url();
 
 // ramd
 const e_ramd = $('.ramd');
-e_ramd.on('hover mouseenter touchstart',()=>{
+e_ramd.on('hover mouseenter touchstart mouseup',()=>{
     function get_post(){
-        let post = blog_posts[Math.floor(Math.random() * blog_posts.length)];
+        let post = filtered_posts[Math.floor(Math.random() * filtered_posts.length)];
         if(!post.filename){
             return get_post();
         };

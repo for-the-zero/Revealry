@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
     "deploy": "node scripts/deploy.js",
-    "draft": "bun scripts/move-draft.js"
+    "draft": "bun scripts/move-draft.js",
+    "ap": "bun scripts/add-post.js"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.32",
@@ -18,12 +18,12 @@
     "glob": "^11.0.3",
     "markdown-it-anchor": "^9.2.0",
     "typescript": "~5.9.2",
-    "vite": "^7.0.6",
+    "vite": "^7.3.0",
     "vite-plugin-static-copy": "^3.1.1"
   },
   "dependencies": {
     "@mdui/icons": "^1.0.3",
-    "@modyfi/vite-plugin-yaml": "^1.1.1",
+    "@modyfi/vite-plugin-yaml": "^1.0.2",
     "@vscode/markdown-it-katex": "^1.1.2",
     "highlight.js": "^11.11.1",
     "jquery": "^3.7.1",
