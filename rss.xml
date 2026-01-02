@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
   <title>Revealry Blog RSS Feed</title>
   <link>https://for-the-zero.github.io/Revealry</link>
@@ -9,24 +9,24 @@
   <item>
     <title><![CDATA[test]]></title>
     <link>https://for-the-zero.github.io/Revealry/blog/posts/test1/</link>
-    <guid>test1</guid>
+    <guid isPermaLink="false">test1</guid>
     <description><![CDATA[Markdown Test 测试]]></description>
-    <pubDate>Mon, 01 Jan 1900 00:00:00 +0800</pubDate>
-    <author>Author</author>
+    <pubDate>Mon, 01 Jan 1900 00:00:00 +0805</pubDate>
+    <dc:creator>Author</dc:creator>
   </item>
   <item>
     <title><![CDATA[test2]]></title>
     <link>https://for-the-zero.github.io/Revealry/blog/posts/test2/</link>
-    <guid>test2</guid>
+    <guid isPermaLink="false">test2</guid>
     <description><![CDATA[English Version
 
-## Antarctica Declares Independence, Elects Penguin as First 'Supreme Leader'
+Antarctica Declares Independence, Elects Penguin as First 'Supreme Leader'
 
 DATELINE: McMurdo Station, Antarctica — April 1, 2024
 
-In an unprecedented geopolitical developmen...]]></description>
-    <pubDate>Mon, 01 Jan 1900 00:00:00 +0800</pubDate>
-    <author>Author</author>
+In an unprecedented geopolitical development that has left world leaders speechless and biologists utterly baffled, the continent of Antarctica ha...]]></description>
+    <pubDate>Mon, 01 Jan 1900 00:00:00 +0805</pubDate>
+    <dc:creator>Author</dc:creator>
   </item>
 </channel>
 </rss>
