@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Revealry Blog RSS Feed</title>
+  <link>https://for-the-zero.github.io/Revealry</link>
+  <description>Latest blog posts from Revealry</description>
+  <copyright>Copyright</copyright>
+  <atom:link href="https://for-the-zero.github.io/Revealry/rss.xml" rel="self" type="application/rss+xml" />
+  <item>
+    <title><![CDATA[test]]></title>
+    <link>https://for-the-zero.github.io/Revealry/blog/posts/test1/</link>
+    <guid>test1</guid>
+    <description><![CDATA[Markdown Test 测试]]></description>
+    <pubDate>Mon, 01 Jan 1900 00:00:00 +0800</pubDate>
+    <author>Author</author>
+  </item>
+  <item>
+    <title><![CDATA[test2]]></title>
+    <link>https://for-the-zero.github.io/Revealry/blog/posts/test2/</link>
+    <guid>test2</guid>
+    <description><![CDATA[English Version
+
+## Antarctica Declares Independence, Elects Penguin as First 'Supreme Leader'
+
+DATELINE: McMurdo Station, Antarctica — April 1, 2024
+
+In an unprecedented geopolitical developmen...]]></description>
+    <pubDate>Mon, 01 Jan 1900 00:00:00 +0800</pubDate>
+    <author>Author</author>
+  </item>
+</channel>
+</rss>
