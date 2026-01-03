@@ -74,7 +74,7 @@ export function viteSitemapMulti(opts: {
                 if (u.lastmod) lines.push(`    <lastmod>${u.lastmod.toISOString()}</lastmod>`);
                 if (multi) {
                     for (const h of hostnames) {
-                        if(h === base){continue;};
+                        if(h === hostnames[0]){continue;};
                         const href = encodeURI(`${h.replace(/\/$/, '')}${finalLoc}`);
                         lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${href}" />`);
                     };

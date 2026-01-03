@@ -36,38 +36,43 @@ md.inline.ruler.at('strikethrough', (state, silent) => {
     const marker = state.src.charCodeAt(start);
     if (marker !== 0x7E /* ~ */) return false;
     let count = 0, pos = start;
-    while (pos < state.posMax && state.src.charCodeAt(pos) === marker) ++pos;
+    while (pos < state.posMax && state.src.charCodeAt(pos) === marker) {
+        ++pos;
+    };
     count = pos - start;
-    if (count < 2) return false;
-    if (count === 3) return false;
+    if (count !== 2) return false;
     let end = pos;
     let found = false;
     while (end < state.posMax) {
         if (state.src.charCodeAt(end) === marker) {
             let closeCount = 0;
-            while (end < state.posMax && state.src.charCodeAt(end) === marker) {
-                ++end;
+            let tempEnd = end;
+            while (tempEnd < state.posMax && state.src.charCodeAt(tempEnd) === marker) {
+                ++tempEnd;
                 ++closeCount;
-            }
-            if (closeCount >= 2) {
+            };
+            if (closeCount === 2) {
                 found = true;
                 break;
             };
+            end = tempEnd;
         } else {
             ++end;
         };
     };
     if (!found) return false;
     if (!silent) {
-        const content = state.src.slice(pos, end - 2);
         const token_o = state.push('s_open', 's', 1);
         token_o.markup = '~~';
-        const token_t = state.push('text', '', 0);
-        token_t.content = content;
+        const oldMax = state.posMax;
+        state.pos = pos;
+        state.posMax = end;
+        state.md.inline.tokenize(state);
+        state.posMax = oldMax;
         const token_c = state.push('s_close', 's', -1);
         token_c.markup = '~~';
     };
-    state.pos = end;
+    state.pos = end + 2;
     return true;
 });
 
