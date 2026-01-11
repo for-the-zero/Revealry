@@ -48,12 +48,14 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
         return suffix[lang as keyof typeof suffix] || suffix['en'] || '';
     };
 
-    function generateMetaTags(title: string): string {
-        const safeTitle = escapeHtml(title);
+    function generateMetaTags(postInfo?: BlogPostConfig): string {
+        const cate = postInfo?.category || '';
+        const tags = Array.isArray(postInfo?.tags) ? postInfo.tags.join(', ') : (postInfo?.tags || '');
         return `
-<meta property="og:title" content="${safeTitle}">
+<meta name="cate" content="${escapeHtml(String(cate))}">
+<meta name="tags" content="${escapeHtml(String(tags))}">
 <meta property="og:type" content="article">
-`;
+        `;
     };
 
     let viteCommand: ResolvedConfig['command'];
@@ -168,7 +170,7 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                     const title = postInfo ? postInfo.title : 'Untitled';
                     const suffixText = getSuffix(postInfo);
                     const displayTitle = title !== 'Untitled' && suffixText ? `${title}${suffixText}` : title;
-                    const metaTags = generateMetaTags(displayTitle);
+                    const metaTags = generateMetaTags(postInfo);
                     
                     const cateTagData = {
                         category: postInfo?.category || null,
@@ -215,10 +217,11 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                 const { html: postHtml, toc } = processMarkdown(mdPath);
                 const adjustedPostHtml = adjustImagePaths(postHtml, true);
                 const postInfo = blogData.find(p => p.filename === slug);
-                                    const title = postInfo ? postInfo.title : 'Blog Post';
-                                    const suffixText = getSuffix(postInfo);
-                                    const displayTitle = title !== 'Untitled' && suffixText ? `${title}${suffixText}` : title;
-                                    const metaTags = generateMetaTags(displayTitle);                const injectionContent = inject.length > 0 ? (isHeadTagOnFirstLine(template) ? inject.join('') : inject.join('\n') + '\n') : '';
+                const title = postInfo ? postInfo.title : 'Blog Post';
+                const suffixText = getSuffix(postInfo);
+                const displayTitle = title !== 'Untitled' && suffixText ? `${title}${suffixText}` : title;
+                const metaTags = generateMetaTags(postInfo);
+                const injectionContent = inject.length > 0 ? (isHeadTagOnFirstLine(template) ? inject.join('') : inject.join('\n') + '\n') : '';
                 const entryKey = `blog/posts/${slug}/index`;
                 const entryChunk = Object.values(bundle).find(chunk =>
                     chunk.type === 'chunk' &&

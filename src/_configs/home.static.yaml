@@ -19,6 +19,9 @@ zh-CN: # 语言: 中文
     - selector: '.index:nth-child(3) > div > p'
       target: inner-html
       text: 这里到底可以写什么东西啊喂（ # “博客”卡片旁边的描述文本
+    - selector: '.footer'
+      target: inner-html
+      text: Powered by <a href="https://mdui.org">MDUI</a> and <a href="https://github.com/for-the-zero/Revealry">Revealry</a> # 页脚文本
 
     # Fixed Part
     - selector: '.switch-lang'
@@ -66,6 +69,10 @@ en: # Language: English
     - selector: '.index:nth-child(3) > div > p'
       target: inner-html
       text: So? # Description text next to the "Blog" card.
+    - selector: '.footer'
+      target: inner-html
+      text: Powered by <a href="https://mdui.org">MDUI</a> and <a href="https://github.com/for-the-zero/Revealry">Revealry</a> # 页脚文本
+
 
     # Fixed Part
     - selector: '.switch-lang'

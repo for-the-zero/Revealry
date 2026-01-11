@@ -186,3 +186,26 @@ if(window.Intl && Intl.Segmenter){
 if(window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.')){
     $('mdui-button-icon[href="../../"]').attr('href', '../');
 };
+
+//
+$('span.hidden-text').each(function () {
+    var content = $(this).data('content');
+    if (content !== undefined) {
+        $(this).html(content);
+    }
+});
+var konami = [38,38,40,40,37,39,37,39,66,65];
+var konami_pos = 0;
+$(document).on('keydown', function (e) {
+    if(e.which === konami[konami_pos]){
+        konami_pos++;
+        if(konami_pos === konami.length){
+            $('span.hidden-text').each(function () {
+                $(this).replaceWith($('<mark>').html($(this).html()));
+            });
+            konami_pos = 0;
+        };
+    } else {
+        konami_pos = 0;
+    };
+});

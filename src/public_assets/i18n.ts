@@ -27,7 +27,10 @@ function handle_query(){
     let params = new URLSearchParams(window.location.search);
     if(params.has('lang')){
         lang = params.get('lang') as string;
-        localStorage.setItem('lang', lang);
+        localStorage.setItem('lang', lang === 'zh-CN' ? 'zh-CN' : 'en');
+        params.delete('lang');
+        const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+        window.history.replaceState(null, '', newUrl);
     };
 };
 

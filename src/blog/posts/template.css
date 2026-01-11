@@ -26,6 +26,9 @@ mdui-list.toc-list{
 mdui-list-item::part(container), .viewer-button, .viewer-toolbar > ul > li {
     cursor: none;
 }
+mdui-top-app-bar-title{
+    user-select: text;
+}
 .cate-tag{
     margin-bottom: 10px;
     display: flex;
@@ -68,4 +71,24 @@ pre.hljs{
     opacity: 1;
     width: auto;
     height: auto;
+}
+.article ul{
+    margin: 0 !important;
+}
+.article li::marker{
+    color: rgb(var(--mdui-color-primary)) !important;
+}
+.article table{
+    table-layout: fixed;
+}
+.article iframe{
+    width: 100%;
+}
+.article span.hidden-text {
+    display: inline-block;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: baseline;
+    user-select: all;
+    color: transparent;
 }
