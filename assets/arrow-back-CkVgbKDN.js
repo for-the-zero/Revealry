@@ -1,0 +1,1 @@
+import{s as a,_ as s,t as e,i as o,a as t}from"./global-DqhOrwV2.js";let r=class extends o{render(){return t('<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>')}};r.styles=a;r=s([e("mdui-icon-arrow-back")],r);
