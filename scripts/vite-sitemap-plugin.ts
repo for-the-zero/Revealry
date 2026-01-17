@@ -39,7 +39,7 @@ export function viteSitemapMulti(opts: {
             const metaList: MetaItem[] = loadYaml(path.join(root, 'src/_configs/meta.yaml')) ?? [];
             type UrlItem = { loc: string; lastmod?: Date };
             const urlMap = new Map<string, UrlItem>();
-            for (const f of require('glob').sync('src/**/*.html', { ignore: 'src/blog/posts/template.html' })) {
+            for (const f of require('glob').sync('src/**/*.html', { ignore: ['src/blog/posts/template.html', 'src/404.html'] })) {
                 const rel = path.relative('src', f).replace(/\\/g, '/');
                 const filename = path.basename(f);
                 if (filename === 'index.html') {
@@ -71,7 +71,12 @@ export function viteSitemapMulti(opts: {
                 const finalLoc = isHtmlFile ? u.loc : (u.loc.endsWith('/') ? u.loc : u.loc + '/');
                 const main = encodeURI(base + finalLoc);
                 lines.push(`    <loc>${main}</loc>`);
-                if (u.lastmod) lines.push(`    <lastmod>${u.lastmod.toISOString()}</lastmod>`);
+                if (u.lastmod) {
+                    const year = u.lastmod.getFullYear();
+                    const month = String(u.lastmod.getMonth() + 1).padStart(2, '0');
+                    const day = String(u.lastmod.getDate()).padStart(2, '0');
+                    lines.push(`    <lastmod>${year}-${month}-${day}</lastmod>`);
+                }
                 if (multi) {
                     for (const h of hostnames) {
                         if(h === hostnames[0]){continue;};

@@ -72,8 +72,11 @@ pre.hljs{
     width: auto;
     height: auto;
 }
-.article ul{
+.article ul, .article ul{
     margin: 0 !important;
+}
+.article ol{
+    margin: 10px 0 !important;
 }
 .article li::marker{
     color: rgb(var(--mdui-color-primary)) !important;
@@ -84,11 +87,14 @@ pre.hljs{
 .article iframe{
     width: 100%;
 }
-.article span.hidden-text {
+.article span.hidden-text{
     display: inline-block;
     line-height: 0;
     font-size: 0;
     vertical-align: baseline;
     user-select: all;
     color: transparent;
+}
+.article u.unhidden{
+    border-bottom: .1rem solid rgb(var(--mdui-color-primary));
 }
