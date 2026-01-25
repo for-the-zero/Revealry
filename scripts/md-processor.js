@@ -81,12 +81,15 @@ md.use(mdAnchor, {
     level: [1, 2, 3, 4, 5, 6],
     slugify: (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-')),
 });
-md.use(linkAttributes, {
+md.use(linkAttributes, [{
+    matcher(href) {
+        return !href.startsWith('#');
+    },
     attrs: {
         target: '_blank',
         rel: 'noopener',
     }
-});
+}]);
 
 function buildTocTree(flatToc){
     const toc = [];

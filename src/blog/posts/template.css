@@ -30,7 +30,7 @@ mdui-top-app-bar-title{
     user-select: text;
 }
 .cate-tag{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 5px;

@@ -10,7 +10,7 @@ const contentToPrepend = `- title: ''
   allow_lang:
   - zh-CN
   - en
-  date: '${new Date(2026, 0, 1).toLocaleDateString()}'
+  date: '${new Date().toLocaleDateString()}'
   desc: ''
 `;
 

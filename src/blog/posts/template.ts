@@ -25,6 +25,7 @@ import '@mdui/icons/access-time.js';
 import '@mdui/icons/tag.js';
 import '@mdui/icons/category--outlined.js';
 import '@mdui/icons/description--outlined.js';
+import '@mdui/icons/home.js';
 
 //
 const e_drawer = $('mdui-navigation-drawer');
