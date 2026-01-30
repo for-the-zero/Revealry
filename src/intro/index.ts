@@ -39,13 +39,13 @@ const e_cards_hobby = $('body > div.container > div > div > div:nth-child(1) > d
 const e_cards_profile = $('body > div.container > div > div > div:nth-child(2) > mdui-card:nth-child(1) > p');
 const e_cards_identity = $('body > div.container > div > div > div:nth-child(2) > mdui-card:nth-child(2) > p');
 
-e_cards_name.text(config_intro.name);
-e_cards_age.text(config_intro.age);
-e_cards_sex.text(config_intro.sex);
-e_cards_locate.text(config_intro.locate);
-e_cards_hobby.text(config_intro.hobby);
-e_cards_profile.text(config_intro.profile);
-e_cards_identity.text(config_intro.identity);
+e_cards_name.html(config_intro.name);
+e_cards_age.html(config_intro.age);
+e_cards_sex.html(config_intro.sex);
+e_cards_locate.html(config_intro.locate);
+e_cards_hobby.html(config_intro.hobby);
+e_cards_profile.html(config_intro.profile);
+e_cards_identity.html(config_intro.identity);
 
 //
 const e_intros_p = $('.intros p');

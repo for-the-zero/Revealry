@@ -24,7 +24,19 @@
         </mdui-button-icon>
     </mdui-top-app-bar>
     <main>
-        <div class="cate-tag"></div>
+        <div class="cate-tag">
+            <mdui-tooltip placement="top">
+                <mdui-chip variant="input">
+                    <mdui-icon-description--outlined slot="icon"></mdui-icon-description--outlined>
+                    <span></span>
+                </mdui-chip>
+                <div slot="content">
+                    <span></span> C<br />
+                    <span></span> W<br />
+                    <span></span>
+                </div>
+            </mdui-tooltip>
+        </div>
         <article class="mdui-prose article" id="article-content">
             {{ content }}
         </article>

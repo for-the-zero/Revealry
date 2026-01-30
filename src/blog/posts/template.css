@@ -96,5 +96,5 @@ pre.hljs{
     color: transparent;
 }
 .article u.unhidden{
-    border-bottom: .1rem solid rgb(var(--mdui-color-primary));
+    border: .1rem solid rgb(var(--mdui-color-primary));
 }

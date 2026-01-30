@@ -210,36 +210,38 @@ function show_posts(){
     e_blog_posts.empty();
     filtered_posts.forEach((post: blog_post)=>{
         e_blog_posts.append(`
-            <mdui-card variant="filled" class="post" href="${
-                    post.filename ? `./posts/${post.filename}${
-                        window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'
-                    }` 
-                : post.href}">
-                <div class="v-box post-content">
-                    <h2>${post.title}</h2>
-                    <p>${post.desc ? post.desc : ''}</p>
-                    <div class="h-box post-tags">
-                        ${post.date ? `
-                            <mdui-tooltip content="${post.date}" placement="right">
-                                <mdui-chip variant="input">
-                                    <mdui-icon-access-time slot="icon"></mdui-icon-access-time>
-                                    <span></span>
-                                </mdui-chip>
-                            </mdui-tooltip>
-                        ` : ''}
-                        <mdui-chip selected>
-                            <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
-                            ${post.category}
-                        </mdui-chip>
-                        ${post.tags ? post.tags.map((tag: string)=>{return `
-                            <mdui-chip>
-                                <mdui-icon-tag slot="icon"></mdui-icon-tag>
-                                ${tag}
+            <mdui-tooltip content="${post.title}"> 
+                <mdui-card variant="filled" class="post" href="${
+                        post.filename ? `./posts/${post.filename}${
+                            window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'
+                        }` 
+                    : post.href}">
+                    <div class="v-box post-content">
+                        <h2>${post.title}</h2>
+                        <p>${post.desc ? post.desc : ''}</p>
+                        <div class="h-box post-tags">
+                            ${post.date ? `
+                                <mdui-tooltip content="${post.date}" placement="right">
+                                    <mdui-chip variant="input">
+                                        <mdui-icon-access-time slot="icon"></mdui-icon-access-time>
+                                        <span></span>
+                                    </mdui-chip>
+                                </mdui-tooltip>
+                            ` : ''}
+                            <mdui-chip selected>
+                                <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
+                                ${post.category}
                             </mdui-chip>
-                        `;}).join('') : ''}
+                            ${post.tags ? post.tags.map((tag: string)=>{return `
+                                <mdui-chip>
+                                    <mdui-icon-tag slot="icon"></mdui-icon-tag>
+                                    ${tag}
+                                </mdui-chip>
+                            `;}).join('') : ''}
+                        </div>
                     </div>
-                </div>
-            </mdui-card>
+                </mdui-card>
+            </mdui-tooltip>
         `); // 这是在写React呢bro?
     });
 };
