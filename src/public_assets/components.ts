@@ -5,20 +5,14 @@ export function init_cursor(){
     const cursor = document.createElement('div');
     cursor.classList.add('cursor');
     cursor.style.display = 'none';
+    cursor.style.pointerEvents = 'none';
     document.body.appendChild(cursor);
     let clientX = 0;
     let clientY = 0;
     const syncCursor = () => {
-        let x = clientX + window.scrollX;
-        let y = clientY + window.scrollY;
-        if(x + 15 > document.documentElement.scrollWidth){
-            x = document.documentElement.scrollWidth - 15;
-        };
-        if(y + 15 > document.documentElement.scrollHeight){
-            y = document.documentElement.scrollHeight - 15;
-        };
-        cursor.style.left = x + 'px';
-        cursor.style.top  = y + 'px';
+        cursor.style.left = clientX + 'px';
+        cursor.style.top  = clientY + 'px';
+        cursor.style.pointerEvents = 'none'; // 不知道什么bug
     };
     document.addEventListener('mousemove', (e: MouseEvent) => {
         clientX = e.clientX;
