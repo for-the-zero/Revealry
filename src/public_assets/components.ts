@@ -6,6 +6,7 @@ export function init_cursor(){
     cursor.classList.add('cursor');
     cursor.style.display = 'none';
     cursor.style.pointerEvents = 'none';
+    cursor.style.touchAction = 'none';
     document.body.appendChild(cursor);
     let clientX = 0;
     let clientY = 0;

@@ -48,12 +48,14 @@ if(e_toc_data.length){
                 return `
                     <mdui-collapse>
                         <mdui-collapse-item value="${item.slug}" trigger=".collapse-trigger">
-                            <mdui-list-item rounded slot="header" href="#${item.slug}">
-                                ${item.text}
-                                <mdui-button-icon slot="end-icon" class="collapse-trigger" onclick="event.preventDefault()">
-                                    <mdui-icon-unfold-more></mdui-icon-unfold-more>
-                                </mdui-button-icon>
-                            </mdui-list-item>
+                            <a href="#${item.slug}" slot="header" style="text-decoration: none; display: block;">
+                                <mdui-list-item rounded data-slug="${item.slug}">
+                                    ${item.text}
+                                    <mdui-button-icon slot="end-icon" class="collapse-trigger" onclick="event.preventDefault()">
+                                        <mdui-icon-unfold-more></mdui-icon-unfold-more>
+                                    </mdui-button-icon>
+                                </mdui-list-item>
+                            </a>
                             <div style="margin: 0.25rem 0 0.25rem 1.5rem;">
                                 ${item.children.map(get_list_item).join('')}
                             </div>
@@ -61,7 +63,7 @@ if(e_toc_data.length){
                     </mdui-collapse>
                 `;
             } else {
-                return `<mdui-list-item rounded href="#${item.slug}">${item.text}</mdui-list-item>`;
+                return `<a href="#${item.slug}" style="text-decoration: none; display: block;"><mdui-list-item rounded data-slug="${item.slug}">${item.text}</mdui-list-item></a>`;
             };
         };
         e_toc.append(get_list_item(item));
@@ -114,13 +116,13 @@ function highlightCurrentTocItem() {
     };
     const currentId = currentHeading.attr('id');
     if (!currentId){return;};
-    const targetTocItem = tocItems.filter(`[href="#${currentId}"]`);
+    const targetTocItem = tocItems.filter(`[data-slug="${currentId}"]`);
     if (targetTocItem.length > 0) {
         targetTocItem.attr('active', '');
-        let parentItem = targetTocItem.closest('mdui-collapse-item').find('> mdui-list-item[slot="header"]');
+        let parentItem = targetTocItem.closest('mdui-collapse-item').find('> a[slot="header"] > mdui-list-item');
         while (parentItem.length > 0) {
             parentItem.attr('active', '');
-            parentItem = parentItem.closest('mdui-collapse-item').parent().closest('mdui-collapse-item').find('> mdui-list-item[slot="header"]');
+            parentItem = parentItem.closest('mdui-collapse-item').parent().closest('mdui-collapse-item').find('> a[slot="header"] > mdui-list-item');
         };
     };
 };
