@@ -6,6 +6,9 @@
     src: local('Consolas'), local('Consolas-Regular'),
     url('../../assets//Consolas.ttf')
 }
+html {
+    scroll-behavior: smooth;
+}
 body{
     display: block;
     padding: 0 20vw;
@@ -49,6 +52,7 @@ mdui-top-app-bar-title{
 .article h1,.article h2,.article h3,.article h4,.article h5,.article h6{
     margin: 0.5em 0;
     font-weight: 600;
+    scroll-margin-top: 4rem;
 }
 pre.hljs > code{
     display: block;

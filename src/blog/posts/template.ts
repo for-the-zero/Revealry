@@ -93,7 +93,7 @@ function highlightCurrentTocItem() {
     const tocItems = $('mdui-list.toc-list mdui-list-item');
     if (headings.length === 0 || tocItems.length === 0){return;};
     tocItems.removeAttr('active');
-    const scrollTop = $(window).scrollTop() || 0;
+    const scrollTop = ($(window).scrollTop() || 0) + 64;
     const windowHeight = $(window).height() || 0;
     const scrollBottom = scrollTop + windowHeight;
     let currentHeading: JQuery<HTMLElement> | null = null;
