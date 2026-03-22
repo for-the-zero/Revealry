@@ -19,9 +19,11 @@
         </mdui-button-icon>
         <mdui-top-app-bar-title>{{ Title }}</mdui-top-app-bar-title>
         <div style="flex-grow: 1"></div>
-        <mdui-button-icon class="open-content-drawer">
-            <mdui-icon-menu-open></mdui-icon-menu-open>
-        </mdui-button-icon>
+        <mdui-tooltip content="" placement="left">
+            <mdui-button-icon class="open-content-drawer">
+                <mdui-icon-menu-open></mdui-icon-menu-open>
+            </mdui-button-icon>
+        </mdui-tooltip>
     </mdui-top-app-bar>
     <main>
         <div class="cate-tag">
@@ -40,7 +42,23 @@
         <article class="mdui-prose article" id="article-content">
             {{ content }}
         </article>
-        <mdui-divider style="margin-top: 40px; margin-bottom: 40px;"></mdui-divider>
+        <div class="post-navigation">
+            <mdui-card disabled class="v-box newer-post" variant="outlined" clickable>
+                <span class="h-box"><mdui-icon-arrow-back></mdui-icon-arrow-back><span><!----></span></span>
+                <h1><!----></h1>
+            </mdui-card>
+            <div class="older-post-container">
+                <mdui-card disabled class="v-box older-post" variant="outlined" clickable>
+                    <span class="h-box"><span><!----></span><mdui-icon-arrow-forward></mdui-icon-arrow-forward></span>
+                    <h1><!----></h1>
+                </mdui-card>
+                <mdui-tooltip content="">
+                    <mdui-card class="v-box rand-post" variant="outlined" clickable style="cursor: none !important;">
+                        <mdui-icon-shuffle></mdui-icon-shuffle>
+                    </mdui-card>
+                </mdui-tooltip>
+            </div>
+        </div>
         <div class="giscus"></div>
     </main>
     <aside>

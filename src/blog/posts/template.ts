@@ -17,8 +17,11 @@ import 'mdui/components/divider.js';
 import 'mdui/components/button-icon.js';
 import 'mdui/components/chip.js';
 import 'mdui/components/tooltip.js';
+import 'mdui/components/card.js';
+import 'mdui/components/tooltip.js';
 // icons
 import '@mdui/icons/arrow-back.js';
+import '@mdui/icons/arrow-forward.js';
 import '@mdui/icons/menu-open.js';
 import '@mdui/icons/unfold-more.js';
 import '@mdui/icons/access-time.js';
@@ -26,6 +29,13 @@ import '@mdui/icons/tag.js';
 import '@mdui/icons/category--outlined.js';
 import '@mdui/icons/description--outlined.js';
 import '@mdui/icons/home.js';
+import '@mdui/icons/shuffle.js'
+
+//
+import { init_i18n, get_lang } from '../../public_assets/i18n';
+import config_static_blog from '../../_configs/post.static.yaml';
+init_i18n(config_static_blog);
+const lang = get_lang();
 
 //
 const e_drawer = $('mdui-navigation-drawer');
@@ -207,3 +217,42 @@ e_ctd.append(`
 if(window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.')){
     $('mdui-button-icon[href="../../"]').attr('href', '../');
 };
+
+//
+import config_blog from '../../_configs/blog.yaml';
+const blog_posts = config_blog.filter((post: blog_post)=>{
+    return post.allow_lang.includes(lang) && post.filename;
+}) as blog_post[];
+const post_filename = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean).pop()!.replace(/(^index$|^index\.html$|\.html$)/, '');
+const e_newerp = $('.newer-post');
+const e_olderp = $('.older-post');
+$('.rand-post').on('click',()=>{
+    function get_post(){
+        let post = blog_posts[Math.floor(Math.random() * blog_posts.length)];
+        if(post.filename === post_filename){
+            return get_post();
+        };
+        return post.filename;
+    };
+    let post = get_post();
+    window.location.href = `../${post}${window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'}`;
+});
+function posts_jump_setup(){
+    const current_index = blog_posts.findIndex(post => post.filename === post_filename);
+    if(current_index === -1){
+        return;
+    };
+    const prev_post = current_index > 0 ? blog_posts[current_index - 1] : null;
+    const next_post = current_index < blog_posts.length - 1 ? blog_posts[current_index + 1] : null;
+    if(prev_post){
+        e_newerp.removeAttr('disabled');
+        e_newerp.attr('href', `../${prev_post.filename}${window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'}`);
+        $('.newer-post > h1').text(prev_post.title);
+    };
+    if(next_post){
+        e_olderp.removeAttr('disabled');
+        e_olderp.attr('href', `../${next_post.filename}${window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'}`);
+        $('.older-post > h1').text(next_post.title);
+    };
+};
+posts_jump_setup();

@@ -1,0 +1,41 @@
+zh-CN: # 语言: 中文
+  translations: 
+  - selector: 'mdui-top-app-bar > mdui-tooltip'
+    target: content
+    text: 章节目录 # 右上角打开目录按钮
+  - selector: '.newer-post > span > span'
+    target: inner-html
+    text: 更新的一篇文章 # 底部文章跳转（左）
+  - selector: '.older-post > span > span'
+    target: inner-html
+    text: 更旧的一篇文章 # 底部文章跳转（右）
+  - selector: '.newer-post > h1'
+    target: inner-html
+    text: Coming Soon # 无文章默认提示
+  - selector: '.older-post > h1'
+    target: inner-html
+    text: 没有文章了 # 无文章默认提示
+  - selector: '.older-post-container > mdui-tooltip'
+    target: content
+    text: 随机 # 随机
+
+en: # Language: English
+  translations: 
+  - selector: 'mdui-top-app-bar > mdui-tooltip'
+    target: content
+    text: Table of Contents # Button to open TOC in top right corner
+  - selector: '.newer-post > span > span'
+    target: inner-html
+    text: Newer Post # Article navigation at bottom (left)
+  - selector: '.older-post > span > span'
+    target: inner-html
+    text: Older Post # Article navigation at bottom (right)
+  - selector: '.newer-post > h1'
+    target: inner-html
+    text: Coming Soon # Default message when no post available
+  - selector: '.older-post > h1'
+    target: inner-html
+    text: No More Posts # Default message when no post available
+  - selector: '.older-post-container > mdui-tooltip'
+    target: content
+    text: Random # Random
