@@ -14,6 +14,8 @@ import 'mdui/components/button-icon.js';
 import '@mdui/icons/arrow-back.js';
 import '@mdui/icons/content-copy.js';
 import '@mdui/icons/open-in-new.js';
+import '@mdui/icons/label--outlined.js';
+import '@mdui/icons/label-off.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';
@@ -28,6 +30,7 @@ const config_links = config_links_all[lang] as links;
 const e_container = $('.container');
 const e_dia = $('.link-detail');
 const e_dia_body = $('.link-detail > .v-box');
+const e_label_switch = $('mdui-top-app-bar > mdui-tooltip > mdui-button-icon')
 
 //
 render_links();
@@ -41,13 +44,16 @@ function render_links(){
                 let item = $(`
                     <mdui-tooltip content="${link_item.name}">
                         <mdui-card variant="filled" clickable>
-                            ${link_item.img.endsWith('.svg')? `
-                                <svg draggable="false" width="40px" height="40px" class="svg-fill">
-                                    <use href="../assets/intro/${link_item.img}" width="40px" height="40px"></use>
-                                </svg>
-                            ` : `
-                                <img src="${link_item.img.startsWith('http://') || link_item.img.startsWith('https://')? link_item.img : `../assets/intro/${link_item.img}`}" draggable="false" />
-                            `}
+                            <div class="icon-cont">
+                                ${link_item.img.endsWith('.svg')? `
+                                    <svg draggable="false" width="40px" height="40px" class="svg-fill">
+                                        <use href="../assets/intro/${link_item.img}" width="40px" height="40px"></use>
+                                    </svg>
+                                ` : `
+                                    <img src="${link_item.img.startsWith('http://') || link_item.img.startsWith('https://')? link_item.img : `../assets/intro/${link_item.img}`}" draggable="false" />
+                                `}
+                            </div>
+                            <p class="link-label label-hidden">${link_item.name}</p>
                         </mdui-card>
                     </mdui-tooltip>`
                 );
@@ -99,3 +105,12 @@ function detail_of_links(link_item: links_item){
     };
     e_dia.attr('open', '');
 };
+
+//
+e_label_switch.on('change',()=>{
+    if(e_label_switch.attr('selected')){
+        $(".link-label").removeClass("label-show").addClass("label-hidden");
+    } else {
+        $(".link-label").removeClass("label-hidden").addClass("label-show");
+    };
+})

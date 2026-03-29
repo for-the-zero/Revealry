@@ -9,6 +9,7 @@ import { viteMeta } from './scripts/vite-meta-plugin';
 import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 import { viteExtendHead } from './scripts/vite-head-plugin';
 import { viteRssFeed } from './scripts/vite-rss-plugin';
+import { viteLinksSeo } from './scripts/vite-links-seo-plugin';
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -125,6 +126,7 @@ export default defineConfig({
         '<!-- 额外往首页的head注入一些元素 -->',
         '<!-- Inject some elements into the head of the homepage -->'
       ]
-    })
+    }),
+    viteLinksSeo()
   ],
 });

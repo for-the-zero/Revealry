@@ -3,6 +3,9 @@ zh-CN: # 语言: 中文
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
     text: 链接 # 链接页面的顶部导航栏标题
+  - selector: 'mdui-top-app-bar > mdui-tooltip'
+    target: content
+    text: 展开标签
 
   _other:
     title: 链接 | Revealry 示例 # 设置浏览器标签页中显示的页面标题
@@ -13,6 +16,9 @@ en: # Language: English
   - selector: 'mdui-top-app-bar-title'
     target: inner-html
     text: Links # The title in the top app bar on the links page
+  - selector: 'mdui-top-app-bar > mdui-tooltip'
+    target: content
+    text: Unfold Labels
 
   _other:
     title: links | Revealry Demo # Sets the page title displayed in the browser tab

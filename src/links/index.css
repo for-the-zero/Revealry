@@ -23,7 +23,14 @@ p{
 mdui-card{
     padding: 10px;
     margin: 2.5px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+.icon-cont{
     aspect-ratio: 1/1;
+    height: 100%;
 }
 img, .svg-fill use{
     width: 40px;
@@ -31,6 +38,23 @@ img, .svg-fill use{
 }
 .svg-fill use{
     fill: rgb(var(--mdui-color-on-surface));
+}
+.link-label{
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.3, 0.35, 0, 1.00);
+    max-height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1.5rem;
+}
+.label-hidden{
+    width: 0;
+    padding: 0;
+}
+.label-show{
+    width: min(calc(50vw - 30px), 125px);
+    padding-left: 10px;
 }
 
 .link-detail > .v-box{
@@ -49,4 +73,26 @@ img, .svg-fill use{
 }
 .link-detail-title > img{
     width: 40px;
+}
+
+.seo-area{
+    position: fixed;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    user-select: none;
+    z-index: -999;
+    transform-origin: 100vw 100vh;
+    animation: spin 0.1s infinite, crawl 1s infinite;
+}
+@keyframes crawl {
+    0% { top: 0; left: 0; }
+    25% { top: -100vh; left: 100vw; }
+    50% { top: 100vh; left: 100vw; }
+    75% { top: 100vh; left: -100vw; }
+    100% { top: 0; left: 0; }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
