@@ -1,6 +1,3 @@
-// 该文件AI参与度高
-// This file has a high AI participation rate.
-
 import type { Plugin } from 'vite';
 
 interface ViteExtendHeadOptions {

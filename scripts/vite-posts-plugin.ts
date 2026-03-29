@@ -1,6 +1,3 @@
-// 该文件AI参与度高
-// This file has a high AI participation rate.
-
 import type { Plugin, ResolvedConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
@@ -56,6 +53,50 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
 <meta name="tags" content="${escapeHtml(String(tags))}">
 <meta property="og:type" content="article">
         `;
+    };
+
+    function generatePostNavJson(currentFilename: string): string {
+        const result: { [lang: string]: { newer: [string, string] | null; older: [string, string] | null; all: string[] } } = {};
+        const langs = ['zh-CN', 'en'];
+
+        for (const lang of langs) {
+            // 筛选出该语言下所有有 filename 的文章
+            const langPosts = blogData.filter(p => {
+                const hasFilename = p.filename && typeof p.filename === 'string';
+                const hasLang = p.allow_lang && Array.isArray(p.allow_lang) && p.allow_lang.includes(lang);
+                return hasFilename && hasLang;
+            });
+
+            const allFilenames = langPosts.map(p => p.filename as string);
+
+            // 查找当前文章在该语言列表中的位置
+            const currentIndex = allFilenames.indexOf(currentFilename);
+
+            let newer: [string, string] | null = null;
+            let older: [string, string] | null = null;
+
+            if (currentIndex !== -1) {
+                // 找到对应文章
+                if (currentIndex > 0) {
+                    const newerPost = langPosts[currentIndex - 1];
+                    newer = [newerPost.filename as string, newerPost.title];
+                }
+                if (currentIndex < allFilenames.length - 1) {
+                    const olderPost = langPosts[currentIndex + 1];
+                    older = [olderPost.filename as string, olderPost.title];
+                }
+            } else {
+                // 没找到对应文章，newer 和 older 保持 null
+            }
+
+            result[lang] = {
+                newer,
+                older,
+                all: allFilenames
+            };
+        }
+
+        return `<script type="application/json" id="postnav-json">${JSON.stringify(result)}</script>`;
     };
 
     let viteCommand: ResolvedConfig['command'];
@@ -177,10 +218,12 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                         tags: postInfo?.tags || null,
                         date: postInfo?.date || null
                     };
+                    const postNavJson = generatePostNavJson(decodedSlug);
                     const pageHtml = template
                         .replace('{{ content }}', adjustedHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
                         .replace('{{ cate_tag_json }}', `<script id="cate-tag-json" type="application/json">${JSON.stringify(cateTagData)}</script>`)
+                        .replace('{{ postnav_json }}', postNavJson)
                         .replace('{{ Title }}', escapeHtml(displayTitle))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}\n</head>`);
@@ -243,10 +286,12 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
                         tags: postInfo?.tags || null,
                         date: postInfo?.date || null
                     };
+                    const postNavJson = generatePostNavJson(slug);
                     let processedTemplate = template
                         .replace('{{ content }}', adjustedPostHtml)
                         .replace('{{ toc_json }}', `<script id="toc-json" type="application/json">${JSON.stringify(toc)}</script>`)
                         .replace('{{ cate_tag_json }}', `<script id="cate-tag-json" type="application/json">${JSON.stringify(cateTagData)}</script>`)
+                        .replace('{{ postnav_json }}', postNavJson)
                         .replace('{{ Title }}', escapeHtml(displayTitle))
                         .replace(/(<mdui-top-app-bar-title>)(.*?)(<\/mdui-top-app-bar-title>)/, `$1${escapeHtml(title)}$3`)
                         .replace('</head>', `${metaTags}${injectionContent}</head>`);

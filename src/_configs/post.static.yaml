@@ -3,19 +3,28 @@ zh-CN: # 语言: 中文
   - selector: 'mdui-top-app-bar > mdui-tooltip'
     target: content
     text: 章节目录 # 右上角打开目录按钮
-  - selector: '.newer-post > span > span'
+  - selector: '.cate-tag > mdui-tooltip > div[slot="content"] > span:nth-of-type(1)'
+    target: inner-html
+    text: 单词数：
+  - selector: '.cate-tag > mdui-tooltip > div[slot="content"] > span:nth-of-type(3)'
+    target: inner-html
+    text: 字符数：
+  - selector: '.cate-tag > mdui-tooltip > div[slot="content"] > span:nth-of-type(5)'
+    target: inner-html
+    text: 预计阅读时长：
+  - selector: '.newer-post > mdui-card > span.h-box > span'
     target: inner-html
     text: 更新的一篇文章 # 底部文章跳转（左）
-  - selector: '.older-post > span > span'
+  - selector: '.older-post > mdui-card > span.h-box > span'
     target: inner-html
     text: 更旧的一篇文章 # 底部文章跳转（右）
-  - selector: '.newer-post > h1'
+  - selector: '.newer-post > mdui-card > span.other-post-title'
     target: inner-html
     text: Coming Soon # 无文章默认提示
-  - selector: '.older-post > h1'
+  - selector: '.older-post > mdui-card > span.other-post-title'
     target: inner-html
     text: 没有文章了 # 无文章默认提示
-  - selector: '.older-post-container > mdui-tooltip'
+  - selector: '.postnav-part2 > mdui-tooltip:not(.older-post)'
     target: content
     text: 随机 # 随机
 
@@ -24,18 +33,27 @@ en: # Language: English
   - selector: 'mdui-top-app-bar > mdui-tooltip'
     target: content
     text: Table of Contents # Button to open TOC in top right corner
-  - selector: '.newer-post > span > span'
+  - selector: '.cate-tag > mdui-tooltip > div[slot="content"] > span:nth-of-type(1)'
+    target: inner-html
+    text: 'Word Count:' # Word count label
+  - selector: '.cate-tag > mdui-tooltip > div[slot="content"] > span:nth-of-type(3)'
+    target: inner-html
+    text: 'Character Count:' # Character count label
+  - selector: '.cate-tag > mdui-tooltip > div[slot="content"] > span:nth-of-type(5)'
+    target: inner-html
+    text: 'Est. Reading Time:' # Estimated reading time label
+  - selector: '.newer-post > mdui-card > span.h-box > span'
     target: inner-html
     text: Newer Post # Article navigation at bottom (left)
-  - selector: '.older-post > span > span'
+  - selector: '.older-post > mdui-card > span.h-box > span'
     target: inner-html
     text: Older Post # Article navigation at bottom (right)
-  - selector: '.newer-post > h1'
+  - selector: '.newer-post > mdui-card > span.other-post-title'
     target: inner-html
     text: Coming Soon # Default message when no post available
-  - selector: '.older-post > h1'
+  - selector: '.older-post > mdui-card > span.other-post-title'
     target: inner-html
     text: No More Posts # Default message when no post available
-  - selector: '.older-post-container > mdui-tooltip'
+  - selector: '.postnav-part2 > mdui-tooltip:not(.older-post)'
     target: content
     text: Random # Random

@@ -1,6 +1,3 @@
-// 该文件已修复 RSS 规范性问题与路径解析逻辑
-// Fixed RSS specification issues and path resolution logic.
-
 import { createRequire } from 'module'; const require = createRequire(import.meta.url);
 import type { Plugin, ResolvedConfig } from 'vite';
 import path from 'path';

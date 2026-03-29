@@ -1,7 +1,7 @@
 # 该文件定义了博客文章列表。
 # This file defines the list of blog posts.
 
-- title: test
+- title: Test Post 1
   # 文章标题
   # Post title
   desc: markdwon test
@@ -25,7 +25,7 @@
   # List of languages in which the post is allowed to be displayed
   - zh-CN
   - en
-- title: test2
+- title: Test Post 2
   desc: markdwon test2
   date: "1900-01-01 00:00:00"
   filename: test2

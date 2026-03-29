@@ -33,32 +33,38 @@
                     <span></span>
                 </mdui-chip>
                 <div slot="content">
-                    <span></span> C<br />
-                    <span></span> W<br />
-                    <span></span>
+                    <span></span><span></span><br />
+                    <span></span><span></span><br />
+                    <span></span><span></span>
                 </div>
             </mdui-tooltip>
         </div>
         <article class="mdui-prose article" id="article-content">
             {{ content }}
         </article>
-        <div class="post-navigation">
-            <mdui-card disabled class="v-box newer-post" variant="outlined" clickable>
-                <span class="h-box"><mdui-icon-arrow-back></mdui-icon-arrow-back><span><!----></span></span>
-                <h1><!----></h1>
-            </mdui-card>
-            <div class="older-post-container">
-                <mdui-card disabled class="v-box older-post" variant="outlined" clickable>
-                    <span class="h-box"><span><!----></span><mdui-icon-arrow-forward></mdui-icon-arrow-forward></span>
-                    <h1><!----></h1>
+
+        <div class="auto-box postnav">
+            <mdui-tooltip class="newer-post" content=""> 
+                <mdui-card disabled class="v-box" variant="outlined" clickable>
+                    <span class="h-box"><mdui-icon-arrow-back></mdui-icon-arrow-back><span><!----></span></span>
+                    <span class="other-post-title"><!----></span>
                 </mdui-card>
+            </mdui-tooltip>
+            <div class="h-box postnav-part2">
+                <mdui-tooltip content="" class="older-post">
+                    <mdui-card disabled class="v-box" variant="outlined" clickable>
+                        <span class="h-box"><span><!----></span><mdui-icon-arrow-forward></mdui-icon-arrow-forward></span>
+                        <span class="other-post-title"><!----></span>
+                    </mdui-card>
+                </mdui-tooltip>
                 <mdui-tooltip content="">
-                    <mdui-card class="v-box rand-post" variant="outlined" clickable style="cursor: none !important;">
+                    <mdui-card class="v-box rand-post" variant="outlined" clickable style="cursor: none !important;" disabled>
                         <mdui-icon-shuffle></mdui-icon-shuffle>
                     </mdui-card>
                 </mdui-tooltip>
             </div>
         </div>
+
         <div class="giscus"></div>
     </main>
     <aside>
@@ -69,5 +75,6 @@
     <script src="./template.ts" type="module"></script>
     {{ toc_json }}
     {{ cate_tag_json }}
+    {{ postnav_json }}
 </body>
 </html>

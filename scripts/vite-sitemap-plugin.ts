@@ -1,6 +1,3 @@
-// 该文件AI参与度高
-// This file has a high AI participation rate.
-
 import { createRequire } from 'module'; const require = createRequire(import.meta.url);
 import type { Plugin, ResolvedConfig } from 'vite';
 import path from 'path';

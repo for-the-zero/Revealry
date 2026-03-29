@@ -48,6 +48,68 @@ mdui-top-app-bar-title{
     margin: 0;
 }
 
+/* postnav */
+.postnav{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 25px auto;
+    gap: 8px;
+    align-items: stretch;
+}
+.newer-post > mdui-card{
+    flex: 4;
+    padding: 10px;
+    align-items: start;
+    justify-content: center;
+    gap: 8px;
+    height: min(15vh, 120px);
+}
+.newer-post > mdui-card > .h-box{
+    align-items: center;
+    gap: 4px;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+.newer-post > mdui-card > .h-box > span, .older-post > mdui-card > .h-box > span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 0 1 auto;
+    min-width: 0;
+}
+.postnav-part2{
+    flex: 5;
+    height: 100%;
+    overflow: hidden;
+    gap: 8px;
+    align-items: stretch;
+}
+.older-post > mdui-card{
+    flex: 4;
+    padding: 10px;
+    align-items: end;
+    justify-content: center;
+    gap: 8px;
+    height: min(15vh, 120px);
+}
+.older-post > mdui-card > .h-box{
+    align-items: center;
+    gap: 4px;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.rand-post{
+    flex: 1;
+}
+.other-post-title{
+    font-size: 1.75em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
 /* markdown */
 .article h1,.article h2,.article h3,.article h4,.article h5,.article h6{
     margin: 0.5em 0;
@@ -104,85 +166,4 @@ pre.hljs{
 }
 .article blockquote{
     border-left: .25rem solid rgb(var(--mdui-color-primary));;
-}
-
-/* post navigation styles */
-.post-navigation {
-    width: 100%;
-    height: min(15vh, 120px);
-    margin: 25px auto;
-    gap: 8px;
-    max-width: 100%;
-    display: flex;
-}
-@media screen and (max-width: 768px) {
-    .post-navigation {
-        flex-direction: column;
-        height: auto;
-        gap: 12px;
-    }
-}
-@media screen and (max-width: 620px) {
-    .post-navigation {
-        flex-direction: column;
-    }
-}
-.post-navigation .newer-post,
-.post-navigation .older-post {
-    flex: 2;
-    padding: 10px;
-    min-width: 0;
-    min-height: 60px;
-    align-items: start !important;
-    justify-content: flex-start !important;
-    gap: 8px;
-}
-.post-navigation .newer-post > .h-box {
-    align-items: center;
-    gap: 4px;
-    justify-content: flex-start !important;
-}
-.post-navigation .older-post > .h-box {
-    align-items: center;
-    gap: 4px;
-    justify-content: flex-end !important;
-}
-.post-navigation .newer-post h1,
-.post-navigation .older-post h1 {
-    margin: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-weight: normal;
-    width: 100%;
-}
-.post-navigation .older-post-container {
-    display: flex;
-    gap: 8px;
-    flex: 3;
-    min-width: 0;
-    align-items: stretch;
-}
-.post-navigation .older-post-container > mdui-tooltip {
-    flex: 1;
-    display: flex;
-    min-width: 60px;
-}
-@media screen and (max-width: 768px) {
-    .post-navigation .older-post-container {
-        flex-direction: row;
-        height: auto;
-        min-height: 60px;
-    }
-    .post-navigation .older-post-container > mdui-tooltip {
-        min-width: 50px;
-        min-height: 50px;
-    }
-}
-.post-navigation .rand-post {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
