@@ -33,7 +33,7 @@ import '@mdui/icons/shuffle.js'
 
 //
 import { init_i18n, get_lang } from '../../public_assets/i18n';
-import config_static_blog from '../../_configs/post.static.yaml';
+import config_static_blog from '../../../configs/post.static.yaml';
 init_i18n(config_static_blog);
 const lang = get_lang();
 

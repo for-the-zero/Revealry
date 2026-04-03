@@ -22,12 +22,12 @@ import '@mdui/icons/update.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';
-import config_static_intro from '../_configs/intro.static.yaml';
+import config_static_intro from '../../configs/intro.static.yaml';
 init_i18n(config_static_intro);
 const lang = get_lang();
 
 //
-import config_intro_all from '../_configs/intro.yaml';
+import config_intro_all from '../../configs/intro.yaml';
 const config_intro = config_intro_all[lang] as intro;
 
 //

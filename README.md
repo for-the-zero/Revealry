@@ -86,9 +86,9 @@ npm run deploy
 
 # 自定义与配置 / Customization & Configuration
 
-修改网站内容的核心是编辑 `src/_configs/` 目录下的 `.yaml` 文件
+修改网站内容的核心是编辑 `configs/` 目录下的 `.yaml` 文件
 
-The core of modifying the website content is to edit the `.yaml` files in the `src/_configs/` directory.
+The core of modifying the website content is to edit the `.yaml` files in the `configs/` directory.
 
 你可以根据yaml中的注释更改
 
@@ -109,8 +109,8 @@ To add a new blog post, simply:
 
 - 在 `posts` 目录下创建一个新的 `.md` 文件
 - Create a new `.md` file in the `posts` directory.
-- 在 `src/_configs/blog.yaml` 中添加该文章的条目
-- Add an entry for the new post to `src/_configs/blog.yaml`.
+- 在 `configs/blog.yaml` 中添加该文章的条目
+- Add an entry for the new post to `configs/blog.yaml`.
 
 ---
 

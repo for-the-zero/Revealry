@@ -17,7 +17,7 @@ function generateMetaTags(title: string, description: string): string {
 };
 export function viteMeta(): Plugin {
     const projectRoot = path.resolve(__dirname, '..');
-    const metaConfigPath = path.resolve(projectRoot, 'src/_configs/meta.yaml');
+    const metaConfigPath = path.resolve(projectRoot, 'configs/meta.yaml');
     let metaData: MetaConfig[] = [];
     try {
         metaData = yaml.load(fs.readFileSync(metaConfigPath, 'utf8')) as MetaConfig[];

@@ -95,7 +95,7 @@ export function viteRssFeed(opts: {
         closeBundle() {
             const root = path.resolve(process.cwd());
             const outDir = path.resolve(root, 'dist');
-            const blogListFile = path.join(root, 'src/_configs/blog.yaml');
+            const blogListFile = path.join(root, 'configs/blog.yaml');
             if (!fs.existsSync(blogListFile)) return;
             const blogList = yaml.load(fs.readFileSync(blogListFile, 'utf-8')) as BlogItem[] ?? [];
             const feedItems: FeedItem[] = [];

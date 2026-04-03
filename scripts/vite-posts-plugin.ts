@@ -28,7 +28,7 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
     const projectRoot = path.resolve(__dirname, '..');
     const templatePath = path.resolve(projectRoot, 'src/blog/posts/template.html');
     const template = fs.readFileSync(templatePath, 'utf-8');
-    const blogConfigPath = path.resolve(projectRoot, 'src/_configs/blog.yaml');
+    const blogConfigPath = path.resolve(projectRoot, 'configs/blog.yaml');
     let blogData: BlogPostConfig[] = [];
     try {
         blogData = yaml.load(fs.readFileSync(blogConfigPath, 'utf8')) as BlogPostConfig[];

@@ -21,11 +21,11 @@ import '@mdui/icons/shuffle.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';
-import config_static_blog from '../_configs/blog.static.yaml';
+import config_static_blog from '../../configs/blog.static.yaml';
 init_i18n(config_static_blog);
 const lang = get_lang();
 //
-import config_blog from '../_configs/blog.yaml';
+import config_blog from '../../configs/blog.yaml';
 const blog_posts = config_blog.filter((post: blog_post)=>{
     return post.allow_lang.includes(lang);
 }) as blog_post[];

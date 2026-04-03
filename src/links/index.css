@@ -53,7 +53,7 @@ img, .svg-fill use{
     padding: 0;
 }
 .label-show{
-    width: min(calc(50vw - 30px), 125px);
+    width: min(calc(50vw - 105px), 125px);
     padding-left: 10px;
 }
 

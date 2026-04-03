@@ -14,7 +14,7 @@ import '@mdui/icons/feed--outlined.js';
 import '@mdui/icons/light.js';
 
 import { get_lang, init_i18n, change_lang } from './public_assets/i18n';
-import config_static_home from './_configs/home.static.yaml';
+import config_static_home from '../configs/home.static.yaml';
 init_i18n(config_static_home);
 const lang = get_lang();
 

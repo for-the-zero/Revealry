@@ -15,8 +15,8 @@ const contentToPrepend = `- title: ''
 `;
 
 try {
-    const originalContent = fs.readFileSync(path.join(__dirname, '../src/_configs/blog.yaml'), 'utf8');
-    fs.writeFileSync(path.join(__dirname, '../src/_configs/blog.yaml'), contentToPrepend + originalContent);
+    const originalContent = fs.readFileSync(path.join(__dirname, '../configs/blog.yaml'), 'utf8');
+    fs.writeFileSync(path.join(__dirname, '../configs/blog.yaml'), contentToPrepend + originalContent);
     console.log('Done');
 } catch (err) {
     console.error('Error:', err);

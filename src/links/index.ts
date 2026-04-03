@@ -19,11 +19,11 @@ import '@mdui/icons/label-off.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';
-import config_static_links from '../_configs/links.static.yaml';
+import config_static_links from '../../configs/links.static.yaml';
 init_i18n(config_static_links);
 const lang = get_lang();
 //
-import config_links_all from '../_configs/links.yaml';
+import config_links_all from '../../configs/links.yaml';
 const config_links = config_links_all[lang] as links;
 
 //

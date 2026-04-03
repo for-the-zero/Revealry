@@ -33,7 +33,7 @@ function generateSeoArea(linksConfig: { [lang: string]: links }): string {
 };
 export function viteLinksSeo(): Plugin {
     const projectRoot = path.resolve(__dirname, '..');
-    const linksConfigPath = path.resolve(projectRoot, 'src/_configs/links.yaml');
+    const linksConfigPath = path.resolve(projectRoot, 'configs/links.yaml');
     let linksData: { [lang: string]: links } = {};
     try {
         linksData = yaml.load(fs.readFileSync(linksConfigPath, 'utf8')) as { [lang: string]: links };

@@ -32,8 +32,8 @@ export function viteSitemapMulti(opts: {
         closeBundle() {
             const root = path.resolve(__dirname, '..');
             const outDir = path.resolve(root, baseOutDir);
-            const blogList: BlogItem[] = loadYaml(path.join(root, 'src/_configs/blog.yaml')) ?? [];
-            const metaList: MetaItem[] = loadYaml(path.join(root, 'src/_configs/meta.yaml')) ?? [];
+            const blogList: BlogItem[] = loadYaml(path.join(root, 'configs/blog.yaml')) ?? [];
+            const metaList: MetaItem[] = loadYaml(path.join(root, 'configs/meta.yaml')) ?? [];
             type UrlItem = { loc: string; lastmod?: Date };
             const urlMap = new Map<string, UrlItem>();
             for (const f of require('glob').sync('src/**/*.html', { ignore: ['src/blog/posts/template.html', 'src/404.html'] })) {
