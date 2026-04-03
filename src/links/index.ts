@@ -14,8 +14,8 @@ import 'mdui/components/button-icon.js';
 import '@mdui/icons/arrow-back.js';
 import '@mdui/icons/content-copy.js';
 import '@mdui/icons/open-in-new.js';
-import '@mdui/icons/label--outlined.js';
-import '@mdui/icons/label-off.js';
+import '@mdui/icons/label.js';
+import '@mdui/icons/label-off--outlined.js';
 
 //
 import { init_i18n, get_lang } from '../public_assets/i18n';

@@ -9,7 +9,7 @@ import { viteMeta } from './scripts/vite-meta-plugin';
 import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 import { viteExtendHead } from './scripts/vite-head-plugin';
 import { viteRssFeed } from './scripts/vite-rss-plugin';
-import { viteLinksSeo } from './scripts/vite-links-seo-plugin';
+import { viteSeoArea } from './scripts/vite-seo-area-plugin';
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -127,6 +127,6 @@ export default defineConfig({
         '<!-- Inject some elements into the head of the homepage -->'
       ]
     }),
-    viteLinksSeo()
+    viteSeoArea()
   ],
 });

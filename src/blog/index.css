@@ -83,3 +83,25 @@ mdui-tooltip > mdui-chip::part(label){
     padding: 0;
     margin: 0;
 }
+
+.seo-area{
+    position: fixed;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    user-select: none;
+    z-index: -999;
+    transform-origin: 100vw 100vh;
+    animation: spin 0.1s infinite, crawl 1s infinite;
+}
+@keyframes crawl {
+    0% { top: 0; left: 0; }
+    25% { top: -100vh; left: 100vw; }
+    50% { top: 100vh; left: 100vw; }
+    75% { top: 100vh; left: -100vw; }
+    100% { top: 0; left: 0; }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -18,19 +18,19 @@
             <div style="flex-grow: 1;"></div>
             <mdui-tooltip content="">
                 <mdui-button-icon selectable>
-                    <mdui-icon-label--outlined></mdui-icon-label--outlined>
-                    <mdui-icon-label-off slot="selected-icon"></mdui-icon-label-off>
+                    <mdui-icon-label slot="selected-icon"></mdui-icon-label>
+                    <mdui-icon-label-off--outlined></mdui-icon-label-off--outlined>
                 </mdui-button-icon>
             </mdui-tooltip>
         </mdui-top-app-bar>
-
-        {{ seo_area }}
 
         <div class="v-box container"></div>
 
         <mdui-dialog class="link-detail" close-on-overlay-click close-on-esc>
             <div class="v-box"></div>
         </mdui-dialog>
+
+        {{ seo_area }}
 
         <script src="../public_assets/global.ts" type="module"></script>
         <script src="./index.ts" type="module"></script>
