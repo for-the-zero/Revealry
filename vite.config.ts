@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { glob } from 'glob';
 import yaml from '@modyfi/vite-plugin-yaml';
+import jsYaml from 'js-yaml';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { markdownBlog } from './scripts/vite-posts-plugin';
 import { viteMeta } from './scripts/vite-meta-plugin';
@@ -10,6 +11,9 @@ import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 import { viteExtendHead } from './scripts/vite-head-plugin';
 import { viteRssFeed } from './scripts/vite-rss-plugin';
 import { viteSeoArea } from './scripts/vite-seo-area-plugin';
+
+const configPath = path.resolve(__dirname, 'configs/config.yaml');
+const config = jsYaml.load(fs.readFileSync(configPath, 'utf8')) as any;
 
 
 const htmlEntries = glob.sync('src/**/*.html', {
@@ -63,16 +67,11 @@ export default defineConfig({
     viteMeta(),
     yaml(),
     markdownBlog({
-      inject: [
+      inject: config.blog?.head_inject || [
         '<!-- 往每篇文章的head注入一些元素 -->',
         '<!-- Inject some elements into the head of each article -->',
-        //`<script src="https://giscus.app/client.js" ...></script>`
       ],
-      suffix: ' - Revealry Blog'
-      /*suffix: {
-        'zh-CN': ' - Revealry 中文博客后缀',
-        'en': ' - Revealry Blog Suffix English'
-      }*/
+      suffix: config.blog?.suffix || ' - Revealry Blog'
     }),
     viteStaticCopy({
       targets: [
@@ -103,26 +102,24 @@ export default defineConfig({
       ]
     }),
     viteSitemapMulti({
-      hostnames: [
-        // 将域名换成你自己的，可添加多个
-        // Replace the domain with your own, you can add multiple
+      hostnames: config.sitemap?.hostnames || [
         'https://for-the-zero.github.io/Revealry'
       ],
       baseOutDir: 'dist'
     }),
     viteRssFeed({
-      hostname: 'https://for-the-zero.github.io/Revealry/',
-      feedTitle: 'Revealry Blog RSS Feed',
-      feedDescription: 'Latest blog posts from Revealry',
-      copyright: 'Copyright',
-      author: 'Author'
+      hostname: config.rss?.hostname || 'https://for-the-zero.github.io/Revealry/',
+      feedTitle: config.rss?.title || 'Revealry Blog RSS Feed',
+      feedDescription: config.rss?.description || 'Latest blog posts from Revealry',
+      copyright: config.rss?.copyright || 'Copyright',
+      author: config.rss?.author || 'Author'
     }),
     viteExtendHead({
-      heads: [
+      heads: config.head_extension?.global || [
         '<!-- 往每个页面的head注入一些元素（文章除外） -->',
         '<!-- Inject some elements into the head of each page (excluding articles) -->'
       ],
-      home: [
+      home: config.head_extension?.home || [
         '<!-- 额外往首页的head注入一些元素 -->',
         '<!-- Inject some elements into the head of the homepage -->'
       ]

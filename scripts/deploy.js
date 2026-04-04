@@ -33,14 +33,14 @@ if (!fs.existsSync(dist_dir)) {
     process.exit(1);
 };
 if (!fs.existsSync(path.join(dist_dir, '.git'))) {
-    if (!fs.existsSync(path.resolve('configs/global.yaml'))) {
-        console.error('[ERR] configs/global.yaml 不存在');
+    if (!fs.existsSync(path.resolve('configs/config.yaml'))) {
+        console.error('[ERR] configs/config.yaml 不存在');
         process.exit(1);
     };
-    const config = yaml.load(fs.readFileSync(path.resolve('configs/global.yaml'), 'utf8'));
+    const config = yaml.load(fs.readFileSync(path.resolve('configs/config.yaml'), 'utf8'));
     const repo_name = config?.repo;
     if (!repo_name) {
-        console.error('[ERR] global.yaml 中缺少 repo ');
+        console.error('[ERR] config.yaml 中缺少 repo ');
         process.exit(1);
     };
     run('git init', dist_dir);

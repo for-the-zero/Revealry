@@ -1,0 +1,42 @@
+# Git 仓库地址（用于部署）/ Git repository address (for deployment)
+repo: 'git@github.com:for-the-zero/Revealry.git'
+
+blog:
+  # 文章标题后缀配置（支持字符串或按语言区分）/ Article title suffix configuration (supports string or language-specific)
+  suffix: ' - Revealry Blog'
+  # suffix:
+  #   'zh-CN': ' - Revealry 中文博客后缀'
+  #   'en': ' - Revealry Blog Suffix English'
+
+  # 每篇文章 head 注入的 HTML / HTML injected into the head of each article
+  head_inject:
+    - '<!-- 往每篇文章的head注入一些元素 -->'
+    - '<!-- Inject some elements into the head of each article -->'
+    # - '<script src="https://giscus.app/client.js" ...></script>'
+
+sitemap:
+  # 网站域名列表（可添加多个）/ Website hostname list (can add multiple)
+  hostnames:
+    - 'https://for-the-zero.github.io/Revealry'
+
+rss:
+  # 域名（带末尾斜杠）/ Hostname (with trailing slash)
+  hostname: 'https://for-the-zero.github.io/Revealry/'
+  # Feed 标题 / Feed title
+  title: 'Revealry Blog RSS Feed'
+  # Feed 描述 / Feed description
+  description: 'Latest blog posts from Revealry'
+  # 版权信息 / Copyright information
+  copyright: 'Copyright'
+  # 作者 / Author
+  author: 'Author'
+
+head_extension:
+  # 往每个页面 head 注入的 HTML（文章除外） / HTML injected into every page head (excluding articles)
+  global:
+    - '<!-- 往每个页面的head注入一些元素（文章除外） -->'
+    - '<!-- Inject some elements into the head of each page (excluding articles) -->'
+  # 额外往首页 head 注入的 HTML / Additional HTML injected into homepage head
+  home:
+    - '<!-- 额外往首页的head注入一些元素 -->'
+    - '<!-- Inject some elements into the head of the homepage -->'

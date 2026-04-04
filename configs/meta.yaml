@@ -11,18 +11,14 @@
   # 描述
   # Description
 
-- path: /intro/index
+- path: /intro/
   title: About Me
   description: Learn more about me.
 
-- path: /links/index
+- path: /links/
   title: Some Links about me
   description: Find some useful links about me.
 
-- path: /blog/index
+- path: /blog/
   title: My Blog Posts
   description: Read my blog posts.
-
-- path: /404
-  title: Page Not Found
-  description: The page you are looking for does not exist.
