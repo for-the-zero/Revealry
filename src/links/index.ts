@@ -53,7 +53,10 @@ function render_links(){
                                     <img src="${link_item.img.startsWith('http://') || link_item.img.startsWith('https://')? link_item.img : `../assets/intro/${link_item.img}`}" draggable="false" />
                                 `}
                             </div>
-                            <p class="link-label label-hidden">${link_item.name}</p>
+                            <div class="link-label label-hidden">
+                                <div class="link-name">${link_item.name}</div>
+                                ${link_item.description ? `<div class="link-desc">${link_item.description}</div>` : ''}
+                            </div>
                         </mdui-card>
                     </mdui-tooltip>`
                 );
