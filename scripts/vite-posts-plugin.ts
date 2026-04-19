@@ -129,7 +129,7 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
         if (isProduction) {
             return html.replace(/(<img[^>]*src=["'])(?:\.\/)?img\//g, '$1../img/');
         } else {
-            return html.replace(/(<img[^>]*src=["'])\.\.\/img\//g, '$1img/');
+            return html.replace(/(<img[^>]*src=["'])(?:\.\/)?img\//g, '$1/blog/posts/img/');
         };
     };
 
@@ -197,6 +197,30 @@ export function markdownBlog(options: MarkdownBlogOptions = {}): Plugin {
             viteConfig = resolvedConfig;
         },
         configureServer(server) {
+            server.middlewares.use((req, res, next) => {
+                const url = req.url || '';
+                if (url.match(/^\/blog\/posts\/[^/]+\/img\/[^/]+$/) || url.match(/^\/blog\/posts\/img\/[^/]+$/)) {
+                    let imgFile = '';
+                    const match1 = url.match(/^\/blog\/posts\/[^/]+\/img\/(.+)$/);
+                    const match2 = url.match(/^\/blog\/posts\/img\/(.+)$/);
+                    if (match1) {
+                        imgFile = match1[1];
+                    } else if (match2) {
+                        imgFile = match2[1];
+                    };
+                    if (imgFile) {
+                        const imgPath = path.resolve(projectRoot, 'posts/img/', imgFile);
+                        if (fs.existsSync(imgPath)) {
+                            const ext = path.extname(imgPath).slice(1);
+                            const contentType = ext === 'jpg' ? 'image/jpeg' : ext === 'png' ? 'image/png' : 'image/' + ext;
+                            res.writeHead(200, { 'Content-Type': contentType });
+                            res.end(fs.readFileSync(imgPath));
+                            return;
+                        };
+                    };
+                };
+                next();
+            });
             server.middlewares.use(async (req, res, next) => {
                 const urlMatch = req.url?.match(/^\/blog\/posts\/([^/]+)\/?$/);
                 if (!urlMatch) { return next(); };

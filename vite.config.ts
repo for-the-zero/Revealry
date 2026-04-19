@@ -11,6 +11,7 @@ import { viteSitemapMulti } from './scripts/vite-sitemap-plugin';
 import { viteExtendHead } from './scripts/vite-head-plugin';
 import { viteRssFeed } from './scripts/vite-rss-plugin';
 import { viteSeoArea } from './scripts/vite-seo-area-plugin';
+import { viteServerUrlFix, viteCopyImagesPlugin } from './scripts/vite-server-url-fix';
 
 const configPath = path.resolve(__dirname, 'configs/config.yaml');
 const config = jsYaml.load(fs.readFileSync(configPath, 'utf8')) as any;
@@ -34,11 +35,11 @@ const allEntries = {
   ...postEntries
 };
 
-
 export default defineConfig({
   root: 'src',
   build: {
     outDir: '../dist',
+    emptyOutDir: true,
     rollupOptions: {
       input: allEntries,
       output: {
@@ -61,9 +62,14 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
+    fs: {
+      allow: ['..']
+    }
   },
   base: './',
   plugins: [
+    viteServerUrlFix(),
+    viteCopyImagesPlugin(),
     viteMeta(),
     yaml(),
     markdownBlog({
@@ -75,14 +81,6 @@ export default defineConfig({
     }),
     viteStaticCopy({
       targets: [
-        {
-          src: '../posts/img/**/*',
-          dest: 'blog/posts/img'
-        },
-        {
-          src: '../posts/img/**/*',
-          dest: 'img'
-        },
         {
           src: 'assets/icon.svg',
           dest: ''

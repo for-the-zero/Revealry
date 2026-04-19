@@ -212,9 +212,7 @@ function show_posts(){
         e_blog_posts.append(`
             <mdui-tooltip content="${post.title}"> 
                 <mdui-card variant="filled" class="post" href="${
-                        post.filename ? `./posts/${post.filename}${
-                            window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'
-                        }` 
+                        post.filename ? `./posts/${post.filename}/` 
                     : post.href}">
                     <div class="v-box post-content">
                         <h2>${post.title}</h2>
@@ -259,5 +257,5 @@ e_ramd.on('hover mouseenter touchstart mouseup',()=>{
         return post.filename;
     };
     let post = get_post();
-    e_ramd.attr('href', `./posts/${post}${window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '' : '/'}`);
+    e_ramd.attr('href', `./posts/${post}/`);
 })

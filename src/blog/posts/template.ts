@@ -197,25 +197,16 @@ e_ctd.append(`
         </mdui-tooltip>
         ` : ''}
     ${ctd_data.category ? `
-        <mdui-chip selected target="_blank" href='../${
-            window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '': '../'
-        }?cate=${ctd_data.category}'>
+        <mdui-chip selected target="_blank" href='../../?cate=${ctd_data.category}'>
             <mdui-icon-category--outlined slot="selected-icon"></mdui-icon-category--outlined>
             ${ctd_data.category}
         </mdui-chip>` : ''}
     ${!(ctd_data.tags === null) && ctd_data.tags.length > 0 ? ctd_data.tags.map((tag: string)=>`
-        <mdui-chip target="_blank" href='../${
-            window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.') ? '': '../'
-        }?tag=${tag}'>
+        <mdui-chip target="_blank" href='../../?tag=${tag}'>
             <mdui-icon-tag slot="icon"></mdui-icon-tag>
             ${tag}
         </mdui-chip>`).join('') : ''}`
 );
-
-//
-if(window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.')){
-    $('mdui-button-icon[href="../../"]').attr('href', '../');
-};
 
 //
 const e_postnav_data = $('script[type="application/json"]#postnav-json');
